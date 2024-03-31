@@ -1,6 +1,13 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import { UserConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+const config: UserConfig = {
+	plugins: [sveltekit()],
+	server: {
+		fs: {
+			allow: ['project']
+		}
+	}
+};
+
+export default config;
