@@ -1,8 +1,8 @@
 <!-- Wrapper to enforce 16:9 -->
-<div class="relative w-screen h-screen bg-black flex flex-col justify-center">
+<div class="relative w-screen h-screen bg-black flex flex-col justify-center items-center">
     {#if curr_scene !== null}
     <!-- The main story background -->
-    <div class="relative w-[100vw] h-[56.25vw] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'/project/img/' + curr_scene.background + '\')':''}">
+    <div class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'/project/img/' + curr_scene.background + '\')':''}">
 
         <!-- General objects that can always be visible (e.g., UI elements) -->
         {#each story.objects as o}
@@ -32,15 +32,17 @@
 
         {#each curr_scene.objects as o}
         {#if o.visible}
-        <img src="/project/img/{o.image}" draggable="false" class="absolute" style="
-            {(o.width !== undefined)?'width: ' + o.width + '; ':''}
-            {(o.height !== undefined)?'height: ' + o.height + '; ':''}
-            {(o.x !== undefined)?'left: ' + o.x + '; ':''}
-            {(o.y !== undefined)?'top: ' + o.y + '; ':''} 
-            {(o.onclick !== undefined && o.onclick.length > 0)?'cursor: pointer; ':''}
-        "
-        on:click={(o.onclick !== undefined && o.onclick.length > 0)?handle_click_event(o):undefined}  
-        />
+            {#if o.type == 'sprite'}
+            <img src="/project/img/{o.image}" draggable="false" class="absolute" style="
+                {(o.width !== undefined)?'width: ' + o.width + '; ':''}
+                {(o.height !== undefined)?'height: ' + o.height + '; ':''}
+                {(o.x !== undefined)?'left: ' + o.x + '; ':''}
+                {(o.y !== undefined)?'top: ' + o.y + '; ':''} 
+                {(o.onclick !== undefined && o.onclick.length > 0)?'cursor: pointer; ':''}
+            "
+            on:click={(o.onclick !== undefined && o.onclick.length > 0)?handle_click_event(o):undefined}  
+            />
+            {/if}
         {/if}
         {/each}
 
