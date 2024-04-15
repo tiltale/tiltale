@@ -43,6 +43,9 @@
             on:click={(o.onclick !== undefined && o.onclick.length > 0)?handle_click_event(o):undefined}  
             />
             {/if}
+            {#if o.type == 'dragminigame'}
+            <Drag text={o.text} slots={o.slots} x={o.x} y={o.y} width={o.width} height={o.height} />
+            {/if}
         {/if}
         {/each}
 
@@ -73,6 +76,7 @@
 
 <script type="ts">
     import { onMount } from "svelte";
+    import Drag from '../plugins/drag.svelte';
     import story from '/project/story.json';
 
     let curr_scene = null;
