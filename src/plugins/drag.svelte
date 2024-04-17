@@ -1,11 +1,12 @@
   <div class="absolute" style="
-            {(width !== undefined)?'width: ' + width + '; ':''}
-            {(height !== undefined)?'height: ' + height + '; ':''}
-            {(x !== undefined)?'left: ' + x + '; ':''}
-            {(y !== undefined)?'top: ' + y + '; ':''} 
+            {(obj.width !== undefined)?'width: ' + obj.width + '; ':''}
+            {(obj.height !== undefined)?'height: ' + obj.height + '; ':''}
+            {(obj.x !== undefined)?'left: ' + obj.x + '; ':''}
+            {(obj.y !== undefined)?'top: ' + obj.y + '; ':''} 
         ">
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body text-[3vh]">
+            <p><span class="italic">Build a sentence by dragging the different blocks into the designated slots!</span></p><br />
             <p class="flex flex-row gap-4">
                 {#each txtarea as t}
                 {#if t.type == 'text'}
@@ -21,11 +22,11 @@
                     </div>
                 {/if}
                 {/each}
-            </p>
+            </p><br />
             </div>
         </div> 
         <div class="flex mt-2 gap-x-4">
-        {#each slots as s, index}
+        {#each obj.slots as s, index}
         <div class="card bg-base-100 shadow-xl grow">
             <div class="card-body text-[3vh]">
             {#each s.options as o}
@@ -37,15 +38,16 @@
         </div> 
         {/each}
         </div>       
+        <div class="card bg-base-100 shadow-xl mt-2">
+            <div class="card-body">
+                <button class="btn btn-primary w-full text-[3vh] {slotcontent.filter(content => content == '').length > 0?'btn-disabled':''}" on:click={do_callback}>I'm done!</button>
+            </div>
+        </div>
   </div>
 
 <script lang="ts">
-    export let text = '';
-    export let slots = [];
-    export let x = undefined;
-    export let y = undefined;
-    export let width = undefined;
-    export let height = undefined;
+    export let obj = {};
+    export let complete_callback = undefined;
 
     let txtarea = [];
 
@@ -67,11 +69,11 @@
         }
     ] 
 
-    slots.forEach(function(slot) {
+    obj.slots.forEach(function(slot) {
         slotcontent.push('')
     });
 
-    let tmpstr = text;
+    let tmpstr = obj.text;
     while (tmpstr.indexOf("[") !== -1) {
         let idx = tmpstr.indexOf("[");
         let idxend = tmpstr.indexOf("]");
@@ -93,22 +95,31 @@
                 'text': tmpstr
             });
         }
-    } 
+    }
+    
+    function do_callback() {
+        let res = obj.text;
+        slotcontent.forEach(function(c, index) {
+            res = res.replace('[' + index + ']', c);
+        });
 
-    export function drag(ev) {
+        complete_callback(obj, res);
+    }
+
+    function drag(ev) {
         console.log(ev);
         ev.dataTransfer.setData('text', ev.target.innerText);
         evdrag = ev.target;
     }
 
-    export function drop(ev) {
+    function drop(ev) {
         if (evdrag.dataset.slotid == ev.target.dataset.slotid) {
             ev.preventDefault();
             slotcontent[ev.target.dataset.slotid] = ev.dataTransfer.getData("text");
         }
     }
 
-    export function allowDrop(ev) {
+    function allowDrop(ev) {
         if (evdrag.dataset.slotid == ev.target.dataset.slotid) {
             ev.preventDefault();
         }
