@@ -2,9 +2,10 @@
 <div class="relative w-screen h-screen bg-black flex flex-col justify-center items-center">
     {#if curr_scene !== null}
     <!-- The main story background -->
-    <div class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'/project/img/' + curr_scene.background + '\')':''}">
+    <div class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'project/img/' + curr_scene.background + '\')':''}">
 
         <!-- General objects that can always be visible (e.g., UI elements) -->
+        {#if story.objects !== undefined}
         {#each story.objects as o}
         {#if o.visible}
         <div class="absolute" style="
@@ -17,7 +18,7 @@
         " 
         on:click={(o.events !== undefined && o.events.length > 0)?handle_event(o):undefined}>
             {#if o.image !== undefined}
-            <img src="/project/img/{o.image}" draggable="false" />
+            <img src="project/img/{o.image}" draggable="false" />
             {/if}
             {#if o.text !== undefined}
             <div class="absolute" style=" 
@@ -31,7 +32,9 @@
         </div>
         {/if}
         {/each}
+        {/if}
 
+        {#if curr_scene.objects !== undefined}
         {#each curr_scene.objects as o}
         {#if o.visible}
             {#if o.type == 'sprite'}
@@ -45,7 +48,7 @@
         " 
         on:click={(o.events !== undefined && o.events.length > 0)?handle_event(o):undefined}>
             {#if o.image !== undefined}
-            <img src="/project/img/{o.image}" draggable="false" />
+            <img src="project/img/{o.image}" draggable="false" />
             {/if}
             {#if o.text !== undefined}
             <div class="absolute" style=" 
@@ -63,7 +66,9 @@
             {/if}
         {/if}
         {/each}
+        {/if}
 
+        {#if curr_scene.dialogue !== undefined}
         {#each curr_scene.dialogue as d}
         {#if d.visible}
         <div class="absolute card w-96 bg-base-100 shadow-xl" style="
@@ -87,6 +92,7 @@
         </div>        
         {/if}
         {/each}
+        {/if}
     </div>    
     {/if}
 </div>
