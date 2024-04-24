@@ -1,8 +1,22 @@
 <!-- Wrapper to enforce 16:9 -->
 <div class="relative w-screen h-screen bg-black flex flex-col justify-center items-center">
-    {#if curr_scene !== null}
+    {#if !is_loaded}
+    <div class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center flex flex-col items-center justify-center text-white">
+        <div class="w-[15vw] animate-bounce">
+            <img src="img/logo.png" />
+        </div>
+        <div class="text-[2vh] font-bold pt-4">Loading...</div>
+
+        <div class="image-loader">
+            {#each images as i}
+            <img src="project/img/{i}" on:load={image_preloaded(i)} class="invisible" />
+            {/each}
+        </div>
+    </div>
+    {/if}
+    {#if is_loaded && curr_scene !== null}
     <!-- The main story background -->
-    <div class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'project/img/' + curr_scene.background + '\')':''}">
+    <div class="relative animate-fade max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'project/img/' + curr_scene.background + '\')':''}">
 
         <!-- General objects that can always be visible (e.g., UI elements) -->
         {#if story.objects !== undefined}
@@ -104,14 +118,53 @@
     import story from '/project/story.json';
 
     let curr_scene = null;
+    
+    let is_loaded = false;
+    let images = [];
+    let img_load_count = 0;
 
     let variables = {};
 
     onMount(() => {
+        // Set up the preloading.
+        if (story.objects !== undefined) {
+            story.objects.forEach(function(obj) {
+                if (obj.image !== undefined) {
+                    images.push(obj.image);
+                }
+            });
+        }
+
+        if (story.scenes !== undefined) {
+            story.scenes.forEach(function(scene) {
+                if (scene.background !== undefined) {
+                    images.push(scene.background);
+                }
+
+                if (scene.objects !== undefined) {
+                    scene.objects.forEach(function(obj) {
+                        if (obj.image !== undefined) {
+                            images.push(obj.image);
+                        }
+                    })
+                }
+            })
+        }
+
+        images = images;
+
         // Make a copy so that we can always return to the start of the scene later.
         curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == story.start_scene })[0]));
         handle_event(curr_scene);
     });
+
+    function image_preloaded(img) {
+        img_load_count += 1;
+
+        if (img_load_count === images.length) {
+            is_loaded = true;
+        }
+    }
 
     function variables_in_text(txt) {
         while (txt.indexOf("[") !== -1) {
