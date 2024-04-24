@@ -91,11 +91,26 @@
             {(d.x !== undefined)?'left: ' + d.x + '; ':''}
             {(d.y !== undefined)?'top: ' + d.y + '; ':''}
             {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''}">
+        {#if d.type !== undefined && d.type == 'speech'}
+        {#if d.speech_position !== undefined && d.speech_position == 'bottomleft'}
+        <img src="img/speech_bottomleft.svg" class="absolute top-[100%] left-[5vw] w-[5vw]" />
+        {/if}
+        {#if d.speech_position !== undefined && d.speech_position == 'bottomright'}
+        <img src="img/speech_bottomright.svg" class="absolute top-[100%] right-[5vw] w-[5vw]" />
+        {/if}
+        {#if d.speech_position !== undefined && d.speech_position == 'topleft'}
+        <img src="img/speech_topleft.svg" class="absolute top-[-5vw] left-[5vw] w-[5vw]" />
+        {/if}
+        {#if d.speech_position !== undefined && d.speech_position == 'topright'}
+        <img src="img/speech_topright.svg" class="absolute top-[-5vw] right-[5vw] w-[5vw]" />
+        {/if}
+        {/if}
         <div class="card-body text-[1.5vw] leading-snug p-[5%]">
             <!--<h2 class="card-title">Shoes!</h2>-->
             <p>{@html variables_in_text(d.content)}</p>
             {#if d.answer_options.length > 0}
-            <div class="card-actions justify-end pt-2 m-0">
+            <br />
+            <div class="card-actions justify-end">
             {#each d.answer_options as a}
             <button class="btn btn-primary w-full text-[1.5vw] !h-[4vw] min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_event(a, d):undefined}>{a.content}</button>
             {/each}
