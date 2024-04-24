@@ -78,6 +78,12 @@
             {#if o.type == 'dragminigame'}
             <Drag obj={o} complete_callback={handle_event} />
             {/if}
+            {#if o.type == 'textinput'}
+            <TextInput obj={o} complete_callback={handle_event} />
+            {/if}
+            {#if o.type == 'phone'}
+            <Phone obj={o} variables_in_text={variables_in_text} click_callback={handle_event} />
+            {/if}
         {/if}
         {/each}
         {/if}
@@ -108,7 +114,7 @@
         <div class="card-body text-[1.5vw] leading-snug p-[5%]">
             <!--<h2 class="card-title">Shoes!</h2>-->
             <p>{@html variables_in_text(d.content)}</p>
-            {#if d.answer_options.length > 0}
+            {#if d.answer_options !== undefined && d.answer_options.length > 0}
             <br />
             <div class="card-actions justify-end">
             {#each d.answer_options as a}
@@ -129,6 +135,8 @@
 <script type="ts">
     import { onMount } from "svelte";
     import Drag from '../plugins/drag.svelte';
+    import TextInput from '../plugins/textinput.svelte';
+    import Phone from '../plugins/phone.svelte';
     import story from '/project/story.json';
 
     let curr_scene = null;
@@ -240,7 +248,7 @@
             }
             else if (ev.type == 'goto_dialogue') {
                 if (ev.keep_others === undefined || !ev.keep_others) {
-                    curr_scene.dialogue.filter(d => { return d.visible })[0].visible = false;
+                    curr_scene.dialogue.filter(d => { return d.visible }).visible = false;
                 }
                 if (context !== null) {
                     curr_scene.dialogue.filter(d => { return d.id == context.id })[0].visible = false;
