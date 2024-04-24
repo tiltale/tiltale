@@ -85,20 +85,19 @@
         {#if curr_scene.dialogue !== undefined}
         {#each curr_scene.dialogue as d}
         {#if d.visible}
-        <div class="absolute card w-96 bg-base-100 shadow-xl" style="
+        <div class="absolute card bg-base-100 shadow-xl" style="
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
             {(d.x !== undefined)?'left: ' + d.x + '; ':''}
             {(d.y !== undefined)?'top: ' + d.y + '; ':''}
             {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''}">
-        <div class="card-body text-[2.5vh]">
+        <div class="card-body text-[1.5vw] leading-snug p-[5%]">
             <!--<h2 class="card-title">Shoes!</h2>-->
             <p>{@html variables_in_text(d.content)}</p>
             {#if d.answer_options.length > 0}
-            <br />
-            <div class="card-actions justify-end">
+            <div class="card-actions justify-end pt-2 m-0">
             {#each d.answer_options as a}
-            <button class="btn btn-primary w-full" on:click={(a.events !== undefined && a.events.length > 0)?handle_event(a, d):undefined}>{a.content}</button>
+            <button class="btn btn-primary w-full text-[1.5vw] !h-[4vw] min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_event(a, d):undefined}>{a.content}</button>
             {/each}
             </div>
             {/if}
