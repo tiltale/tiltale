@@ -46,6 +46,9 @@ on:click={(obj.events !== undefined && obj.events.length > 0)?click_callback(obj
                   </div>
                   {/if}
                 </div>
+                {#if d.name !== undefined}
+                <div class="chat-header font-bold" style="{d.name_color !== undefined?'color: ' + d.name_color + '; ':''} {(o.text_size !== undefined)?'font-size: ' + o.text_size + '; ':''}">{d.name}</div>
+                {/if}
                 <div class="chat-bubble bg-[#E5E5EA] text-black">{variables_in_text(d.content)}</div>
               </div>            
             {/each}
