@@ -136,38 +136,47 @@
         </div>        
 
         {:else}
-        <div class="absolute card bg-base-100 shadow-xl" style="
+        <div class="absolute card bg-base-100 shadow-xl min-w-[15vw]" style="
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
             {(d.x !== undefined)?'left: ' + d.x + '; ':''}
             {(d.y !== undefined)?'top: ' + d.y + '; ':''}
             {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
-            {(d.type !== undefined && d.type == 'thought')?"background-image: url('img/thought_bubble.svg'); background-size: cover":''}
-        ">
+            {(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'cursor: pointer;':''}  
+        " on:click={(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?handle_events(d.answer_options[0], d):undefined}>
         {#if d.type !== undefined && d.type == 'speech'}
         {#if d.speech_position == undefined || d.speech_position == 'bottomleft'}
-        <img src="img/speech_bottomleft.svg" class="absolute top-[100%] left-[5vw] w-[5vw]" />
+        <img src="img/speech_bottomleft.svg" class="absolute top-[100%] left-[5%] w-[2.5vw]" />
         {/if}
         {#if d.speech_position !== undefined && d.speech_position == 'bottomright'}
-        <img src="img/speech_bottomright.svg" class="absolute top-[100%] right-[5vw] w-[5vw]" />
+        <img src="img/speech_bottomright.svg" class="absolute top-[100%] right-[5%] w-[2.5vw]" />
         {/if}
         {#if d.speech_position !== undefined && d.speech_position == 'topleft'}
-        <img src="img/speech_topleft.svg" class="absolute top-[-5vw] left-[5vw] w-[5vw]" />
+        <img src="img/speech_topleft.svg" class="absolute top-[-2.5vw] left-[5%] w-[2.5vw]" />
         {/if}
         {#if d.speech_position !== undefined && d.speech_position == 'topright'}
-        <img src="img/speech_topright.svg" class="absolute top-[-5vw] right-[5vw] w-[5vw]" />
+        <img src="img/speech_topright.svg" class="absolute top-[-2.5vw] right-[5%] w-[2.5vw]" />
         {/if}
         {/if}
-        <div class="card-body text-[1.5vw] leading-snug p-[5%]">
-            <!--<h2 class="card-title">Shoes!</h2>-->
+        <div class="card-body text-[1.5vw] leading-snug p-[5%]" 
+        style="{(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'padding-right: 15%;':''}  
+        ">
             <p>{@html variables_in_text(d.content)}</p>
             {#if d.answer_options !== undefined && d.answer_options.length > 0}
+            {#if d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next'}
+            <button class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E] absolute right-[6%] bottom-[6%]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>
+                <svg width="100%" height="100%" viewBox="0 0 16 16" fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" class="w-5 h-5">
+                    <path d="M2,8C2,7.589 2.339,7.25 2.75,7.25L11.44,7.25L8.22,4.03C8.091,3.891 8.019,3.708 8.019,3.519C8.019,3.107 8.357,2.769 8.769,2.769C8.958,2.769 9.141,2.841 9.28,2.97L13.78,7.47C14.071,7.761 14.071,8.239 13.78,8.53L9.28,13.03C9.141,13.159 8.958,13.231 8.769,13.231C8.357,13.231 8.019,12.893 8.019,12.481C8.019,12.292 8.091,12.109 8.22,11.97L11.44,8.75L2.75,8.75C2.339,8.75 2,8.411 2,8Z" style="stroke:#ffffff;stroke-width:1.38px;"/>
+                </svg>
+            </button>            
+            {:else}
             <br />
             <div class="card-actions justify-end">
             {#each d.answer_options as a}
             <button class="btn btn-primary w-full text-[1.5vw] !h-[4vw] min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{a.content}</button>
             {/each}
             </div>
+            {/if}
             {/if}
         </div>
         </div>        
