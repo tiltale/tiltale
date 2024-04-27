@@ -164,6 +164,10 @@
         style="{(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'padding-right: 15%;':''}  
         {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.5vw'} 
         ">
+            {#if d.name !== undefined}
+            <p class="font-bold" style="{d.name_color !== undefined?'color: ' + d.name_color + '; ':''}">{d.name}</p>
+            {/if}
+
             <p>{@html variables_in_text(d.content)}</p>
             {#if d.answer_options !== undefined && d.answer_options.length > 0}
             {#if d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next'}
