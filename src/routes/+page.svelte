@@ -122,7 +122,7 @@
             <div class="card-actions justify-end">
             {#each d.answer_options as a}
             {#if a.type === undefined || a.type !== 'next'}
-            <button class="btn btn-primary w-full text-[1.5vw] !h-[4vw] min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{a.content}</button>
+            <button class="btn btn-primary w-full text-[1.5vw] h-auto min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
             {/if}
             {#if a.type !== undefined && a.type == 'next'}
             <button class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>
@@ -180,7 +180,7 @@
             <br />
             <div class="card-actions justify-end">
             {#each d.answer_options as a}
-            <button class="btn btn-primary w-full text-[1.5vw] !h-[4vw] min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{a.content}</button>
+            <button class="btn btn-primary w-full text-[1.5vw] h-auto min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
             {/each}
             </div>
             {/if}
