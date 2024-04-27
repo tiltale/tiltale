@@ -30,7 +30,7 @@
             {(o.z !== undefined)?'z-index: ' + o.z + '; ':''} 
             {(o.events !== undefined && o.events.length > 0)?'cursor: pointer; ':''}
         " 
-        on:click={(o.events !== undefined && o.events.length > 0)?handle_event(o):undefined}>
+        on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
             {#if o.image !== undefined}
             <img src="project/img/{o.image}" draggable="false" />
             {/if}
@@ -60,7 +60,7 @@
             {(o.z !== undefined)?'z-index: ' + o.z + '; ':''} 
             {(o.events !== undefined && o.events.length > 0)?'cursor: pointer; ':''}
         " 
-        on:click={(o.events !== undefined && o.events.length > 0)?handle_event(o):undefined}>
+        on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
             {#if o.image !== undefined}
             <img src="project/img/{o.image}" draggable="false" />
             {/if}
@@ -76,13 +76,13 @@
             </div>
             {/if}
             {#if o.type == 'dragminigame'}
-            <Drag obj={o} complete_callback={handle_event} />
+            <Drag obj={o} complete_callback={handle_events} />
             {/if}
             {#if o.type == 'textinput'}
-            <TextInput obj={o} complete_callback={handle_event} />
+            <TextInput obj={o} complete_callback={handle_events} />
             {/if}
             {#if o.type == 'phone'}
-            <Phone obj={o} variables_in_text={variables_in_text} click_callback={handle_event} />
+            <Phone obj={o} variables_in_text={variables_in_text} click_callback={handle_events} />
             {/if}
         {/if}
         {/each}
@@ -91,14 +91,61 @@
         {#if curr_scene.dialogue !== undefined}
         {#each curr_scene.dialogue as d}
         {#if d.visible}
+        {#if d.type !== undefined && d.type == 'thought'}
+        <div class="absolute" style=" 
+            {(d.width !== undefined)?'width: ' + d.width + '; ':''}
+            {(d.height !== undefined)?'height: ' + d.height + '; ':''}
+            {(d.x !== undefined)?'left: ' + d.x + '; ':''}
+            {(d.y !== undefined)?'top: ' + d.y + '; ':''}
+            {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
+            {(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'cursor: pointer;':''}  
+        " on:click={(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?handle_events(d.answer_options[0], d):undefined}>
+        <img src="img/thought_bubble.svg" class="absolute" style="z-index: 1" />
+        {#if d.thought_position == undefined || d.thought_position == 'bottomleft'}
+        <img src="img/thought_bottomleft.svg" class="absolute top-[84%] left-[-4vw] w-[12vw]" />
+        {/if}
+        {#if d.thought_position !== undefined && d.thought_position == 'bottomright'}
+        <img src="img/thought_bottomright.svg" class="absolute top-[84%] right-[-5vw] w-[12vw]" />
+        {/if}
+        {#if d.thought_position !== undefined && d.thought_position == 'topleft'}
+        <img src="img/thought_topleft.svg" class="absolute top-[-5vw] left-[-4vw] w-[12vw]" />
+        {/if}
+        {#if d.thought_position !== undefined && d.thought_position == 'topright'}
+        <img src="img/thought_topright.svg" class="absolute top-[-5vw] right-[-5vw] w-[12vw]" />
+        {/if}
+        <div class="text-[1.5vw] leading-snug p-[18%] relative top-0" style="z-index: 2">
+            <p>{@html variables_in_text(d.content)}</p>
+            {#if d.answer_options !== undefined && d.answer_options.length > 0}
+            <br />
+            <div class="card-actions justify-end">
+            {#each d.answer_options as a}
+            {#if a.type === undefined || a.type !== 'next'}
+            <button class="btn btn-primary w-full text-[1.5vw] !h-[4vw] min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{a.content}</button>
+            {/if}
+            {#if a.type !== undefined && a.type == 'next'}
+            <button class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>
+                <svg width="100%" height="100%" viewBox="0 0 16 16" fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" class="w-5 h-5">
+                    <path d="M2,8C2,7.589 2.339,7.25 2.75,7.25L11.44,7.25L8.22,4.03C8.091,3.891 8.019,3.708 8.019,3.519C8.019,3.107 8.357,2.769 8.769,2.769C8.958,2.769 9.141,2.841 9.28,2.97L13.78,7.47C14.071,7.761 14.071,8.239 13.78,8.53L9.28,13.03C9.141,13.159 8.958,13.231 8.769,13.231C8.357,13.231 8.019,12.893 8.019,12.481C8.019,12.292 8.091,12.109 8.22,11.97L11.44,8.75L2.75,8.75C2.339,8.75 2,8.411 2,8Z" style="stroke:#ffffff;stroke-width:1.38px;"/>
+                </svg>
+            </button>            
+            {/if}
+            {/each}
+            </div>
+            {/if}
+        </div>
+        </div>        
+
+        {:else}
         <div class="absolute card bg-base-100 shadow-xl" style="
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
             {(d.x !== undefined)?'left: ' + d.x + '; ':''}
             {(d.y !== undefined)?'top: ' + d.y + '; ':''}
-            {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''}">
+            {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
+            {(d.type !== undefined && d.type == 'thought')?"background-image: url('img/thought_bubble.svg'); background-size: cover":''}
+        ">
         {#if d.type !== undefined && d.type == 'speech'}
-        {#if d.speech_position !== undefined && d.speech_position == 'bottomleft'}
+        {#if d.speech_position == undefined || d.speech_position == 'bottomleft'}
         <img src="img/speech_bottomleft.svg" class="absolute top-[100%] left-[5vw] w-[5vw]" />
         {/if}
         {#if d.speech_position !== undefined && d.speech_position == 'bottomright'}
@@ -118,12 +165,13 @@
             <br />
             <div class="card-actions justify-end">
             {#each d.answer_options as a}
-            <button class="btn btn-primary w-full text-[1.5vw] !h-[4vw] min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_event(a, d):undefined}>{a.content}</button>
+            <button class="btn btn-primary w-full text-[1.5vw] !h-[4vw] min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{a.content}</button>
             {/each}
             </div>
             {/if}
         </div>
         </div>        
+        {/if}
         {/if}
         {/each}
         {/if}
@@ -177,7 +225,7 @@
 
         // Make a copy so that we can always return to the start of the scene later.
         curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == story.start_scene })[0]));
-        handle_event(curr_scene);
+        handle_events(curr_scene);
     });
 
     function image_preloaded(img) {
@@ -205,7 +253,7 @@
         return txt;
     }
 
-    function handle_event(obj, context = null) {
+    function handle_events(obj, context = null) {
         if (obj.events === undefined) {
             return;
         }
@@ -216,7 +264,19 @@
             }
 
             console.log(ev);
-            if (ev.type == 'show_object') {
+            
+            if (ev.delay !== undefined) {
+                setTimeout(function() { handle_event(ev, context); }, ev.delay);
+            }
+            else {
+                handle_event(ev, context);
+            }
+
+        });
+    }
+
+    function handle_event(ev, context) {
+        if (ev.type == 'show_object') {
                 // Check for general / UI objects
                 let objs = story.objects.filter(o => { return o.id == ev.target });
                 if (objs.length == 0) {
@@ -228,37 +288,36 @@
                     objs[0].visible = true;
                 }
 
+        }
+        else if (ev.type == 'hide_object') {
+            // Check for general / UI objects
+            let objs = story.objects.filter(o => { return o.id == ev.target });
+            if (objs.length == 0) {
+                // And for scene objects
+                objs = curr_scene.objects.filter(o => { return o.id == ev.target });                    
             }
-            else if (ev.type == 'hide_object') {
-                // Check for general / UI objects
-                let objs = story.objects.filter(o => { return o.id == ev.target });
-                if (objs.length == 0) {
-                    // And for scene objects
-                    objs = curr_scene.objects.filter(o => { return o.id == ev.target });                    
-                }
 
-                if (objs.length > 0) {
-                    objs[0].visible = false;
-                }
+            if (objs.length > 0) {
+                objs[0].visible = false;
             }
-            else if (ev.type == 'goto_scene') {
-                // Make a copy so that we can always return to the start of the scene later.
-                curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == ev.target })[0]));
-                handle_event(curr_scene);
+        }
+        else if (ev.type == 'goto_scene') {
+            // Make a copy so that we can always return to the start of the scene later.
+            curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == ev.target })[0]));
+            handle_events(curr_scene);
+        }
+        else if (ev.type == 'goto_dialogue') {
+            if (ev.keep_others === undefined || !ev.keep_others) {
+                curr_scene.dialogue.filter(d => { return d.visible }).visible = false;
             }
-            else if (ev.type == 'goto_dialogue') {
-                if (ev.keep_others === undefined || !ev.keep_others) {
-                    curr_scene.dialogue.filter(d => { return d.visible }).visible = false;
-                }
-                if (context !== null) {
-                    curr_scene.dialogue.filter(d => { return d.id == context.id })[0].visible = false;
-                }
-                curr_scene.dialogue.filter(d => { return d.id == ev.target })[0].visible = true;
+            if (context !== null) {
+                curr_scene.dialogue.filter(d => { return d.id == context.id })[0].visible = false;
             }
-            else if (ev.type == 'set_variable') {
-                variables[ev.variable] = eval(ev.value);
-            }
-        });
+            curr_scene.dialogue.filter(d => { return d.id == ev.target })[0].visible = true;
+        }
+        else if (ev.type == 'set_variable') {
+            variables[ev.variable] = eval(ev.value);
+        }
 
         // Force redraw
         story.objects = story.objects;
