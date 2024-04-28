@@ -5,18 +5,22 @@
             {(obj.y !== undefined)?'top: ' + obj.y + '; ':''} 
         ">
         <div class="card bg-base-100 shadow-xl">
-            <div class="card-body text-[1.5vw] leading-snug p-[5%]">
+            <div class="card-body text-[1.5vw] leading-snug p-[1vw]">
+            {#if obj.description === undefined}
             <p><span class="italic">Build a sentence by dragging the different blocks into the designated slots!</span></p>
-            <p class="flex flex-row gap-4">
+            {:else}
+            <p><span class="italic">{obj.description}</span></p>
+            {/if}
+            <p class="flex flex-row flex-wrap gap-4 mt-[2vw]">
                 {#each txtarea as t}
                 {#if t.type == 'text'}
-                  {t.text}
+                  {@html t.text}
                 {/if}
                 {#if t.type == 'slot'}
                     <div data-slotid="{t.id}" on:dragover={event => allowDrop(event)} on:drop={event => drop(event)} class="inline-block text-white flex flex-col justify-center" style="background-color: {colors[t.id].slot}; min-width: 25%; height: 4vw">
                         {#if slotcontent[t.id] !== ''}
                             <div class="pointer-events-none text-center" style="background-color: {colors[t.id].text}; color: #ffffff">
-                            {slotcontent[t.id]}
+                            {@html slotcontent[t.id]}
                             </div>
                         {/if}
                     </div>
@@ -25,13 +29,13 @@
             </p>
             </div>
         </div> 
-        <div class="flex mt-2 gap-x-4">
+        <div class="flex mt-[2vw] gap-x-4">
         {#each obj.slots as s, index}
-        <div class="card bg-base-100 shadow-xl grow">
-            <div class="card-body text-[1.5vw] leading-snug p-[10%]">
+        <div class="card bg-base-100 shadow-xl grow min-w-[7vw]">
+            <div class="card-body text-[1vw] leading-snug p-[1vw]">
             {#each s.options as o}
-                <div class="text-center cursor-pointer" style="background-color: {colors[index].text}; color: #ffffff" data-slotid="{index}" draggable="true" on:click={add_to_slot(index, o)} on:dragstart={event => drag(event)}>
-                  {o}
+                <div class="text-center cursor-pointer" style="background-color: {colors[index].text}; color: #ffffff; padding: 1vw" data-slotid="{index}" draggable="true" on:click={add_to_slot(index, o)} on:dragstart={event => drag(event)}>
+                  {@html o}
                 </div>
             {/each}
             </div>
@@ -54,16 +58,20 @@
 
     let colors = [
         {
-            'slot': '#F0D88E',
-            'text': '#FFBF00'
+            'slot': '#D87166',
+            'text': '#D1312C'
         },
         {
-            'slot': '#8EB7F5',
-            'text': '#0065FF'
+            'slot': '#E7C084',
+            'text': '#E69945'
         },
         {
-            'slot': '#F58EEE',
-            'text': '#FA00FF'
+            'slot': '#9CC0BA',
+            'text': '#6B9DA1'
+        },
+        {
+            'slot': '#CCAFB4',
+            'text': '#AE6386'
         }
     ] 
 
