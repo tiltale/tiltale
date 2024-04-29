@@ -182,7 +182,9 @@
             {/if}
             <div class="card-actions justify-end">
             {#each d.answer_options as a}
+            {#if a.condition === undefined || evaluate_condition(a.condition)}
             <button class="btn btn-primary w-full text-[1.5vw] h-auto min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
+            {/if}
             {/each}
             </div>
             {/if}
@@ -269,6 +271,11 @@
         }
 
         return txt;
+    }
+
+    function evaluate_condition(str) {
+        variables = variables;
+        return eval(str);
     }
 
     function handle_events(obj, context = null) {
