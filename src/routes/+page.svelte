@@ -284,11 +284,11 @@
         }
         
         obj.events.forEach(function(ev) {
+            console.log(ev);            
+            
             if (ev.condition !== undefined && !eval(ev.condition)) {
                 return;
             }
-
-            console.log(ev);
             
             if (ev.delay !== undefined) {
                 setTimeout(function() { handle_event(ev, context); }, ev.delay);
