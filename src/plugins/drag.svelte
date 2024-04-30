@@ -17,7 +17,7 @@
                   {@html t.text}
                 {/if}
                 {#if t.type == 'slot'}
-                    <div data-slotid="{t.id}" on:dragover={event => allowDrop(event)} on:drop={event => drop(event)} class="inline-block text-white flex flex-col justify-center" style="background-color: {colors[t.id].slot}; min-width: 25%; height: 4vw">
+                    <div data-slotid="{t.id}" on:dragover={event => allowDrop(event)} on:drop={event => drop(event)} class="inline-block text-white flex flex-col justify-center" style="background-color: {colors[t.id].slot}; min-width: 25%; min-height: 4vw">
                         {#if slotcontent[t.id] !== ''}
                             <div class="pointer-events-none text-center" style="background-color: {colors[t.id].text}; color: #ffffff">
                             {@html slotcontent[t.id]}

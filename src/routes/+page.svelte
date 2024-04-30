@@ -22,28 +22,42 @@
         {#if story.objects !== undefined}
         {#each story.objects as o}
         {#if o.visible}
-        <div class="absolute" style="
-            {(o.width !== undefined)?'width: ' + o.width + '; ':''}
-            {(o.height !== undefined)?'height: ' + o.height + '; ':''}
-            {(o.x !== undefined)?'left: ' + o.x + '; ':''}
-            {(o.y !== undefined)?'top: ' + o.y + '; ':''} 
-            {(o.z !== undefined)?'z-index: ' + o.z + '; ':''} 
-            {(o.events !== undefined && o.events.length > 0)?'cursor: pointer; ':''}
-        " 
-        on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
-            {#if o.image !== undefined}
-            <img src="project/img/{o.image}" draggable="false" />
-            {/if}
-            {#if o.text !== undefined}
-            <div class="absolute" style=" 
-            {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':''}        
-            {(o.text_x !== undefined)?'left: ' + o.text_x + '; ':''}
-            {(o.text_y !== undefined)?'top: ' + o.text_y + '; ':''}
-            {(o.text_size !== undefined)?'font-size: ' + o.text_size + '; ':''}">
-                {variables_in_text(o.text)}
+            {#if o.type == 'sprite'}
+            <div class="absolute" style="
+                {(o.width !== undefined)?'width: ' + o.width + '; ':''}
+                {(o.height !== undefined)?'height: ' + o.height + '; ':''}
+                {(o.x !== undefined)?'left: ' + o.x + '; ':''}
+                {(o.y !== undefined)?'top: ' + o.y + '; ':''} 
+                {(o.z !== undefined)?'z-index: ' + o.z + '; ':''} 
+                {(o.events !== undefined && o.events.length > 0)?'cursor: pointer; ':''}
+            " 
+            on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
+                {#if o.image !== undefined}
+                <img src="project/img/{o.image}" draggable="false" />
+                {/if}
+                {#if o.text !== undefined}
+                <div class="absolute" style=" 
+                {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':''}        
+                {(o.text_x !== undefined)?'left: ' + o.text_x + '; ':''}
+                {(o.text_y !== undefined)?'top: ' + o.text_y + '; ':''}
+                {(o.text_size !== undefined)?'font-size: ' + o.text_size + '; ':''}">
+                    {variables_in_text(o.text)}
+                </div>
+                {/if}
             </div>
-            {/if}
-        </div>
+        {/if}
+        {#if o.type == 'dragminigame'}
+        <Drag obj={o} complete_callback={handle_events} />
+        {/if}
+        {#if o.type == 'textinput'}
+        <TextInput obj={o} complete_callback={handle_events} />
+        {/if}
+        {#if o.type == 'phone'}
+        <Phone obj={o} variables_in_text={variables_in_text} click_callback={handle_events} />
+        {/if}
+        {#if o.type == 'notebook'}
+        <Notebook obj={o} variables_in_text={variables_in_text} txts={variables[o.content_variable]} close_callback={handle_events} />
+        {/if}        
         {/if}
         {/each}
         {/if}
@@ -83,6 +97,9 @@
             {/if}
             {#if o.type == 'phone'}
             <Phone obj={o} variables_in_text={variables_in_text} click_callback={handle_events} />
+            {/if}
+            {#if o.type == 'notebook'}
+            <Notebook obj={o} variables_in_text={variables_in_text} txts={variables[o.content_variable]} close_callback={handle_events} />
             {/if}
         {/if}
         {/each}
@@ -205,6 +222,7 @@
     import Drag from '../plugins/drag.svelte';
     import TextInput from '../plugins/textinput.svelte';
     import Phone from '../plugins/phone.svelte';
+    import Notebook from '../plugins/notebook.svelte';
     import story from '/project/story.json';
 
     let curr_scene = null;
@@ -285,7 +303,7 @@
         
         obj.events.forEach(function(ev) {
             console.log(ev);            
-            
+
             if (ev.condition !== undefined && !eval(ev.condition)) {
                 return;
             }
@@ -343,7 +361,13 @@
             curr_scene.dialogue.filter(d => { return d.id == ev.target })[0].visible = true;
         }
         else if (ev.type == 'set_variable') {
-            variables[ev.variable] = eval(ev.value);
+            if (ev.add !== undefined) {
+                variables[ev.variable].push(ev.add);
+                variables[ev.variable] = variables[ev.variable];
+            }
+            else {
+                variables[ev.variable] = eval(ev.value);
+            }
         }
 
         // Force redraw
