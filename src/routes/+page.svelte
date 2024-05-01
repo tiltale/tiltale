@@ -281,7 +281,12 @@
             let variable = txt.substr(idx+1, idxend - idx - 1);
 
             if (variables[variable] !== undefined) {
-                txt = txt.replace('[' + variable + ']', variables[variable]);
+                if (variables[variable].constructor === Array) {
+                    txt = txt.replace('[' + variable + ']', variables[variable].slice(0, -1).join(', ') + ', and ' + variables[variable].slice(-1));
+                }
+                else {
+                    txt = txt.replace('[' + variable + ']', variables[variable]);
+                }
             }
             else {
                 txt = txt.replace('[' + variable + ']', 'undefined');
@@ -362,6 +367,9 @@
         }
         else if (ev.type == 'set_variable') {
             if (ev.add !== undefined) {
+                if (variables[ev.variable] === undefined) {
+                    variables[ev.variable] = [];
+                }
                 variables[ev.variable].push(ev.add);
                 variables[ev.variable] = variables[ev.variable];
             }
