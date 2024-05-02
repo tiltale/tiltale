@@ -5,7 +5,7 @@
             {(obj.y !== undefined)?'top: ' + obj.y + '; ':''} 
         ">
         <div class="card bg-base-100 shadow-xl">
-            <div class="card-body text-[1.5vw] leading-snug p-[1vw]">
+            <div class="card-body text-[1vw] leading-snug p-[1vw]">
             {#if obj.description === undefined}
             <p><span class="italic">Build a sentence by dragging the different blocks into the designated slots!</span></p>
             {:else}
@@ -17,9 +17,9 @@
                   {@html t.text}
                 {/if}
                 {#if t.type == 'slot'}
-                    <div data-slotid="{t.id}" on:dragover={event => allowDrop(event)} on:drop={event => drop(event)} class="inline-block text-white flex flex-col justify-center" style="background-color: {colors[t.id].slot}; min-width: 25%; min-height: 4vw">
+                    <div data-slotid="{t.id}" on:dragover={event => allowDrop(event)} on:drop={event => drop(event)} class="inline-block text-white flex flex-col justify-center" style="background-color: {colors[t.id].slot}; min-width: 25%; min-height: 2vw">
                         {#if slotcontent[t.id] !== ''}
-                            <div class="pointer-events-none text-center" style="background-color: {colors[t.id].text}; color: #ffffff">
+                            <div class="pointer-events-none flex justify-center" style="background-color: {colors[t.id].text}; color: #ffffff">
                             {@html slotcontent[t.id]}
                             </div>
                         {/if}
@@ -34,7 +34,7 @@
         <div class="card bg-base-100 shadow-xl grow min-w-[7vw]">
             <div class="card-body text-[1vw] leading-snug p-[1vw]">
             {#each s.options as o}
-                <div class="text-center cursor-pointer" style="background-color: {colors[index].text}; color: #ffffff; padding: 1vw" data-slotid="{index}" draggable="true" on:click={add_to_slot(index, o)} on:dragstart={event => drag(event)}>
+                <div class="flex justify-center cursor-pointer" style="background-color: {colors[index].text}; color: #ffffff; padding: 1vw" data-slotid="{index}" draggable="true" on:click={add_to_slot(index, o)} on:dragstart={event => drag(event)}>
                   {@html o}
                 </div>
             {/each}

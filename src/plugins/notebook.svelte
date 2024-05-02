@@ -7,7 +7,7 @@
 ">
 <!-- The background image -->
 <div>
-    <img src="img/notebook/notebook.svg" style="z-index: -1" />
+    <img src="img/notebook/notebook.png" style="width: 100%; z-index: -1" />
 </div>
 <div class="absolute top-[8px] right-[32px]">
     <button class="btn btn-circle bg-black hover:bg-[#5E5E5E] border-black hover:border-[#5E5E5E] text-white" on:click={close}>
@@ -17,7 +17,7 @@
 <div class="absolute p-[3%] mt-[13%] z-[1] left-[10%] overflow-y-auto text-[1vw] w-[79%] h-[84%] top-[0px]">
     {#each txts as t}
     {@html variables_in_text(t)}
-    <hr />
+    <hr class="mt-3 mb-3" />
     {/each}
 </div>
 
