@@ -282,7 +282,12 @@
 
             if (variables[variable] !== undefined) {
                 if (variables[variable].constructor === Array) {
-                    txt = txt.replace('[' + variable + ']', variables[variable].slice(0, -1).join(', ') + ', and ' + variables[variable].slice(-1));
+                    if (variables[variable].length > 1) {
+                        txt = txt.replace('[' + variable + ']', variables[variable].slice(0, -1).join(', ') + ', and ' + variables[variable].slice(-1));
+                    }
+                    else {
+                        txt = txt.replace('[' + variable + ']', variables[variable][0]);
+                    }
                 }
                 else {
                     txt = txt.replace('[' + variable + ']', variables[variable]);

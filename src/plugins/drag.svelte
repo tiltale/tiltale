@@ -7,9 +7,9 @@
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body text-[1vw] leading-snug p-[1vw]">
             {#if obj.description === undefined}
-            <p><span class="italic">Build a sentence by dragging the different blocks into the designated slots!</span></p>
+            <p><span class="italic">Build a sentence by <span style="font-weight: bold">dragging or clicking</span> the different blocks into the designated slots!</span></p>
             {:else}
-            <p><span class="italic">{obj.description}</span></p>
+            <p><span class="italic">{@html obj.description}</span></p>
             {/if}
             <p class="flex flex-row flex-wrap gap-4 mt-[2vw]">
                 {#each txtarea as t}
@@ -34,7 +34,7 @@
         <div class="card bg-base-100 shadow-xl grow min-w-[7vw]">
             <div class="card-body text-[1vw] leading-snug p-[1vw]">
             {#each s.options as o}
-                <div class="flex justify-center cursor-pointer" style="background-color: {colors[index].text}; color: #ffffff; padding: 1vw" data-slotid="{index}" draggable="true" on:click={add_to_slot(index, o)} on:dragstart={event => drag(event)}>
+                <div class="flex justify-center cursor-pointer" style="background-color: {colors[index].text}; color: #ffffff; padding: 1vw" data-slotid="{index}" draggable="true" on:click={add_to_slot(index, o)} on:dragstart={event => drag(event, o)}>
                   {@html o}
                 </div>
             {/each}
@@ -55,6 +55,7 @@
 
     let slotcontent = []; 
     let evdrag = undefined;
+    let curr_dragtext = '';
 
     let colors = [
         {
@@ -116,16 +117,17 @@
         slotcontent[id] = content;
     }
 
-    function drag(ev) {
+    function drag(ev, o) {
         console.log(ev);
-        ev.dataTransfer.setData('text', ev.target.innerText);
+        //ev.dataTransfer.setData('text', ev.target.innerHTML);
+        curr_dragtext = o;
         evdrag = ev.target;
     }
 
     function drop(ev) {
         if (evdrag.dataset.slotid == ev.target.dataset.slotid) {
             ev.preventDefault();
-            slotcontent[ev.target.dataset.slotid] = ev.dataTransfer.getData("text");
+            slotcontent[ev.target.dataset.slotid] = curr_dragtext;//ev.dataTransfer.getData("text");
         }
     }
 
