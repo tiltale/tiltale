@@ -6,7 +6,7 @@
 ">
     <div class="card bg-base-100 shadow-xl">
         <div class="card-body text-[1.5vw] leading-snug p-[5%]">
-            <p><span class="italic">{obj.instruction}</span></p>
+            <p>{@html obj.instruction}</p>
             <input type="text" class="input input-bordered w-full max-w-xs mt-[1vw]" bind:value={txt} />
         </div>
 

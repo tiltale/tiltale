@@ -53,10 +53,13 @@
         <TextInput obj={o} complete_callback={handle_events} />
         {/if}
         {#if o.type == 'phone'}
-        <Phone obj={o} variables_in_text={variables_in_text} click_callback={handle_events} />
+        <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
         {/if}
         {#if o.type == 'notebook'}
         <Notebook obj={o} variables_in_text={variables_in_text} txts={variables[o.content_variable]} close_callback={handle_events} />
+        {/if}
+        {#if o.type == 'charactercard'}
+        <CharacterCard obj={o} close_callback={handle_events} />
         {/if}        
         {/if}
         {/each}
@@ -96,11 +99,14 @@
             <TextInput obj={o} complete_callback={handle_events} />
             {/if}
             {#if o.type == 'phone'}
-            <Phone obj={o} variables_in_text={variables_in_text} click_callback={handle_events} />
+            <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
             {/if}
             {#if o.type == 'notebook'}
             <Notebook obj={o} variables_in_text={variables_in_text} txts={variables[o.content_variable]} close_callback={handle_events} />
             {/if}
+            {#if o.type == 'charactercard'}
+            <CharacterCard obj={o} close_callback={handle_events} />
+            {/if}            
         {/if}
         {/each}
         {/if}
@@ -223,6 +229,7 @@
     import TextInput from '../plugins/textinput.svelte';
     import Phone from '../plugins/phone.svelte';
     import Notebook from '../plugins/notebook.svelte';
+    import CharacterCard from '../plugins/charactercard.svelte';
     import story from '/project/story.json';
 
     let curr_scene = null;
@@ -360,15 +367,21 @@
             handle_events(curr_scene);
         }
         else if (ev.type == 'goto_dialogue') {
+            let tar = curr_scene;
+            if (context !== undefined && context.dialogue !== undefined) {
+                if (context.dialogue.filter(d => { return d.id == ev.target }).length > 0) {
+                    tar = context;
+                }
+            }
             if (ev.keep_others === undefined || !ev.keep_others) {
-                curr_scene.dialogue.filter(d => { return d.visible }).forEach(function(dialogue) {
+                tar.dialogue.filter(d => { return d.visible }).forEach(function(dialogue) {
                     dialogue.visible = false;
                 });
             }
-            if (context !== null) {
-                curr_scene.dialogue.filter(d => { return d.id == context.id })[0].visible = false;
+            if (context !== null && context.dialogue === undefined) {
+                tar.dialogue.filter(d => { return d.id == context.id })[0].visible = false;
             }
-            curr_scene.dialogue.filter(d => { return d.id == ev.target })[0].visible = true;
+            tar.dialogue.filter(d => { return d.id == ev.target })[0].visible = true;
         }
         else if (ev.type == 'set_variable') {
             if (ev.add !== undefined) {
