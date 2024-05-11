@@ -7,6 +7,11 @@
 <!-- The background image -->
 <div>
     <img src="img/phone/bg.svg" class="relative pointer-events-none" style="z-index: 5" />
+    {#if obj.background !== undefined}
+    <div class="absolute top-[4%] left-[3%] w-[93%] h-[87%]" style="background-color: {obj.background}">
+      &nbsp;
+    </div>
+    {/if}
 
     {#if obj.objects !== undefined}
     {#each obj.objects as o}

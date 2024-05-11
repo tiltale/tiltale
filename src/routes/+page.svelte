@@ -368,7 +368,7 @@
         }
         else if (ev.type == 'goto_dialogue') {
             let tar = curr_scene;
-            if (context !== undefined && context.dialogue !== undefined) {
+            if (context !== undefined && context !== null && context.dialogue !== undefined) {
                 if (context.dialogue.filter(d => { return d.id == ev.target }).length > 0) {
                     tar = context;
                 }
