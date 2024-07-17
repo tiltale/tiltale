@@ -14,9 +14,9 @@
         </div>
     </div>
     {/if}
-    {#if is_loaded && curr_scene !== null}
+    {#if is_loaded && curr_scene !== null && scene_visible}
     <!-- The main story background -->
-    <div class="relative animate-fade max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'project/img/' + curr_scene.background + '\')':''}">
+    <div transition:fade class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'project/img/' + curr_scene.background + '\')':''}">
 
         <!-- General objects that can always be visible (e.g., UI elements) -->
         {#if story.objects !== undefined}
@@ -33,7 +33,7 @@
             " 
             on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
                 {#if o.image !== undefined}
-                <img src="project/img/{o.image}" draggable="false" />
+                <img src="project/img/{o.image}" draggable="false" style="{(o.height !== undefined)?'height: ' + o.height + '; ':''}" />
                 {/if}
                 {#if o.text !== undefined}
                 <div class="absolute" style=" 
@@ -69,7 +69,7 @@
         {#each curr_scene.objects as o}
         {#if o.visible}
             {#if o.type == 'sprite'}
-            <div class="absolute" style="
+            <div class="absolute {o.animateIn?'animate-fadeIn':''} {o.animateOut?'animate-fadeOut':''}" style="
             {(o.width !== undefined)?'width: ' + o.width + '; ':''}
             {(o.height !== undefined)?'height: ' + o.height + '; ':''}
             {(o.x !== undefined)?'left: ' + o.x + '; ':''}
@@ -79,7 +79,7 @@
         " 
         on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
             {#if o.image !== undefined}
-            <img src="project/img/{o.image}" draggable="false" />
+            <img src="project/img/{o.image}" draggable="false" style="{(o.height !== undefined)?'height: ' + o.height + '; ':''}" />
             {/if}
             {#if o.text !== undefined}
             <div class="absolute" style=" 
@@ -137,7 +137,7 @@
         <img src="img/thought_topright.svg" class="absolute top-[-5vw] right-[-5vw] w-[12vw]" />
         {/if}
         <div class="leading-snug p-[18%] relative top-0" style="z-index: 2; 
-        {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.5vw'} 
+        {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
         ">
             <p>{@html variables_in_text(d.content)}</p>
             {#if d.answer_options !== undefined && d.answer_options.length > 0}
@@ -145,7 +145,7 @@
             <div class="card-actions justify-end">
             {#each d.answer_options as a}
             {#if a.type === undefined || a.type !== 'next'}
-            <button class="btn btn-primary w-full text-[1.5vw] h-auto min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
+            <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
             {/if}
             {#if a.type !== undefined && a.type == 'next'}
             <button class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>
@@ -185,7 +185,7 @@
         {/if}
         <div class="card-body leading-snug p-[5%]" 
         style="{(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'padding-right: 15%;':''}  
-        {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.5vw'} 
+        {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
         ">
             {#if d.name !== undefined}
             <p class="font-bold" style="{d.name_color !== undefined?'color: ' + d.name_color + '; ':''}">{d.name}</p>
@@ -193,9 +193,9 @@
 
             <p>{@html variables_in_text(d.content)}</p>
             {#if d.answer_options !== undefined && d.answer_options.length > 0}
-            {#if d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next'}
-            <button class="btn btn-circle btn-sm w-[1.5rem] h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] bg-black hover:bg-[#5E5E5E] absolute right-[6%] bottom-[6%]" on:click={(d.answer_options[0].events !== undefined && d.answer_options[0].events.length > 0)?handle_events(d.answer_options[0], d):undefined}>
-                <svg width="100%" height="100%" viewBox="0 0 16 16" fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" class="w-3 h-3">
+            {#if d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next'}            
+            <button class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E] absolute right-[6%] bottom-[6%]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>
+                <svg width="100%" height="100%" viewBox="0 0 16 16" fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" class="w-5 h-5">
                     <path d="M2,8C2,7.589 2.339,7.25 2.75,7.25L11.44,7.25L8.22,4.03C8.091,3.891 8.019,3.708 8.019,3.519C8.019,3.107 8.357,2.769 8.769,2.769C8.958,2.769 9.141,2.841 9.28,2.97L13.78,7.47C14.071,7.761 14.071,8.239 13.78,8.53L9.28,13.03C9.141,13.159 8.958,13.231 8.769,13.231C8.357,13.231 8.019,12.893 8.019,12.481C8.019,12.292 8.091,12.109 8.22,11.97L11.44,8.75L2.75,8.75C2.339,8.75 2,8.411 2,8Z" style="stroke:#ffffff;stroke-width:1.38px;"/>
                 </svg>
             </button>            
@@ -206,7 +206,7 @@
             <div class="card-actions justify-end">
             {#each d.answer_options as a}
             {#if a.condition === undefined || evaluate_condition(a.condition)}
-            <button class="btn btn-primary w-full text-[1.5vw] h-auto min-h-[4vw]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
+            <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
             {/if}
             {/each}
             </div>
@@ -225,6 +225,7 @@
 
 <script type="ts">
     import { onMount } from "svelte";
+    import { fade } from "svelte/transition";
     import Drag from '../plugins/drag.svelte';
     import TextInput from '../plugins/textinput.svelte';
     import Phone from '../plugins/phone.svelte';
@@ -233,6 +234,7 @@
     import story from '/project/story.json';
 
     let curr_scene = null;
+    let scene_visible = true;
     
     let is_loaded = false;
     let images = [];
@@ -345,7 +347,17 @@
                 }
 
                 if (objs.length > 0) {
-                    objs[0].visible = true;
+                    if (ev.animate !== undefined && ev.animate) {
+                        objs[0].animateIn = true;
+                        objs[0].visible = true;
+
+                        setTimeout(function() {
+                            objs[0].animateIn = false;
+                        }, 600);
+                    }
+                    else {
+                        objs[0].visible = true;
+                    }
                 }
 
         }
@@ -358,13 +370,38 @@
             }
 
             if (objs.length > 0) {
-                objs[0].visible = false;
+                if (ev.animate !== undefined && ev.animate) {
+                    objs[0].animateOut = true;
+
+                    setTimeout(function() {
+                        objs[0].visible = false;
+                        objs[0].animateOut = false;
+                        // Force redraw
+                        story.objects = story.objects;
+                        curr_scene = curr_scene;                    
+                    }, 400);
+
+                }
+
+                else {
+                    setTimeout(function() {
+                        objs[0].visible = false;
+                        // Force redraw
+                        story.objects = story.objects;
+                        curr_scene = curr_scene;                    
+                    }, 50);
+                }
             }
         }
         else if (ev.type == 'goto_scene') {
+            scene_visible = false;
             // Make a copy so that we can always return to the start of the scene later.
             curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == ev.target })[0]));
             handle_events(curr_scene);
+
+            setTimeout(function() {
+                scene_visible = true;
+            }, 500);
         }
         else if (ev.type == 'goto_dialogue') {
             let tar = curr_scene;
@@ -381,7 +418,20 @@
             if (context !== null && context.dialogue === undefined) {
                 tar.dialogue.filter(d => { return d.id == context.id })[0].visible = false;
             }
-            tar.dialogue.filter(d => { return d.id == ev.target })[0].visible = true;
+
+            if (ev.animate !== undefined && ev.animate) {
+                let obj = tar.dialogue.filter(d => { return d.id == ev.target })[0];
+                setTimeout(function() {
+                    obj.visible = true;
+
+                    // Force redraw
+                    story.objects = story.objects;
+                    curr_scene = curr_scene;                    
+                }, 500);
+            }
+            else {
+                tar.dialogue.filter(d => { return d.id == ev.target })[0].visible = true;
+            }
         }
         else if (ev.type == 'set_variable') {
             if (ev.add !== undefined) {

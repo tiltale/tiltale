@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       animation: {
-        fade: 'fadeIn .5s ease-in-out',
+        fadeIn: 'fadeIn .5s ease-in-out',
+        fadeOut: 'fadeOut .5s ease-in-out'
       },
 
       keyframes: {
@@ -12,6 +13,10 @@ export default {
           from: { opacity: 0 },
           to: { opacity: 1 },
         },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        }
       },
     },
   },
