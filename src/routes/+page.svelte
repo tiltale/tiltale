@@ -33,7 +33,7 @@
             " 
             on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
                 {#if o.image !== undefined}
-                <img src="project/img/{o.image}" draggable="false" style="{(o.height !== undefined)?'height: ' + o.height + '; ':''}" />
+                <img src="project/img/{o.image}" draggable="false" class="w-full h-full" />
                 {/if}
                 {#if o.text !== undefined}
                 <div class="absolute" style=" 
@@ -79,7 +79,7 @@
         " 
         on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
             {#if o.image !== undefined}
-            <img src="project/img/{o.image}" draggable="false" style="{(o.height !== undefined)?'height: ' + o.height + '; ':''}" />
+            <img src="project/img/{o.image}" draggable="false" class="w-full h-full" />
             {/if}
             {#if o.text !== undefined}
             <div class="absolute" style=" 
@@ -125,16 +125,16 @@
         " on:click={(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?handle_events(d.answer_options[0], d):undefined}>
         <img src="img/thought_bubble.svg" class="absolute" />
         {#if d.thought_position == undefined || d.thought_position == 'bottomleft'}
-        <img src="img/thought_bottomleft.svg" class="absolute top-[84%] left-[-4vw] w-[12vw]" />
+        <img src="img/thought_bottomleft.svg" class="absolute top-[72%] left-[-4vw] w-[9vw]" />
         {/if}
         {#if d.thought_position !== undefined && d.thought_position == 'bottomright'}
-        <img src="img/thought_bottomright.svg" class="absolute top-[84%] right-[-5vw] w-[12vw]" />
+        <img src="img/thought_bottomright.svg" class="absolute top-[72%] right-[-5vw] w-[9vw]" />
         {/if}
         {#if d.thought_position !== undefined && d.thought_position == 'topleft'}
-        <img src="img/thought_topleft.svg" class="absolute top-[-5vw] left-[-4vw] w-[12vw]" />
+        <img src="img/thought_topleft.svg" class="absolute top-[-5vw] left-[-4vw] w-[9vw]" />
         {/if}
         {#if d.thought_position !== undefined && d.thought_position == 'topright'}
-        <img src="img/thought_topright.svg" class="absolute top-[-5vw] right-[-5vw] w-[12vw]" />
+        <img src="img/thought_topright.svg" class="absolute top-[-5vw] right-[-5vw] w-[9vw]" />
         {/if}
         <div class="leading-relaxed p-[18%] relative top-0" style="z-index: 2; 
         {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
@@ -142,7 +142,7 @@
             <p>{@html variables_in_text(d.content)}</p>
             {#if d.answer_options !== undefined && d.answer_options.length > 0}
             <br />
-            <div class="card-actions justify-end">
+            <div class="card-actions justify-end mt-[-12%]">
             {#each d.answer_options as a}
             {#if a.type === undefined || a.type !== 'next'}
             <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
