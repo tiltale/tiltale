@@ -136,7 +136,7 @@
         {#if d.thought_position !== undefined && d.thought_position == 'topright'}
         <img src="img/thought_topright.svg" class="absolute top-[-5vw] right-[-5vw] w-[12vw]" />
         {/if}
-        <div class="leading-snug p-[18%] relative top-0" style="z-index: 2; 
+        <div class="leading-relaxed p-[18%] relative top-0" style="z-index: 2; 
         {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
         ">
             <p>{@html variables_in_text(d.content)}</p>
@@ -183,7 +183,7 @@
         <img src="img/speech_topright.svg" class="absolute top-[-2.5vw] right-[5%] w-[2.5vw]" />
         {/if}
         {/if}
-        <div class="card-body leading-snug p-[5%]" 
+        <div class="card-body leading-relaxed p-[5%]" 
         style="{(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'padding-right: 15%;':''}  
         {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
         ">
@@ -402,6 +402,16 @@
             setTimeout(function() {
                 scene_visible = true;
             }, 500);
+        }
+        else if (ev.type == 'hide_dialogue') {
+            let tar = curr_scene;
+            if (context !== undefined && context !== null && context.dialogue !== undefined) {
+                tar = context;
+            }
+
+            tar.dialogue.forEach(function(dialogue) {
+                dialogue.visible = false;
+            });
         }
         else if (ev.type == 'goto_dialogue') {
             let tar = curr_scene;
