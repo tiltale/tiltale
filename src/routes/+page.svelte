@@ -55,6 +55,9 @@
         {#if o.type == 'phone'}
         <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
         {/if}
+        {#if o.type == 'note'}
+        <Note obj={o} event_callback={handle_events} />
+        {/if}
         {#if o.type == 'notebook'}
         <Notebook obj={o} variables_in_text={variables_in_text} txts={variables[o.content_variable]} close_callback={handle_events} />
         {/if}
@@ -101,6 +104,9 @@
             {#if o.type == 'phone'}
             <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
             {/if}
+            {#if o.type == 'note'}
+            <Note obj={o} event_callback={handle_events} />
+            {/if}            
             {#if o.type == 'notebook'}
             <Notebook obj={o} variables_in_text={variables_in_text} txts={variables[o.content_variable]} close_callback={handle_events} />
             {/if}
@@ -229,6 +235,7 @@
     import Drag from '../plugins/drag.svelte';
     import TextInput from '../plugins/textinput.svelte';
     import Phone from '../plugins/phone.svelte';
+    import Note from '../plugins/note.svelte';
     import Notebook from '../plugins/notebook.svelte';
     import CharacterCard from '../plugins/charactercard.svelte';
     import story from '/project/story.json';
