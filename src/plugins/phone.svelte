@@ -25,7 +25,7 @@
         {(o.z !== undefined)?'z-index: ' + o.z + '; ':''} 
     ">
         {#if o.image !== undefined}
-        <img src="project/img/{o.image}" draggable="false" />
+        <img src="project/img/{o.image}" draggable="false" style="{o.height !== undefined?'height: 100%; width: 100%':''}"/>
         {/if}
 
         {#if o.text !== undefined}
@@ -144,22 +144,31 @@
           let new_texts = obj.objects.filter(o => { return o.id == 'texts' })[0];
           let old_texts = prev_obj.objects.filter(o => { return o.id == 'texts' })[0];
 
-          for (let d of new_texts.dialogue) {
-            let old_d = old_texts.dialogue.filter(od => { return od.id == d.id})[0];
-            if (old_d.visible !== d.visible) {
-              typing_id = d.id;
-              last_id = typing_id;
-              setTimeout(function() {
-                container.scrollTop = container.scrollHeight;
-              }, 50);
-              setTimeout(function() {
-                typing_id = '';
+          if (new_texts !== undefined && old_texts !== undefined) {
+
+            for (let d of new_texts.dialogue) {
+              let old_d = old_texts.dialogue.filter(od => { return od.id == d.id})[0];
+
+              if (old_d.visible !== d.visible) {
+                typing_id = d.id;
+                last_id = typing_id;
+
                 setTimeout(function() {
                   container.scrollTop = container.scrollHeight;
                 }, 50);
-              }, 2000);
-              break;
-            }
+
+                setTimeout(function() {
+                  typing_id = '';
+
+                  setTimeout(function() {
+                    container.scrollTop = container.scrollHeight;
+                  }, 50);
+                }, 2000);
+
+                break;
+              }
+            }         
+
           }
           
           prev_obj = JSON.parse(JSON.stringify(obj));
