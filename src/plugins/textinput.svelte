@@ -7,7 +7,7 @@
     <div class="card bg-base-100 shadow-xl">
         <div class="card-body text-[1.5vw] leading-snug p-[5%]">
             <p>{@html obj.instruction}</p>
-            <input type="text" class="input input-bordered w-full max-w-xs mt-[1vw]" bind:value={txt} />
+            <input type="text" class="input input-bordered w-full max-w-xs mt-[1vw]" bind:value={txt} maxlength="{obj.limit !== undefined?obj.limit:''}" />
 
             <div class="card-actions justify-end mt-12">
                 <button class="btn btn-primary w-full text-[1.5vw] !h-[3vw] min-h-[3vw] {txt == ''?'btn-disabled':''}" on:click={do_callback}>OK</button>
