@@ -180,5 +180,9 @@
       console.log(prev_obj);
       console.log(obj.objects.filter(o => { return o.id == 'texts' })[0]);
       event_callback(obj, obj.objects.filter(o => { return o.id == 'texts' })[0]);
+
+      setTimeout(function() {
+        container.scrollTop = container.scrollHeight;
+      }, 50);
     });    
 </script>
