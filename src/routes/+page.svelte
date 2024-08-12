@@ -6,8 +6,7 @@
             <img src="img/logo.png" />
         </div>
         <div class="text-[2vh] font-bold pt-4">Loading...</div>
-
-        <div class="image-loader">
+        <div class="image-loader w-4 h-4">
             {#each images as i}
             <img src="project/img/{i}" on:load={image_preloaded(i)} class="invisible" />
             {/each}
@@ -253,7 +252,7 @@
         // Set up the preloading.
         if (story.objects !== undefined) {
             story.objects.forEach(function(obj) {
-                if (obj.image !== undefined) {
+                if (obj.image !== undefined && !images.includes(obj.image)) {
                     images.push(obj.image);
                 }
             });
@@ -261,14 +260,52 @@
 
         if (story.scenes !== undefined) {
             story.scenes.forEach(function(scene) {
-                if (scene.background !== undefined) {
+                if (scene.background !== undefined && !images.includes(scene.background)) {
                     images.push(scene.background);
                 }
 
                 if (scene.objects !== undefined) {
                     scene.objects.forEach(function(obj) {
-                        if (obj.image !== undefined) {
+                        if (obj.objects !== undefined) {
+                            obj.objects.forEach(function(obj2) {
+                                if (obj2.image !== undefined && !images.includes(obj2.image)) {
+                                    images.push(obj2.image);
+                                }
+
+                                if (obj2.dialogue !== undefined) {
+                                    obj2.dialogue.forEach(function(d) {
+                                        if (d.avatar !== undefined && !images.includes(d.avatar)) {
+                                            images.push(d.avatar);
+                                        }
+                                        if (d.content !== undefined && d.content.indexOf('src=\"') !== -1) {
+                                            let start = d.content.indexOf('src=\"')+5;
+                                            let end = d.content.indexOf('\"', start);
+                                            let img = d.content.substr(start, end-start).replace('project/img/', '');
+
+                                            if (!images.includes(img)) {
+                                                images.push(img);
+                                            }
+                                        }
+                                    });
+                                }                                 
+                            });                           
+                        }
+                        if (obj.image !== undefined && !images.includes(obj.image)) {
                             images.push(obj.image);
+                        }
+                    })
+                }
+
+                if (scene.dialogue !== undefined) {
+                    scene.dialogue.forEach(function(d) {
+                        if (d.content !== undefined && d.content.indexOf('src=\"') !== -1) {
+                            let start = d.content.indexOf('src=\"')+5;
+                            let end = d.content.indexOf('\"', start);
+                            let img = d.content.substr(start, end-start).replace('project/img/', '');
+
+                            if (!images.includes(img)) {
+                                images.push(img);
+                            }
                         }
                     })
                 }
