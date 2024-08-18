@@ -248,7 +248,68 @@
 
     let variables = {};
 
+    let log_id = '';
+
     onMount(() => {
+        // Set up a beforeunload event to log when people close the window, if logging is active.
+        window.onbeforeunload = function(ev) {
+            if (log_id !== '') {
+                let formDataEv = new FormData();
+                formDataEv.append('random_id', log_id);
+                formDataEv.append('event', "window_close");
+                formDataEv.append('val', '');
+                formDataEv.append('timestamp', getCurrentDateTimeMySql());
+
+                fetch(story.api_address + "/create_event.php", {
+                    method: "POST",
+                    mode: "cors",
+                    body: formDataEv,
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                });
+            }
+        }
+
+        // Load URL params
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        // If a Qualtrics ID is specified and we have a logging API set up, create a user in the database so we can log the Qualtrics ID.
+        if (story.api_address !== undefined && story.api_address !== '' && urlParams.get('qid') !== null) {
+            let formData = new FormData();
+            formData.append('project', story.id);
+
+            fetch(story.api_address + "/create_player.php", {
+                method: "POST",
+                mode: 'cors',
+                body: formData,
+                headers: {
+                    "Accept": "application/json"
+                }
+            }).then((response) => {
+                response.json().then((json) => {
+                    log_id = json.id;
+
+                    let formDataEv = new FormData();
+                    formDataEv.append('random_id', log_id);
+                    formDataEv.append('event', 'qualtrics_id');
+                    formDataEv.append('val', urlParams.get('qid'));
+                    formDataEv.append('timestamp', getCurrentDateTimeMySql());
+
+                    fetch(story.api_address + "/create_event.php", {
+                        method: "POST",
+                        mode: "cors",
+                        body: formDataEv,
+                        headers: {
+                            "Accept": "application/json"
+                        }
+                    });
+                    console.log(json);
+                });
+            });                      
+        }
+
         // Set up the preloading.
         if (story.objects !== undefined) {
             story.objects.forEach(function(obj) {
@@ -499,9 +560,64 @@
                 variables[ev.variable] = eval(ev.value);
             }
         }
+        else if (ev.type == 'log') {
+            let val = '';
+
+            if (ev.val !== undefined) {
+                val = ev.val;
+            }
+
+            if (story.api_address !== undefined && story.api_address !== '' && log_id == '') {
+                let formData = new FormData();
+                formData.append('project', story.id);
+
+                fetch(story.api_address + "/create_player.php", {
+                    method: "POST",
+                    mode: 'cors',
+                    body: formData,
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }).then((response) => {
+                    response.json().then((json) => {
+                        log_id = json.id;
+
+                        log_event(ev.event, val);
+                    });
+                });
+            }
+            else {
+                log_event(ev.event, val);
+            }
+        }
 
         // Force redraw
         story.objects = story.objects;
         curr_scene = curr_scene;
     }
+
+    function log_event(event, val) {
+        let formDataEv = new FormData();
+        formDataEv.append('random_id', log_id);
+        formDataEv.append('event', event);
+        formDataEv.append('val', val);
+        formDataEv.append('timestamp', getCurrentDateTimeMySql());
+
+        fetch(story.api_address + "/create_event.php", {
+            method: "POST",
+            mode: "cors",
+            body: formDataEv,
+            headers: {
+                "Accept": "application/json"
+            }
+        });
+    }
+
+    function getCurrentDateTimeMySql() {        
+        var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+        var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, 23).replace('T', ' ');
+        var mySqlDT = localISOTime;
+        return mySqlDT;
+    } 
+
 </script>
