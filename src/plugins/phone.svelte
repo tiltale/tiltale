@@ -187,14 +187,17 @@
       console.log(obj.objects.filter(o => { return o.id == 'texts' })[0]);
       event_callback(obj, obj.objects.filter(o => { return o.id == 'texts' })[0]);
 
-      container.addEventListener('scroll', function(e) {
-        if (Math.abs(container.scrollTop - (container.scrollHeight - container.clientHeight)) > 10) {
-          is_scrolled = true;
-        }
-        else {
-          is_scrolled = false;
-        }
-      });
+      if (container !== undefined) {
+        container.addEventListener('scroll', function(e) {
+          if (Math.abs(container.scrollTop - (container.scrollHeight - container.clientHeight)) > 10) {
+            is_scrolled = true;
+          }
+          else {
+            is_scrolled = false;
+          }
+        });
+        
+      }
 
       setTimeout(function() {
         if (!is_scrolled) {
