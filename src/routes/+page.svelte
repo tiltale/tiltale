@@ -71,7 +71,7 @@
         {#each curr_scene.objects as o}
         {#if o.visible}
             {#if o.type == 'sprite'}
-            <div class="absolute {o.animateIn?'animate-fadeIn':''} {o.animateOut?'animate-fadeOut':''}" style="
+            <div class="absolute {o.animateIn?'animate-fadeIn':''} {o.animateOut?'animate-fadeOut':''} {(o.clickable === undefined || o.clickable)?'':'pointer-events-none'}" style="
             {(o.width !== undefined)?'width: ' + o.width + '; ':''}
             {(o.height !== undefined)?'height: ' + o.height + '; ':''}
             {(o.x !== undefined)?'left: ' + o.x + '; ':''}
