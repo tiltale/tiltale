@@ -138,6 +138,8 @@
     let last_id = '';
     let container: HTMLElement;
 
+    let is_scrolled = false;
+
       $: {
         console.log(prev_obj);
         if (Object.keys(prev_obj).length > 0) {
@@ -154,14 +156,18 @@
                 last_id = typing_id;
 
                 setTimeout(function() {
-                  container.scrollTop = container.scrollHeight;
+                  if (!is_scrolled) {
+                    container.scrollTop = container.scrollHeight;
+                  }
                 }, 50);
 
                 setTimeout(function() {
                   typing_id = '';
 
                   setTimeout(function() {
-                    container.scrollTop = container.scrollHeight;
+                    if (!is_scrolled) {
+                      container.scrollTop = container.scrollHeight;
+                    }
                   }, 50);
                 }, 2000);
 
@@ -181,8 +187,19 @@
       console.log(obj.objects.filter(o => { return o.id == 'texts' })[0]);
       event_callback(obj, obj.objects.filter(o => { return o.id == 'texts' })[0]);
 
+      container.addEventListener('scroll', function(e) {
+        if (Math.abs(container.scrollTop - (container.scrollHeight - container.clientHeight)) > 10) {
+          is_scrolled = true;
+        }
+        else {
+          is_scrolled = false;
+        }
+      });
+
       setTimeout(function() {
-        container.scrollTop = container.scrollHeight;
+        if (!is_scrolled) {
+          container.scrollTop = container.scrollHeight;
+        }
       }, 50);
     });    
 </script>
