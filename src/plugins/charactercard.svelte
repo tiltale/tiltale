@@ -15,7 +15,7 @@
         <div class="card bg-base-100 shadow-xl mt-[2vw]" style="{obj.color !== undefined?'background-color: ' + obj.color + ';':''} {obj.text_color !== undefined?'color: ' + obj.text_color + ';':''}">
             <div class="card-body leading-snug p-[5vw] flex flex-row">
                 <div class="w-[40%] bg-white rounded-[1vw] pt-[1vw] flex flex-end">
-                    <img src="project/img/{obj.image}" />
+                    <img src="project/img/{obj.image}" class="w-full" />
                 </div>
                 <div class="w-[60%] text-[1.5vw] p-[2vw] flex flex-col">
                     {#if obj.traits !== undefined}
