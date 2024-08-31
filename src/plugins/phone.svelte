@@ -200,9 +200,7 @@
       }
 
       setTimeout(function() {
-        if (!is_scrolled) {
           container.scrollTop = container.scrollHeight;
-        }
       }, 50);
     });    
 </script>
