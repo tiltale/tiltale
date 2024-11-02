@@ -1,5 +1,14 @@
 <!-- Wrapper to enforce 16:9 -->
 <div class="relative w-screen h-screen bg-black flex flex-col justify-center items-center">
+    <!-- Audio should be outside of the field of view so that it doesn't automatically stop playing on transitions -->
+    {#if story.objects !== undefined}
+    {#each story.objects as o}
+    {#if o.type == 'audio'}
+    <audio src="project/{o.filename}" id="a_{o.id}" />
+    {/if}
+    {/each}
+    {/if}
+
     {#if !is_loaded}
     <div class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center flex flex-col items-center justify-center text-white">
         <div class="w-[15vw] animate-bounce">
@@ -13,11 +22,12 @@
         </div>
     </div>
     {/if}
+
     {#if is_loaded && curr_scene !== null && scene_visible}
     <!-- The main story background -->
     <div transition:fade class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'project/img/' + curr_scene.background + '\')':''}">
 
-        <!-- General objects that can always be visible (e.g., UI elements) -->
+        <!-- Other general objects that can always be visible (e.g., UI elements), should be within the field of view -->
         {#if story.objects !== undefined}
         {#each story.objects as o}
         {#if o.visible}
@@ -69,6 +79,9 @@
 
         {#if curr_scene.objects !== undefined}
         {#each curr_scene.objects as o}
+        {#if o.type == 'audio'}
+        <audio src="project/{o.filename}" id="a_{o.id}" />
+        {/if}
         {#if o.visible}
             {#if o.type == 'sprite'}
             <div class="absolute {o.animateIn?'animate-fadeIn':''} {o.animateOut?'animate-fadeOut':''} {(o.clickable === undefined || o.clickable)?'':'pointer-events-none'}" style="
@@ -284,7 +297,9 @@
     
     let is_loaded = false;
     let images: string[] = [];
+    let audio: string[] = [];
     let img_load_count = 0;
+    let audio_load_count = 0;
 
     let loaded_fonts: string[] = [];
 
@@ -358,6 +373,9 @@
                 if (obj.image !== undefined && !images.includes(obj.image)) {
                     images.push(obj.image);
                 }
+                if (obj.type !== undefined && obj.type == 'audio' && obj.filename !== undefined) {
+                    audio.push(obj.filename);
+                }
             });
         }
 
@@ -396,6 +414,9 @@
                         if (obj.image !== undefined && !images.includes(obj.image)) {
                             images.push(obj.image);
                         }
+                        if (obj.type !== undefined && obj.type == 'audio' && obj.filename !== undefined) {
+                            audio.push(obj.filename);
+                        }                        
                         if (obj.text_font !== undefined) {
                             load_Google_font(obj.text_font);
                         }
@@ -424,6 +445,19 @@
 
         images = images;
 
+        audio.forEach(function(a) {
+
+            fetch('project/' + a).then((response) => {
+                response.blob().then((blob) => {
+                    audio_load_count += 1;
+                    
+                    if (audio_load_count === audio.length && img_load_count === images.length) {
+                        is_loaded = true;
+                    }
+                })
+            });
+        });
+
         // Make a copy so that we can always return to the start of the scene later.
         curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == story.start_scene })[0]));
         handle_events(curr_scene);
@@ -432,7 +466,7 @@
     function image_preloaded(img) {
         img_load_count += 1;
 
-        if (img_load_count === images.length) {
+        if (audio_load_count === audio.length && img_load_count === images.length) {
             is_loaded = true;
         }
     }
@@ -654,6 +688,9 @@
             else {
                 log_event(ev.event, val);
             }
+        }
+        else if (ev.type == 'play_audio') {
+            document.getElementById('a_' + ev.target).play();
         }
 
         // Force redraw
