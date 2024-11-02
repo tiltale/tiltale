@@ -262,13 +262,11 @@
             {#if d.content !== ''}
             <br />
             {/if}
-            <div class="card-actions justify-end">
             {#each d.answer_options as a}
             {#if a.condition === undefined || evaluate_condition(a.condition)}
-            <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
+            <a class="text-[1.7vw] font-bold cursor-pointer" style="line-height: 3rem; color: #024F50" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</a><br />
             {/if}
             {/each}
-            </div>
             {/if}
             {/if}
         </div>        
@@ -479,7 +477,7 @@
             link.id = font_name;
             link.rel = 'stylesheet';
             link.type = 'text/css';
-            link.href = 'http://fonts.googleapis.com/css?family=' + font_name;
+            link.href = 'http://fonts.googleapis.com/css?family=' + font_name + ':ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800';
             link.media = 'all';
             head.appendChild(link);
 
