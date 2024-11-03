@@ -265,9 +265,9 @@
             {#each d.answer_options as a}
             {#if a.condition === undefined || evaluate_condition(a.condition)}
             {#if a.disabled !== undefined && a.disabled}
-            <span class="text-[1.7vw] font-bold line-through" style="line-height: 3rem; color: #666666">{@html a.content}</span><br />
+            <span class="text-[1.5vw] font-bold line-through" style="line-height: 3rem; color: #666666">{@html a.content}</span><br />
             {:else}
-            <a class="text-[1.7vw] font-bold cursor-pointer" style="line-height: 3rem; color: #024F50" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</a><br />
+            <a class="text-[1.5vw] font-bold cursor-pointer" style="line-height: 3rem; color: #024F50" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</a><br />
             {/if}
             {/if}
             {/each}
@@ -666,6 +666,10 @@
 
             if (ev.val !== undefined) {
                 val = ev.val;
+
+                if (ev.val.startsWith('variables.')) {
+                    val = eval(ev.val);
+                }
             }
 
             if (story.api_address !== undefined && story.api_address !== '' && log_id == '') {
