@@ -692,7 +692,42 @@
             }
         }
         else if (ev.type == 'play_audio') {
-            document.getElementById('a_' + ev.target).play();
+            let audio = document.getElementById('a_' + ev.target);
+
+            if (ev.fade !== undefined) {
+                audio.volume = 0.0;
+
+                let fadeInt = parseInt(ev.fade);
+                let fadeAudio = setInterval(function() {
+                    audio.volume += 100 / fadeInt - 0.0001;
+
+                    console.log(audio.volume);
+
+                    if (audio.volume >= 0.99 || audio.paused) {
+                        clearInterval(fadeAudio);
+                    }
+                }, 100);
+            }
+
+            audio.play();
+        }
+        else if (ev.type == 'stop_audio') {
+            let audio = document.getElementById('a_' + ev.target);
+
+            if (ev.fade !== undefined) {
+                let fadeInt = parseInt(ev.fade);
+                let fadeAudio = setInterval(function() {
+                    audio.volume -= 100 / fadeInt - 0.0001;
+
+                    console.log(audio.volume);
+
+                    if (audio.volume <= 0.01) {
+                        clearInterval(fadeAudio);
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+                }, 100);
+            }
         }
 
         // Force redraw
