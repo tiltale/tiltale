@@ -1,5 +1,5 @@
 <!-- Wrapper to enforce 16:9 -->
-<div class="relative w-screen h-screen bg-black flex flex-col justify-center items-center">
+<div class="relative w-full h-full bg-black flex flex-col justify-center items-center">
     <!-- Audio should be outside of the field of view so that it doesn't automatically stop playing on transitions -->
     {#if story.objects !== undefined}
     {#each story.objects as o}
@@ -705,8 +705,6 @@
                 let fadeAudio = setInterval(function() {
                     audio.volume += 100 / fadeInt - 0.0001;
 
-                    console.log(audio.volume);
-
                     if (audio.volume >= 0.99 || audio.paused) {
                         clearInterval(fadeAudio);
                     }
@@ -720,12 +718,20 @@
 
             if (ev.fade !== undefined) {
                 let fadeInt = parseInt(ev.fade);
+                let curVol = audio.volume;
+                let numTries = 0;
                 let fadeAudio = setInterval(function() {
                     audio.volume -= 100 / fadeInt - 0.0001;
 
-                    console.log(audio.volume);
+                    if (audio.volume == curVol) {
+                        numTries += 1;
+                    }
+                    else {
+                        curVol = audio.volume;
+                        numTries = 0;
+                    }
 
-                    if (audio.volume <= 0.01) {
+                    if (audio.volume <= 0.01 || numTries == 5) {
                         clearInterval(fadeAudio);
                         audio.pause();
                         audio.currentTime = 0;
