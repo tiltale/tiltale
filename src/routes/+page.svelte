@@ -4,6 +4,15 @@
 
 <!-- Wrapper to enforce 16:9 -->
 <div class="relative w-screen h-screen bg-black flex flex-col justify-center items-center">
+    <!-- Audio should be outside of the field of view so that it doesn't automatically stop playing on transitions -->
+    {#if story.objects !== undefined}
+    {#each story.objects as o}
+    {#if o.type == 'audio'}
+    <audio src="project/{o.filename}" id="a_{o.id}" />
+    {/if}
+    {/each}
+    {/if}
+
     {#if !is_loaded}
     <div class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center flex flex-col items-center justify-center text-white">
         <div class="w-[15vw] animate-bounce">
@@ -17,11 +26,12 @@
         </div>
     </div>
     {/if}
+
     {#if is_loaded && curr_scene !== null && scene_visible}
     <!-- The main story background -->
     <div transition:fade class="relative max-w-[100vw] max-h-[56vw] w-[177vh] h-[100vh] overflow-hidden bg-cover bg-center" style="{(curr_scene.background !== undefined)?'background-image: url(\'project/img/' + curr_scene.background + '\')':''}">
 
-        <!-- General objects that can always be visible (e.g., UI elements) -->
+        <!-- Other general objects that can always be visible (e.g., UI elements), should be within the field of view -->
         {#if story.objects !== undefined}
         {#each story.objects as o}
         {#if o.visible}
@@ -76,6 +86,9 @@
 
         {#if curr_scene.objects !== undefined}
         {#each curr_scene.objects as o}
+        {#if o.type == 'audio'}
+        <audio src="project/{o.filename}" id="a_{o.id}" />
+        {/if}
         {#if o.visible}
             {#if o.type == 'sprite'}
             <div class="absolute {o.animateIn?'animate-fadeIn':''} {o.animateOut?'animate-fadeOut':''} {(o.clickable === undefined || o.clickable)?'':'pointer-events-none'}" style="
@@ -95,7 +108,12 @@
             {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':''}        
             {(o.text_x !== undefined)?'left: ' + o.text_x + '; ':''}
             {(o.text_y !== undefined)?'top: ' + o.text_y + '; ':''} 
-            {(o.text_size !== undefined)?'font-size: ' + o.text_size + '; ':''}">
+            {(o.text_width !== undefined)?'width: ' + o.text_width + '; ':''}
+            {(o.text_height !== undefined)?'height: ' + o.text_height + '; ':''}
+            {(o.text_align !== undefined)?'text-align: ' + o.text_align + '; ':''} 
+            {(o.text_size !== undefined)?'font-size: ' + o.text_size + '; ':'font-size: 1.25vw; '} 
+            {(o.text_font !== undefined)?'font-family: ' + o.text_font + '; ':''} 
+            {(o.text_bold !== undefined)?'font-weight: bold; ':''}">
                 {variables_in_text(o.text)}
             </div>
             {/if}
@@ -152,7 +170,8 @@
         <img src="img/thought_topright.svg" class="absolute top-[-5vw] right-[-5vw] w-[9vw]" />
         {/if}
         <div class="leading-relaxed p-[18%] relative top-0" style="z-index: 2; 
-        {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
+        {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'}
+        {(d.text_font !== undefined)?'font-family: ' + d.text_font + '; ':''} 
         ">
             <p>{@html variables_in_text(d.content)}</p>
             {#if d.answer_options !== undefined && d.answer_options.length > 0}
@@ -173,9 +192,10 @@
             </div>
             {/if}
         </div>
-        </div>        
+        </div>  
+        {/if}      
 
-        {:else}
+        {#if d.type !== undefined && d.type == 'speech'}
         <div class="absolute card bg-base-100 shadow-xl min-w-[15vw]" style="
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
@@ -184,7 +204,6 @@
             {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
             {(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'cursor: pointer;':''}  
         " on:click={(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?handle_events(d.answer_options[0], d):undefined}>
-        {#if d.type !== undefined && d.type == 'speech'}
         {#if d.speech_position == undefined || d.speech_position == 'bottomleft'}
         <img src="img/speech_bottomleft.svg" class="absolute top-[100%] left-[5%] w-[2.5vw]" />
         {/if}
@@ -197,10 +216,10 @@
         {#if d.speech_position !== undefined && d.speech_position == 'topright'}
         <img src="img/speech_topright.svg" class="absolute top-[-2.5vw] right-[5%] w-[2.5vw]" />
         {/if}
-        {/if}
         <div class="card-body leading-relaxed p-[5%]" 
         style="{(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'padding-right: 15%;':''}  
         {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
+        {(d.text_font !== undefined)?'font-family: ' + d.text_font + '; ':''}         
         ">
             {#if d.name !== undefined}
             <p class="font-bold" style="{d.name_color !== undefined?'color: ' + d.name_color + '; ':''}">{d.name}</p>
@@ -229,6 +248,42 @@
             {/if}
         </div>
         </div>        
+        {:else}
+        <div class="absolute" style="
+            {(d.width !== undefined)?'width: ' + d.width + '; ':''}
+            {(d.height !== undefined)?'height: ' + d.height + '; ':''}
+            {(d.x !== undefined)?'left: ' + d.x + '; ':''}
+            {(d.y !== undefined)?'top: ' + d.y + '; ':''}
+            {(d.z !== undefined)?'z-index: ' + d.z + '; ':''}
+            {(d.align !== undefined)?'text-align: ' + d.align + '; ':''} 
+            {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
+            {(d.text_font !== undefined)?'font-family: ' + d.text_font + '; ':''} 
+            {(d.text_bold !== undefined)?'font-weight: bold; ':''}
+        ">
+            <p>{@html variables_in_text(d.content)}</p>
+            {#if d.answer_options !== undefined && d.answer_options.length > 0}
+            {#if d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next'}            
+            <button class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E] absolute right-[6%] bottom-[6%]" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>
+                <svg width="100%" height="100%" viewBox="0 0 16 16" fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" class="w-5 h-5">
+                    <path d="M2,8C2,7.589 2.339,7.25 2.75,7.25L11.44,7.25L8.22,4.03C8.091,3.891 8.019,3.708 8.019,3.519C8.019,3.107 8.357,2.769 8.769,2.769C8.958,2.769 9.141,2.841 9.28,2.97L13.78,7.47C14.071,7.761 14.071,8.239 13.78,8.53L9.28,13.03C9.141,13.159 8.958,13.231 8.769,13.231C8.357,13.231 8.019,12.893 8.019,12.481C8.019,12.292 8.091,12.109 8.22,11.97L11.44,8.75L2.75,8.75C2.339,8.75 2,8.411 2,8Z" style="stroke:#ffffff;stroke-width:1.38px;"/>
+                </svg>
+            </button>            
+            {:else}
+            {#if d.content !== ''}
+            <br />
+            {/if}
+            {#each d.answer_options as a}
+            {#if a.condition === undefined || evaluate_condition(a.condition)}
+            {#if a.disabled !== undefined && a.disabled}
+            <span class="text-[1.5vw] font-bold line-through" style="line-height: 3rem; color: #666666">{@html a.content}</span><br />
+            {:else}
+            <a class="text-[1.5vw] font-bold cursor-pointer" style="line-height: 3rem; color: #024F50" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</a><br />
+            {/if}
+            {/if}
+            {/each}
+            {/if}
+            {/if}
+        </div>        
         {/if}
         {/if}
         {/each}
@@ -238,7 +293,7 @@
 </div>
 
 
-<script type="ts">
+<script lang="ts">
     import { onMount } from "svelte";
     import { fade } from "svelte/transition";
     import Drag from '../plugins/drag.svelte';
@@ -255,12 +310,16 @@
 
     story.scenes = [...Intro.scenes, ...Outro.scenes];
 
-    let curr_scene = null;
+    let curr_scene: any = null;
     let scene_visible = true;
     
     let is_loaded = false;
-    let images = [];
+    let images: string[] = [];
+    let audio: string[] = [];
     let img_load_count = 0;
+    let audio_load_count = 0;
+
+    let loaded_fonts: string[] = [];
 
     let variables = {};
 
@@ -332,6 +391,9 @@
                 if (obj.image !== undefined && !images.includes(obj.image)) {
                     images.push(obj.image);
                 }
+                if (obj.type !== undefined && obj.type == 'audio' && obj.filename !== undefined) {
+                    audio.push(obj.filename);
+                }
             });
         }
 
@@ -370,6 +432,12 @@
                         if (obj.image !== undefined && !images.includes(obj.image)) {
                             images.push(obj.image);
                         }
+                        if (obj.type !== undefined && obj.type == 'audio' && obj.filename !== undefined) {
+                            audio.push(obj.filename);
+                        }                        
+                        if (obj.text_font !== undefined) {
+                            load_Google_font(obj.text_font);
+                        }
                     })
                 }
 
@@ -384,12 +452,29 @@
                                 images.push(img);
                             }
                         }
+
+                        if (d.text_font !== undefined) {
+                            load_Google_font(d.text_font);
+                        }
                     })
                 }
             })
         }
 
         images = images;
+
+        audio.forEach(function(a) {
+
+            fetch('project/' + a).then((response) => {
+                response.blob().then((blob) => {
+                    audio_load_count += 1;
+                    
+                    if (audio_load_count === audio.length && img_load_count === images.length) {
+                        is_loaded = true;
+                    }
+                })
+            });
+        });
 
         // Make a copy so that we can always return to the start of the scene later.
         curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == story.start_scene })[0]));
@@ -399,8 +484,24 @@
     function image_preloaded(img) {
         img_load_count += 1;
 
-        if (img_load_count === images.length) {
+        if (audio_load_count === audio.length && img_load_count === images.length) {
             is_loaded = true;
+        }
+    }
+
+    function load_Google_font(font_name: string) {
+        if (!loaded_fonts.includes(font_name)) {
+            // Source: https://stackoverflow.com/questions/32525421/dynamically-load-web-font
+            let head = document.getElementsByTagName('head')[0];
+            let link = document.createElement('link');
+            link.id = font_name;
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'http://fonts.googleapis.com/css?family=' + font_name + ':ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800';
+            link.media = 'all';
+            head.appendChild(link);
+
+            loaded_fonts.push(font_name);
         }
     }
 
@@ -601,6 +702,10 @@
 
             if (ev.val !== undefined) {
                 val = ev.val;
+
+                if (ev.val.startsWith('variables.')) {
+                    val = eval(ev.val);
+                }
             }
 
             if (story.api_address !== undefined && story.api_address !== '' && log_id == '') {
@@ -624,6 +729,44 @@
             }
             else {
                 log_event(ev.event, val);
+            }
+        }
+        else if (ev.type == 'play_audio') {
+            let audio = document.getElementById('a_' + ev.target);
+
+            if (ev.fade !== undefined) {
+                audio.volume = 0.0;
+
+                let fadeInt = parseInt(ev.fade);
+                let fadeAudio = setInterval(function() {
+                    audio.volume += 100 / fadeInt - 0.0001;
+
+                    console.log(audio.volume);
+
+                    if (audio.volume >= 0.99 || audio.paused) {
+                        clearInterval(fadeAudio);
+                    }
+                }, 100);
+            }
+
+            audio.play();
+        }
+        else if (ev.type == 'stop_audio') {
+            let audio = document.getElementById('a_' + ev.target);
+
+            if (ev.fade !== undefined) {
+                let fadeInt = parseInt(ev.fade);
+                let fadeAudio = setInterval(function() {
+                    audio.volume -= 100 / fadeInt - 0.0001;
+
+                    console.log(audio.volume);
+
+                    if (audio.volume <= 0.01) {
+                        clearInterval(fadeAudio);
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+                }, 100);
             }
         }
 
