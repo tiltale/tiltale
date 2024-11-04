@@ -1,3 +1,7 @@
+<!-- svelte-ignore a11y-missing-attribute -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+
 <!-- Wrapper to enforce 16:9 -->
 <div class="relative w-screen h-screen bg-black flex flex-col justify-center items-center">
     {#if !is_loaded}
@@ -53,6 +57,9 @@
         {/if}
         {#if o.type == 'phone'}
         <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
+        {#if o.type == 'scrollingdialogue'}
+        <ScrollingDialogue obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
+        {/if}
         {/if}
         {#if o.type == 'note'}
         <Note obj={o} event_callback={handle_events} />
@@ -102,6 +109,9 @@
             {/if}
             {#if o.type == 'phone'}
             <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
+            {/if}
+            {#if o.type == 'scrollingdialogue'}
+            <ScrollingDialogue obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
             {/if}
             {#if o.type == 'note'}
             <Note obj={o} event_callback={handle_events} />
@@ -237,7 +247,13 @@
     import Note from '../plugins/note.svelte';
     import Notebook from '../plugins/notebook.svelte';
     import CharacterCard from '../plugins/charactercard.svelte';
+    import ScrollingDialogue from '../plugins/scrollingdialogue.svelte';
     import story from '/project/story.json';
+    
+    import Intro from '/project/chapters/intro.json';
+    import Outro from '/project/chapters/outro.json';
+
+    story.scenes = [...Intro.scenes, ...Outro.scenes];
 
     let curr_scene = null;
     let scene_visible = true;
@@ -426,8 +442,6 @@
         }
         
         obj.events.forEach(function(ev) {
-            console.log(ev);            
-
             if (ev.condition !== undefined && !eval(ev.condition)) {
                 return;
             }
@@ -448,7 +462,18 @@
                 let objs = story.objects.filter(o => { return o.id == ev.target });
                 if (objs.length == 0) {
                     // And for scene objects
-                    objs = curr_scene.objects.filter(o => { return o.id == ev.target });                    
+                    objs = curr_scene.objects.filter(o => { return o.id == ev.target });     
+                    
+                    // And for avatars of scrolling dialogue
+                    const dialogues = curr_scene.objects.filter(o => { return o.type == "scrollingdialogue" });
+
+                    dialogues.forEach(dg => {
+                        const avatars = dg.objects.filter(o => { return o.type == "avatars"});
+
+                        if (avatars) {
+                            objs.push(avatars[0].objects.find(o => o.id == ev.target));
+                        }
+                    })
                 }
 
                 if (objs.length > 0) {
@@ -471,7 +496,18 @@
             let objs = story.objects.filter(o => { return o.id == ev.target });
             if (objs.length == 0) {
                 // And for scene objects
-                objs = curr_scene.objects.filter(o => { return o.id == ev.target });                    
+                objs = curr_scene.objects.filter(o => { return o.id == ev.target });
+                
+                // And for avatars of scrolling dialogue
+                const dialogues = curr_scene.objects.filter(o => { return o.type == "scrollingdialogue" });
+
+                dialogues.forEach(dg => {
+                    const avatars = dg.objects.filter(o => { return o.type == "avatars"});
+
+                    if (avatars) {
+                        objs.push(avatars[0].objects.find(o => o.id == ev.target));
+                    }
+                });
             }
 
             if (objs.length > 0) {
@@ -520,6 +556,7 @@
         }
         else if (ev.type == 'goto_dialogue') {
             let tar = curr_scene;
+
             if (context !== undefined && context !== null && context.dialogue !== undefined) {
                 if (context.dialogue.filter(d => { return d.id == ev.target }).length > 0) {
                     tar = context;
@@ -533,7 +570,6 @@
             if (context !== null && context.dialogue === undefined) {
                 tar.dialogue.filter(d => { return d.id == context.id })[0].visible = false;
             }
-
             if (ev.animate !== undefined && ev.animate) {
                 let obj = tar.dialogue.filter(d => { return d.id == ev.target })[0];
                 setTimeout(function() {
