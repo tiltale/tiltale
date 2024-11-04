@@ -1,0 +1,382 @@
+{
+    "scenes": [
+        {
+            "id": "lecture0",
+            "background": "bg/campus.png",
+            "objects": [],
+            "dialogue": [
+                {
+                    "type": "box",
+                    "visible": true,
+                    "x": "0%",
+                    "y": "0%",
+                    "z": "1",
+                    "width": "100%",
+                    "content": "<strong>Week 1</strong> | Blackwell Academy",
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "goto_scene",
+                                    "target": "lecture1",
+                                    "animate": true        
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "events": []
+        },
+        {
+            "id": "lecture1",
+            "background": "bg/campus.png",
+            "objects": [
+                {
+                "id": "lecture",
+                "type": "scrollingdialogue",
+                "x": "20%",
+                "y": "8%",
+                "z": "1",                    
+                "width": "60%",
+                "height": "80%",
+                "visible": true,
+                "objects": [
+                    {
+                        "id": "top",
+                        "type": "sprite",
+                        "width": "88%",
+                        "visible": true,
+                        "text": "<h1>Late Afternoon...</h1><p style='font-size: 1.2vw'>Light is shimmering, and most of the class is looking to silently distract themselves.</p>"
+                    },
+                    {
+                        "id": "avatars",
+                        "type": "avatars",
+                        "visible": true,
+                        "objects": [
+                            {
+                                "id": "teacher",
+                                "name": "teacher",
+                                "img": "/project/img/avatars/teacher.png"
+                            },
+                            {
+                                "id": "student",
+                                "name": "student",
+                                "img": "/project/img/avatars/student.png"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "texts",
+                        "type": "texts",
+                        "text_size": "15px",
+                        "width": "90%",
+                        "height": "80%",
+                        "background": "#DDFFE0",
+                        "visible": true,
+                        "dialogue": [
+                            {
+                                "id": "sp_teacher1",
+                                "type": "speech",
+                                "visible": false,
+                                "content": "&#91;...&#93; Therefore these archetypes are very helpful in characterizing workplace behaviour; albeith &#91;...&#93;",
+                                "name": "Teacher",
+                                "name_color": "#DC6060",
+                                "avatar_id": "teacher"
+                            },
+                            {
+                                "id": "sp_student1",
+                                "type": "thought",
+                                "visible": false,
+                                "content": "Oof, we better characterize him with these &#91;...&#93;",
+                                "name": "You",
+                                "name_color": "#6143CF",
+                                "avatar_id": "student",
+                                "is_player": true,
+                                "answer_options": [
+                                    {
+                                        "content": "[Start Daydreaming]",
+                                        "events": [
+                                            {
+                                                "type": "goto_scene",
+                                                "keep_others": true,
+                                                "target": "graduation1"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }                                                                                                                                                                                                                                                                                                                                                                             
+                        ]
+                    }
+                ],
+                "events": [
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_teacher1",
+                        "keep_others": true,
+                        "delay": 4000
+                    },
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_student1",
+                        "keep_others": true,
+                        "delay": 8000
+                    }
+                ]
+            }],
+            "events": []
+        },
+        {
+            "id": "graduation1",
+            "background": "bg/campus.png",
+            "objects": [{
+                "id": "graduation_ceremony",
+                "type": "scrollingdialogue",
+                "x": "20%",
+                "y": "8%",
+                "z": "1",                    
+                "width": "60%",
+                "height": "80%",
+                "visible": true,
+                "objects": [
+                    {
+                        "id": "top",
+                        "type": "sprite",
+                        "width": "88%",
+                        "visible": true,
+                        "text": "<h1>4 months later...</h1><p style='font-size: 1.2vw'>The graduation ceremony has just finished. Everyone is joyfully chatting and enjoying cocktails.</p>"
+                    },
+                    {
+                        "id": "avatars",
+                        "type": "avatars",
+                        "visible": true,
+                        "objects": [
+                            {
+                                "id": "student",
+                                "name": "student",
+                                "img": "/project/img/avatars/student.png",
+                                "visible": true
+                            },
+                            {
+                                "id": "teacher",
+                                "name": "teacher",
+                                "img": "/project/img/avatars/teacher.png",
+                                "visible": false
+                            },
+                            {
+                                "id": "lisa",
+                                "name": "lisa",
+                                "img": "/project/img/avatars/lisa.png",
+                                "visible": false
+                            }
+                        ]
+                    },
+                    {
+                        "id": "texts",
+                        "type": "texts",
+                        "text_size": "15px",
+                        "width": "90%",
+                        "height": "80%",
+                        "background": "#DDFFE0",
+                        "visible": true,
+                        "dialogue": [
+                            {
+                                "id": "sp_student1",
+                                "type": "thought",
+                                "visible": false,
+                                "content": "Pfew, that's that. The signature is in place, speeches done, let's have a drink! &#91;Walks to the table with chaimpaign glasses&#93;",
+                                "name": "You",
+                                "name_color": "#6143CF",
+                                "avatar_id": "student",
+                                "is_player": true
+                            },
+                            {
+                                "id": "sp_teacher1",
+                                "type": "speech",
+                                "visible": false,
+                                "content": "&#91;Handshake&#93; Congrats with finishing your bachelors! Are you gonna miss it?",
+                                "name": "Teacher",
+                                "name_color": "#DC6060",
+                                "avatar_id": "teacher"
+                            },
+                            {
+                                "id": "sp_student2",
+                                "type": "speech",
+                                "visible": false,
+                                "content": "Well honestly I ...",
+                                "name": "You",
+                                "name_color": "#6143CF",
+                                "avatar_id": "student",
+                                "is_player": true
+                            },
+                            {
+                                "id": "sp_teacher2",
+                                "type": "speech",
+                                "visible": false,
+                                "content": "O wait a sec, there's a colegue of mine which I need to talk to. See ya!",
+                                "name": "Teacher",
+                                "name_color": "#DC6060",
+                                "avatar_id": "teacher"
+                            },
+                            {
+                                "id": "sp_lisa_1",
+                                "type": "speech",
+                                "visible": false,
+                                "content": "&#91; Grimace &#93; So, that ended quickly!",
+                                "name": "Lisa",
+                                "name_color": "#F5B841",
+                                "avatar_id": "lisa"
+                            },
+                            {
+                                "id": "sp_student3",
+                                "type": "speech",
+                                "visible": false,
+                                "content": "Not that I was going to give an honest answer either! But let's forget about it. Congrats btw!",
+                                "name": "You",
+                                "name_color": "#6143CF",
+                                "avatar_id": "student",
+                                "is_player": true
+                            },
+                            {
+                                "id": "sp_lisa_2",
+                                "type": "speech",
+                                "visible": false,
+                                "content": "&#91;Hugs&#93; yeah you too! I am so relieved we made it!",
+                                "name": "Lisa",
+                                "name_color": "#F5B841",
+                                "avatar_id": "lisa"
+                            },
+                            {
+                                "id": "sp_lisa_3",
+                                "type": "speech",
+                                "visible": false,
+                                "content": "So...",
+                                "name": "Lisa",
+                                "name_color": "#F5B841",
+                                "avatar_id": "lisa"
+                            },
+                            {
+                                "id": "sp_lisa_4",
+                                "type": "speech",
+                                "visible": false,
+                                "content": "Do you have already more defined plans for what's next?",
+                                "name": "Lisa",
+                                "name_color": "#F5B841",
+                                "avatar_id": "lisa",
+                                "answer_options": [
+                                    {
+                                        "content": "[Next Degree]",
+                                        "events": [
+                                            {
+                                                "type": "goto_scene",
+                                                "keep_others": true,
+                                                "target": "lecture0"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "content": "[Start living together with Julia]",
+                                        "events": [
+                                            {
+                                                "type": "goto_scene",
+                                                "keep_others": true,
+                                                "target": "lecture0"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "content": "[New Job]",
+                                        "events": [
+                                            {
+                                                "type": "goto_scene",
+                                                "keep_others": true,
+                                                "target": "lecture0"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }                                                                                                                                                                                                                                                                                                                                                                           
+                        ]
+                    }
+                ],
+                "events": [
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_student1",
+                        "keep_others": true,
+                        "delay": 3000
+                    },
+                    {
+                        "type": "show_object",
+                        "target": "teacher",
+                        "delay": 4000,
+                        "animate": true
+                    },
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_teacher1",
+                        "keep_others": true,
+                        "delay": 6000
+                    },
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_student2",
+                        "keep_others": true,
+                        "delay": 9000
+                    },
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_teacher2",
+                        "keep_others": true,
+                        "delay": 10000
+                    },
+                    {
+                        "type": "hide_object",
+                        "target": "teacher",
+                        "delay": 12000,
+                        "animate": true
+                    },
+                    {
+                        "type": "show_object",
+                        "target": "lisa",
+                        "delay": 14000,
+                        "animate": true
+                    },
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_lisa_1",
+                        "keep_others": true,
+                        "delay": 16000
+                    },
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_student3",
+                        "keep_others": true,
+                        "delay": 19000
+                    },
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_lisa_2",
+                        "keep_others": true,
+                        "delay": 21000
+                    },
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_lisa_3",
+                        "keep_others": true,
+                        "delay": 24000
+                    },
+                    {
+                        "type": "goto_dialogue",
+                        "target": "sp_lisa_4",
+                        "keep_others": true,
+                        "delay": 27000
+                    }
+                ]
+            }],
+            "dialogue": [],
+            "events": []
+        }
+    ]
+}

@@ -1,0 +1,76 @@
+{
+    "scenes": [
+        {
+            "id": "test1",
+            "background": "bg/lusitano.jpeg",
+            "objects": [],
+            "dialogue": [
+                {
+                    "id": "uitleg_kaarten",
+                    "visible": true,
+                    "type": "box",
+                    "content": "&#91;...&#93; Therefore these archetypes are very helpful incharacterizing workplace behaviour; albeith &#91;...&#93;",
+                    "x": "25%",
+                    "y": "25%",
+                    "z": "1",
+                    "width": "50%",
+                    "answer_options": [
+                        {
+                            "content": "Oof, we better characterize him with these [...] <br /> [Start Daydreaming]",
+                            "events": [
+                                {
+                                    "type": "goto_scene",
+                                    "target": "sd_test"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "events": []
+        },
+        {
+            "id": "sd_test1",
+            "background": "bg/lusitano.jpeg",
+            "objects": [
+                {
+                    "id": "sd_lecture",
+                    "type": "scrollingdialogue",
+                    "x": "25%",
+                    "y": "25%",
+                    "width": "40%",
+                    "visible": true,
+                    "objects": [
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "msg1_lecture1",
+                                    "visible": true,
+                                    "content": "blabla",
+                                    "name": "hoi"
+                                },
+                                {
+                                    "id": "msg2_lecture2",
+                                    "visible": false,
+                                    "content": "blabla2",
+                                    "name": "hoi"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "events": [
+                {
+                    "type": "goto_dialogue",
+                    "target": "msg2_lecture2",
+                    "keep_others": true,
+                    "delay": 3000
+                }
+            ]
+        }
+    ]
+}
