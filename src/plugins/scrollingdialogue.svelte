@@ -102,7 +102,7 @@
     .scrolling-diaglogue-container {
         display: grid;
         grid-template-columns: 50px 1fr;
-        grid-template-rows: 100px 1fr;
+        grid-template-rows: auto 1fr;
         position: relative; 
         height: 100%;
         width: 100%;
@@ -115,7 +115,7 @@
         grid-column: 2 / 3;
         text-align: right;
         font-style: italic;
-        padding: 40px;
+        padding: 40px 40px 20px 40px;
         padding-left: 33%;
     }
 
@@ -170,6 +170,7 @@
         {obj.height !== undefined ? 'height: ' + obj.height + '; ' : ''}
         {obj.x !== undefined ? 'left: ' + obj.x + '; ' : ''}
         {obj.y !== undefined ? 'top: ' + obj.y + '; ' : ''} 
+        {obj.backgroundColor !== undefined ? `background-color: ${obj.backgroundColor};` : ''}
         "
 >
     <div class="scrolling-diaglogue-container">
@@ -212,7 +213,7 @@
                                                         ? "background-color: " + d.background + ";"
                                                         : ""}
                                                 >
-                                                    {variables_in_text(d.content)}
+                                                    {@html variables_in_text(d.content)}
                                                 </div>
                                             {:else if d.is_player !== undefined && d.is_player}
                                                 <div class="chat chat-end">

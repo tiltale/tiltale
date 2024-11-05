@@ -1,0 +1,31 @@
+{
+    "scenes": [
+        {
+            "id": "name",
+            "background": "bg/campus.png",
+            "objects": [
+                {
+                    "id": "name_input",
+                    "type": "textinput",
+                    "limit": 18,
+                    "instruction": "<span style=\"font-size: 3vw; font-weight: bold\">Paper Panic</span><br /><br />What's you first name?",
+                    "x": "25%",
+                    "y": "20%",
+                    "width": "50%",
+                    "visible": true,
+                    "events": [
+                        {
+                            "type": "set_variable",
+                            "variable": "Name",
+                            "value": "context"
+                        },
+                        {
+                            "type": "goto_scene",
+                            "target": "lecture0"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
