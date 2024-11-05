@@ -208,10 +208,8 @@
                                         {#if d.visible !== undefined && d.visible}
                                             {#if d.type !== undefined && d.type == "notification"}
                                                 <div
-                                                    class="w-full text-[0.75vw] p-[2%] mt-4 rounded-md"
-                                                    style={d.background !== undefined
-                                                        ? "background-color: " + d.background + ";"
-                                                        : ""}
+                                                    class="w-full text-[0.75vw] p-[2%] mt-6 mb-6 rounded-md text-center"
+                                                    style="background-color: rgb(240,240,240)"
                                                 >
                                                     {@html variables_in_text(d.content)}
                                                 </div>
@@ -239,7 +237,7 @@
                                                         {#each d.answer_options as a}
                                                             {#if a.type !== undefined && a.type == "next"}
                                                                 <button
-                                                                    class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E] relative left-[81%] mt-4 col-start-1 col-end-3"
+                                                                    class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E] relative left-[0%] mt-4 col-start-1 col-end-3"
                                                                     on:click={a.events !== undefined &&
                                                                     a.events.length > 0
                                                                         ? event_callback(a)
@@ -296,7 +294,7 @@
                                                         {#each d.answer_options as a}
                                                             {#if a.type !== undefined && a.type == "next"}
                                                                 <button
-                                                                    class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E] relative left-[81%] mt-4 col-start-1 col-end-3"
+                                                                    class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E] relative left-[0%] mt-4 col-start-1 col-end-3"
                                                                     on:click={a.events !== undefined &&
                                                                     a.events.length > 0
                                                                         ? event_callback(a)

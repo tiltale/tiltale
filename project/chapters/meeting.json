@@ -1,0 +1,33 @@
+{
+    "scenes": [
+        {
+            "id": "meeting0",
+            "background": "bg/campus.png",
+            "objects": [],
+            "dialogue": [
+                {
+                    "type": "box",
+                    "visible": true,
+                    "x": "0%",
+                    "y": "0%",
+                    "z": "1",
+                    "width": "100%",
+                    "content": "<strong>Week 2, Monday, 10:30</strong> | A meeting room at Blackwell Academy",
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "goto_scene",
+                                    "target": "lecture1",
+                                    "animate": true        
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "events": []
+        }
+    ]
+}

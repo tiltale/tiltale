@@ -467,8 +467,7 @@
                                 "id": "nt_time_passed",
                                 "visible": true,
                                 "type": "notification",
-                                "content": "&#91;20 minutes have passed by...&#93;",
-                                "background": "rgb(180,180,180)"
+                                "content": "20 minutes have passed by..."
                             },
                             {
                                 "id": "sp_lisa1",
@@ -511,7 +510,7 @@
                                 "id": "sp_lisa4",
                                 "type": "speech",
                                 "visible": false,
-                                "content": "Anyways, we have reserved a meeting room at 10:30, so that we can kickstart the project tomorrow.",
+                                "content": "Anyways, we have reserved a meeting room at 10:30 next monday, so that we can kickstart the project tomorrow.",
                                 "name": "Lisa",
                                 "name_color": "#F5B841",
                                 "avatar_id": "lisa"
@@ -533,7 +532,19 @@
                                 "content": "See ya tomorrow!",
                                 "name": "Lisa",
                                 "name_color": "#F5B841",
-                                "avatar_id": "lisa"
+                                "avatar_id": "lisa",
+                                "answer_options": [
+                                    {
+                                        "type": "next",
+                                        "events": [
+                                            {
+                                                "type": "goto_scene",
+                                                "target": "meeting0",
+                                                "animate": true        
+                                            }
+                                        ]
+                                    }
+                                ]
                             }                                                                                                                                                                                                                                                                                                                                                                               
                         ]
                     }
