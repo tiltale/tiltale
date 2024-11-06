@@ -697,6 +697,11 @@
         }
         else if (ev.type == 'play_audio') {
             let audio = document.getElementById('a_' + ev.target);
+            audio.loop = false;
+
+            if (ev.loop !== undefined && ev.loop == true) {
+                audio.loop = true;
+            }
 
             if (ev.fade !== undefined) {
                 audio.volume = 0.0;
