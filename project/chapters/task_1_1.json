@@ -1,0 +1,33 @@
+{
+    "scenes": [
+        {
+            "id": "task_1_1",
+            "background": "bg/campus.png",
+            "objects": [],
+            "dialogue": [
+                {
+                    "type": "box",
+                    "visible": true,
+                    "x": "0%",
+                    "y": "0%",
+                    "z": "1",
+                    "width": "100%",
+                    "content": "<strong>Week 3</strong> | Blackwell Academy, Library",
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "goto_scene",
+                                    "target": "name",
+                                    "animate": true        
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "events": []
+        }
+    ]
+}

@@ -20,7 +20,7 @@
                                 {
                                     "type": "goto_scene",
                                     "target": "meeting1",
-                                    "animate": true        
+                                    "animate": true
                                 }
                             ]
                         }
@@ -38,7 +38,7 @@
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "8%",
-                    "z": "1",                    
+                    "z": "1",
                     "width": "60%",
                     "height": "80%",
                     "visible": true,
@@ -188,7 +188,7 @@
                                     "name_color": "#632B30",
                                     "avatar_id": "julian",
                                     "answer_timer": {
-                                        "duration": 5000,
+                                        "duration": 9000,
                                         "default_option_index": 0
                                     },
                                     "answer_options": [
@@ -223,7 +223,7 @@
                                             ]
                                         }
                                     ]
-                                }                                                                                                                                                                                                                                                                                                                                                                                 
+                                }
                             ]
                         }
                     ],
@@ -296,7 +296,7 @@
                         }
                     ]
                 }
-        ],
+            ],
             "dialogue": [],
             "events": []
         },
@@ -309,7 +309,7 @@
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "8%",
-                    "z": "1",                    
+                    "z": "1",
                     "width": "60%",
                     "height": "80%",
                     "visible": true,
@@ -504,7 +504,88 @@
                                     "name": "Cesare",
                                     "name_color": "#116592",
                                     "avatar_id": "cesare"
-                                }                                                                                                                                                                                                                                                                                                                                                                       
+                                },
+                                {
+                                    "id": "sp_lisa7",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Let's see...",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa8",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "We need a list of events, a analyses of characters and an overal story outline which intergrates them.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa9",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "We also need to report on the overall proces.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_cesare3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I will do the character analyses, if that's okay.",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_lisa10",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Maybe [Name] can also do some character analyses, than the workload is devided more evenly.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa",
+                                    "answer_timer": {
+                                        "duration": 7000,
+                                        "default_option_index": 1
+                                    },
+                                    "answer_options": [
+                                        {
+                                            "content": "&#91; Push back &#93;",
+                                            "events": [
+                                                {
+                                                    "type": "goto_scene",
+                                                    "target": "meeting3",
+                                                    "animate": false
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "character_task",
+                                                    "value": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "content": "&#91; Agree &#93;",
+                                            "events": [
+                                                {
+                                                    "type": "goto_scene",
+                                                    "target": "meeting3",
+                                                    "animate": false
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "character_task",
+                                                    "value": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
                             ]
                         }
                     ],
@@ -540,10 +621,297 @@
                             "target": "sp_cesare2",
                             "keep_others": true,
                             "delay": 16000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa7",
+                            "keep_others": true,
+                            "delay": 20000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa8",
+                            "keep_others": true,
+                            "delay": 24000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa9",
+                            "keep_others": true,
+                            "delay": 28000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare3",
+                            "keep_others": true,
+                            "delay": 32000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa10",
+                            "keep_others": true,
+                            "delay": 36000
                         }
                     ]
                 }
-        ],
+            ],
+            "dialogue": [],
+            "events": []
+        },
+        {
+            "id": "meeting3",
+            "background": "bg/meeting.png",
+            "objects": [
+                {
+                    "id": "lecture",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "8%",
+                    "z": "1",
+                    "width": "60%",
+                    "height": "80%",
+                    "visible": true,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>10:33 AM</h1><p style='font-size: 1.2vw'>Lisa, Cesare, Julian, and you meet to feel the water and set-up tasks for the project.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                },
+                                {
+                                    "id": "lisa",
+                                    "name": "lisa",
+                                    "img": "/project/img/avatars/lisa.png"
+                                },
+                                {
+                                    "id": "julian",
+                                    "name": "julian",
+                                    "img": "/project/img/avatars/julian.png"
+                                },
+                                {
+                                    "id": "cesare",
+                                    "name": "cesare",
+                                    "img": "/project/img/avatars/cesare.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_cesare2",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "What about the other tasks?",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_lisa7",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "Let's see...",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa8",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "We need a list of events, a analyses of characters and an overal story outline which intergrates them.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa9",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "We also need to report on the overall proces.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_cesare3",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "I will do the character analyses, if that's okay.",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_lisa10",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "Maybe [Name] can also do some character analyses, than the workload is devided more evenly.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_student5",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Yeah sure! We'll make a list and divide what we need.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_student6",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Well, just let me know if you can't finnish al of them. Then I'll do what's left over.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa11",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "There's a posibiliy that I will switch to another study this block, so I propose I will do the reporting. That's easily transferable to another person.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa12",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "[Name] can you make an overall story outline and integrate the characters and events?",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_student7",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Yeah sure!",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julian5",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "That means that I have to come up with some events. I will send them to your e-mail [Name] when it's done!",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_cesare4",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I will do the same with the characters, when I've finished them.",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_lisa13",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "[Name] if you then can send all the stuff to me, I think we're good to go!",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa",
+                                    "answer_options": [
+                                        {
+                                            "type": "next",
+                                            "events": [
+                                                {
+                                                    "type": "goto_scene",
+                                                    "target": "task_1_1"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student5",
+                            "keep_others": true,
+                            "delay": 3000,
+                            "condition": "variables.character_task"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student6",
+                            "keep_others": true,
+                            "delay": 3000,
+                            "condition": "!variables.character_task"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa11",
+                            "keep_others": true,
+                            "delay": 7000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa12",
+                            "keep_others": true,
+                            "delay": 11000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student7",
+                            "keep_others": true,
+                            "delay": 15000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian5",
+                            "keep_others": true,
+                            "delay": 19000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare4",
+                            "keep_others": true,
+                            "delay": 23000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa13",
+                            "keep_others": true,
+                            "delay": 27000
+                        }
+                    ]
+                }
+            ],
             "dialogue": [],
             "events": []
         }

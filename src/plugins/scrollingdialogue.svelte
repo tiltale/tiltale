@@ -103,6 +103,10 @@
         // Timed Answer Options
 
         const texts = obj.objects.filter((o) => {return o.type == "texts"})[0];
+        const intervals = [];
+        const timeouts = [];
+
+        console.log(texts)
         
         if (texts) {
             const dialogue = texts.dialogue;
@@ -112,20 +116,18 @@
                 const dialogueEvent = obj.events.filter((e) => e.target == dialogue.id)[0];
                 
                 if (dialogueEvent) {
-                    let intervalDuration = dialogue.answer_timer.duration / (dialogue.answer_timer.duration / 1000);
                     let delay = dialogueEvent.delay;
 
                     timers.push({
                         "id": dialogue.id,
                         "value": dialogue.answer_timer.duration,
+                        "duration": dialogue.answer_timer.duration,
                         "canceled": false
                     });
 
-                    console.log(timers);
-
                     setTimeout(() => {
                         const interval = setInterval(() => {
-                            timers[timers.findIndex(t => t.id == dialogue.id)].value -= 1000;
+                            timers[timers.findIndex(t => t.id == dialogue.id)].value -= 10;
 
                             // If option chosen
                             if (timers[timers.findIndex(t => t.id == dialogue.id)].canceled == true) {
@@ -142,9 +144,19 @@
                                     event_callback(defaultOption);
                                 }
                             }
-                        }, intervalDuration);
-                    }, dialogueEvent.delay + 1000)
+                        }, 10);
+                    }, dialogueEvent.delay + 1000);
                 }
+            });
+        }
+
+        return() => {
+            intervals.forEach(i => {
+                clearInterval(i)
+            });
+
+            timeouts.forEach(i => {
+                clearTimeout(i)
             });
         }
     });
@@ -218,6 +230,22 @@
         padding: 8px 16px;
         color: black;
         grid-column: 2 / 3;
+    }
+
+    .timer-toolbar-container {
+        position: relative;
+        height: 14px;
+        width: 100%;
+        border-radius: 10px;
+        background-color: white;
+        border: 2px solid #4a00ff;
+        padding: 2px;
+    }
+
+    .timer-toolbar-fill {
+        height: 6px;
+        background-color: #4a00ff;
+        border-radius: 7px;
     }
 </style>
 
@@ -324,6 +352,13 @@
                                                                 <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4 col-start-1 col-end-3" on:click={(a.events !== undefined && a.events.length > 0)?callback_event_and_cancel_timer(a, d):undefined}>{@html a.content}</button>
                                                             {/if}
                                                         {/each}
+
+                                                        {#if d.answer_timer !== undefined && d.answer_timer.default_option_index !== undefined}
+                                                            <div class="timer-toolbar-container col-start-1 col-end-3 mt-4" style="width: 100%;">
+                                                                <div class="timer-toolbar-fill" style="background-color: {obj.backgroundColor ? obj.backgroundColor : ''}; width: {(timers[timers.findIndex(t => t.id == d.id)].duration - timers[timers.findIndex(t => t.id == d.id)].value) / timers[timers.findIndex(t => t.id == d.id)].duration * 100}%">
+                                                                </div>
+                                                            </div>  
+                                                        {/if}
                                                     {/if}
                                                 </div>
                                             {:else}
@@ -349,12 +384,6 @@
                                                     </div>
 
                                                     {#if typing_id !== d.id && last_id === d.id && d.answer_options !== undefined && d.answer_options.length > 0}
-                                                        {#if d.answer_timer !== undefined && d.answer_timer.default_option_index !== undefined}
-                                                            <div>
-                                                                Answer in {timers[timers.findIndex(t => t.id == d.id)].value / 1000}
-                                                            </div>
-                                                        {/if}
-                                                    
                                                         {#each d.answer_options as a}
                                                             {#if a.type !== undefined && a.type == "next"}
                                                                 <button
@@ -387,6 +416,13 @@
                                                                 <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4 col-start-1 col-end-3" on:click={(a.events !== undefined && a.events.length > 0)?callback_event_and_cancel_timer(a, d):undefined}>{@html a.content}</button>
                                                             {/if}
                                                         {/each}
+
+                                                        {#if d.answer_timer !== undefined && d.answer_timer.default_option_index !== undefined}
+                                                            <div class="timer-toolbar-container col-start-1 col-end-3 mt-4" style="width: 100%;">
+                                                                <div class="timer-toolbar-fill" style="background-color: {obj.backgroundColor ? obj.backgroundColor : ''}; width: {(timers[timers.findIndex(t => t.id == d.id)].duration - timers[timers.findIndex(t => t.id == d.id)].value) / timers[timers.findIndex(t => t.id == d.id)].duration * 100}%">
+                                                                </div>
+                                                            </div>  
+                                                        {/if}
                                                     {/if}
                                                 </div>
                                             {/if}

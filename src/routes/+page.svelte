@@ -357,9 +357,10 @@
     import Setup from '/project/chapters/setup.json';
     import Prologue from '/project/chapters/prologue.json';
     import Meeting from '/project/chapters/meeting.json';
+    import Task1_1 from '/project/chapters/task_1_1.json';
     import Epilogue from '/project/chapters/epilogue.json';
     
-    story.scenes = [...Setup.scenes, ...Prologue.scenes, ...Meeting.scenes, ...Epilogue.scenes];
+    story.scenes = [...Setup.scenes, ...Prologue.scenes, ...Meeting.scenes, ...Task1_1.scenes, ...Epilogue.scenes];
 
     let curr_scene: any = null;
     let scene_visible = true;
