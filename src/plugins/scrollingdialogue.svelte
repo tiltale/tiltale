@@ -15,6 +15,16 @@
 
     let is_scrolled = false;
 
+    let timers = [];
+
+    function callback_event_and_cancel_timer(answer_option, dialogue) {
+        if (timers[timers.findIndex(t => t.id == dialogue.id)]) {
+            timers[timers.findIndex(t => t.id == dialogue.id)].canceled = true;
+        }
+
+        event_callback(answer_option);
+    }
+
     $: {
         console.log(prev_obj);
         if (Object.keys(prev_obj).length > 0) {
@@ -89,6 +99,54 @@
         setTimeout(function () {
             container.scrollTop = container.scrollHeight;
         }, 50);
+
+        // Timed Answer Options
+
+        const texts = obj.objects.filter((o) => {return o.type == "texts"})[0];
+        
+        if (texts) {
+            const dialogue = texts.dialogue;
+            const timedAnswerDialogues = dialogue.filter((d) => {return d.answer_timer !== undefined});
+
+            timedAnswerDialogues.forEach(dialogue => {
+                const dialogueEvent = obj.events.filter((e) => e.target == dialogue.id)[0];
+                
+                if (dialogueEvent) {
+                    let intervalDuration = dialogue.answer_timer.duration / (dialogue.answer_timer.duration / 1000);
+                    let delay = dialogueEvent.delay;
+
+                    timers.push({
+                        "id": dialogue.id,
+                        "value": dialogue.answer_timer.duration,
+                        "canceled": false
+                    });
+
+                    console.log(timers);
+
+                    setTimeout(() => {
+                        const interval = setInterval(() => {
+                            timers[timers.findIndex(t => t.id == dialogue.id)].value -= 1000;
+
+                            // If option chosen
+                            if (timers[timers.findIndex(t => t.id == dialogue.id)].canceled == true) {
+                                clearInterval(interval);
+                            }
+
+                            // If not, excecute default
+                            if (timers[timers.findIndex(t => t.id == dialogue.id)].value == 0) {
+                                clearInterval(interval);
+
+                                const defaultOption = dialogue.answer_options[dialogue.answer_timer.default_option_index];
+
+                                if (defaultOption && defaultOption.events) {
+                                    event_callback(defaultOption);
+                                }
+                            }
+                        }, intervalDuration);
+                    }, dialogueEvent.delay + 1000)
+                }
+            });
+        }
     });
 </script>
 
@@ -240,7 +298,7 @@
                                                                     class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E] relative left-[0%] mt-4 col-start-1 col-end-3"
                                                                     on:click={a.events !== undefined &&
                                                                     a.events.length > 0
-                                                                        ? event_callback(a)
+                                                                        ? callback_event_and_cancel_timer(a, d)
                                                                         : undefined}
                                                                 >
                                                                     <svg
@@ -263,7 +321,7 @@
                                                                     </svg>
                                                                 </button>
                                                             {:else}
-                                                                <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4 col-start-1 col-end-3" on:click={(a.events !== undefined && a.events.length > 0)?event_callback(a, d):undefined}>{@html a.content}</button>
+                                                                <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4 col-start-1 col-end-3" on:click={(a.events !== undefined && a.events.length > 0)?callback_event_and_cancel_timer(a, d):undefined}>{@html a.content}</button>
                                                             {/if}
                                                         {/each}
                                                     {/if}
@@ -291,13 +349,19 @@
                                                     </div>
 
                                                     {#if typing_id !== d.id && last_id === d.id && d.answer_options !== undefined && d.answer_options.length > 0}
+                                                        {#if d.answer_timer !== undefined && d.answer_timer.default_option_index !== undefined}
+                                                            <div>
+                                                                Answer in {timers[timers.findIndex(t => t.id == d.id)].value / 1000}
+                                                            </div>
+                                                        {/if}
+                                                    
                                                         {#each d.answer_options as a}
                                                             {#if a.type !== undefined && a.type == "next"}
                                                                 <button
                                                                     class="btn btn-circle btn-sm bg-black hover:bg-[#5E5E5E] relative left-[0%] mt-4 col-start-1 col-end-3"
                                                                     on:click={a.events !== undefined &&
                                                                     a.events.length > 0
-                                                                        ? event_callback(a)
+                                                                        ? callback_event_and_cancel_timer(a, d)
                                                                         : undefined}
                                                                 >
                                                                     <svg
@@ -320,7 +384,7 @@
                                                                     </svg>
                                                                 </button>
                                                             {:else}
-                                                                <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4 col-start-1 col-end-3" on:click={(a.events !== undefined && a.events.length > 0)?event_callback(a, d):undefined}>{@html a.content}</button>
+                                                                <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4 col-start-1 col-end-3" on:click={(a.events !== undefined && a.events.length > 0)?callback_event_and_cancel_timer(a, d):undefined}>{@html a.content}</button>
                                                             {/if}
                                                         {/each}
                                                     {/if}

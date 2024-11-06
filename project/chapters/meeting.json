@@ -2,7 +2,7 @@
     "scenes": [
         {
             "id": "meeting0",
-            "background": "bg/campus.png",
+            "background": "bg/meeting.png",
             "objects": [],
             "dialogue": [
                 {
@@ -12,14 +12,14 @@
                     "y": "0%",
                     "z": "1",
                     "width": "100%",
-                    "content": "<strong>Week 2, Monday, 10:30</strong> | A meeting room at Blackwell Academy",
+                    "content": "<strong>Week 2, Monday, 10:30</strong> | Room D234, Blackwell Academy",
                     "answer_options": [
                         {
                             "type": "next",
                             "events": [
                                 {
                                     "type": "goto_scene",
-                                    "target": "lecture1",
+                                    "target": "meeting1",
                                     "animate": true        
                                 }
                             ]
@@ -27,6 +27,524 @@
                     ]
                 }
             ],
+            "events": []
+        },
+        {
+            "id": "meeting1",
+            "background": "bg/meeting.png",
+            "objects": [
+                {
+                    "id": "lecture",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "8%",
+                    "z": "1",                    
+                    "width": "60%",
+                    "height": "80%",
+                    "visible": true,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>10:33 AM</h1><p style='font-size: 1.2vw'>Lisa, Cesare, Julian, and you meet to feel the water and set-up tasks for the project.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                },
+                                {
+                                    "id": "lisa",
+                                    "name": "lisa",
+                                    "img": "/project/img/avatars/lisa.png"
+                                },
+                                {
+                                    "id": "julian",
+                                    "name": "julian",
+                                    "img": "/project/img/avatars/julian.png"
+                                },
+                                {
+                                    "id": "cesare",
+                                    "name": "cesare",
+                                    "img": "/project/img/avatars/cesare.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_lisa1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Okay, let's start. Has everyone already read the assignment description?",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_student1",
+                                    "type": "thought",
+                                    "visible": false,
+                                    "content": "Lisa for sure has.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_student2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Well yeah, I skimmed through it this morning.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julian1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "&#91;Yawns&#93; Well no, I did want to do it, but you know how things can go...",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_student3",
+                                    "type": "thought",
+                                    "visible": false,
+                                    "content": "Yeah right! I do smell a little alcohol, isn't it?",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Cesare?",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_cesare1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I wasn't at school yesterday. I had an appointment with my psychologist.",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_lisa3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Ah, well that's okay of course! Let us know if we can help with anything or take over some work.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa4",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "So the assignment comes down to preparing an act in which a dynamic between different characters in the workplace is portrayed.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa5",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "These characters should be based on the archetypes as described by Carl Jung.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_julian2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Jung who?",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian",
+                                    "answer_timer": {
+                                        "duration": 5000,
+                                        "default_option_index": 0
+                                    },
+                                    "answer_options": [
+                                        {
+                                            "content": "&#91; Do nothing &#93;",
+                                            "events": [
+                                                {
+                                                    "type": "goto_scene",
+                                                    "target": "meeting2",
+                                                    "animate": false
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "reprimand",
+                                                    "value": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "content": "&#91; Disapprove &#93;",
+                                            "events": [
+                                                {
+                                                    "type": "goto_scene",
+                                                    "target": "meeting2",
+                                                    "animate": false
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "reprimand",
+                                                    "value": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }                                                                                                                                                                                                                                                                                                                                                                                 
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa1",
+                            "keep_others": true,
+                            "delay": 3000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1",
+                            "keep_others": true,
+                            "delay": 7000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student2",
+                            "keep_others": true,
+                            "delay": 11000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian1",
+                            "keep_others": true,
+                            "delay": 15000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student3",
+                            "keep_others": true,
+                            "delay": 19000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa2",
+                            "keep_others": true,
+                            "delay": 21000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare1",
+                            "keep_others": true,
+                            "delay": 25000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa3",
+                            "keep_others": true,
+                            "delay": 29000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa4",
+                            "keep_others": true,
+                            "delay": 33000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa5",
+                            "keep_others": true,
+                            "delay": 37000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian2",
+                            "keep_others": true,
+                            "delay": 41000
+                        }
+                    ]
+                }
+        ],
+            "dialogue": [],
+            "events": []
+        },
+        {
+            "id": "meeting2",
+            "background": "bg/meeting.png",
+            "objects": [
+                {
+                    "id": "lecture",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "8%",
+                    "z": "1",                    
+                    "width": "60%",
+                    "height": "80%",
+                    "visible": true,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>10:33 AM</h1><p style='font-size: 1.2vw'>Lisa, Cesare, Julian, and you meet to feel the water and set-up tasks for the project.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                },
+                                {
+                                    "id": "lisa",
+                                    "name": "lisa",
+                                    "img": "/project/img/avatars/lisa.png"
+                                },
+                                {
+                                    "id": "julian",
+                                    "name": "julian",
+                                    "img": "/project/img/avatars/julian.png"
+                                },
+                                {
+                                    "id": "cesare",
+                                    "name": "cesare",
+                                    "img": "/project/img/avatars/cesare.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_lisa1",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "Okay, let's start. Has everyone already read the assignment description?",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_student1",
+                                    "type": "thought",
+                                    "visible": true,
+                                    "content": "Lisa for sure has.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_student2",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "Well yeah, I skimmed through it this morning.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julian1",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "&#91;Yawns&#93; Well no, I did want to do it, but you know how things can go...",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_student3",
+                                    "type": "thought",
+                                    "visible": true,
+                                    "content": "Yeah right! I do smell a little alcohol, isn't it?",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa2",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "Cesare?",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_cesare1",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "I wasn't at school yesterday. I had an appointment with my psychologist.",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_lisa3",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "Ah, well that's okay of course! Let us know if we can help with anything or take over some work.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa4",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "So the assignment comes down to preparing an act in which a dynamic between different characters in the workplace is portrayed.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa5",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "These characters should be based on the archetypes as described by Carl Jung.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_julian2",
+                                    "type": "speech",
+                                    "visible": true,
+                                    "content": "Jung who?",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_student4",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Went to a bar, instead of doing your readings, Julian?",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa6",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Really Julian? This has been the topic now for nearly two weeks!",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_julian3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "&#91;Shrugs his shoulders.&#93; Well sorry, I guess...",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_julian4",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I will start by doing some reading this week.",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_cesare2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "What about the other tasks?",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                }                                                                                                                                                                                                                                                                                                                                                                       
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student4",
+                            "keep_others": true,
+                            "delay": 3000,
+                            "condition": "variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa6",
+                            "keep_others": true,
+                            "delay": 3000,
+                            "condition": "!variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian3",
+                            "keep_others": true,
+                            "delay": 7000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian4",
+                            "keep_others": true,
+                            "delay": 11000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare2",
+                            "keep_others": true,
+                            "delay": 16000
+                        }
+                    ]
+                }
+        ],
+            "dialogue": [],
             "events": []
         }
     ]
