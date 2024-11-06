@@ -141,7 +141,7 @@
                                 }
                             }
                         }, 10);
-                    }, dialogueEvent.delay + 1000);
+                    }, dialogueEvent.delay + 2000);
                 }
             });
         }

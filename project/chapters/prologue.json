@@ -513,7 +513,7 @@
                                     "id": "sp_lisa4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Anyways, we have reserved a meeting room at 10:30 next monday, so that we can kickstart the project tomorrow.",
+                                    "content": "Anyways, we have reserved a meeting room at 10:30 next monday, so that we can kickstart the project.",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
                                     "avatar_id": "lisa"
