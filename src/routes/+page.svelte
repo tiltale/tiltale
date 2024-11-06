@@ -239,7 +239,7 @@
         </div>
         </div>        
         {:else}
-        <div class="absolute" style="
+        <div class="absolute {d.animateIn?'animate-fadeIn':''} {d.animateOut?'animate-fadeOut':''}" style="
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
             {(d.x !== undefined)?'left: ' + d.x + '; ':''}
@@ -626,13 +626,24 @@
 
             if (ev.animate !== undefined && ev.animate) {
                 let obj = tar.dialogue.filter(d => { return d.id == ev.target })[0];
-                setTimeout(function() {
+
+                if (obj.type == 'text') {
+                    obj.animateIn = true;
                     obj.visible = true;
 
-                    // Force redraw
-                    story.objects = story.objects;
-                    curr_scene = curr_scene;                    
-                }, 500);
+                    setTimeout(function() {
+                        obj.animateIn = false;
+                    }, 600);
+                }
+                else {
+                    setTimeout(function() {
+                        obj.visible = true;
+
+                        // Force redraw
+                        story.objects = story.objects;
+                        curr_scene = curr_scene;                    
+                    }, 500);
+                }
             }
             else {
                 tar.dialogue.filter(d => { return d.id == ev.target })[0].visible = true;
