@@ -131,7 +131,7 @@
                             }
 
                             // If not, excecute default
-                            if (timers[timers.findIndex(t => t.id == dialogue.id)].value == 0) {
+                            if (timers[timers.findIndex(t => t.id == dialogue.id)].value <= 0) {
                                 clearInterval(interval);
 
                                 const defaultOption = dialogue.answer_options[dialogue.answer_timer.default_option_index];
