@@ -103,10 +103,6 @@
         // Timed Answer Options
 
         const texts = obj.objects.filter((o) => {return o.type == "texts"})[0];
-        const intervals = [];
-        const timeouts = [];
-
-        console.log(texts)
         
         if (texts) {
             const dialogue = texts.dialogue;
@@ -147,16 +143,6 @@
                         }, 10);
                     }, dialogueEvent.delay + 1000);
                 }
-            });
-        }
-
-        return() => {
-            intervals.forEach(i => {
-                clearInterval(i)
-            });
-
-            timeouts.forEach(i => {
-                clearTimeout(i)
             });
         }
     });
