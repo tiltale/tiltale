@@ -46,7 +46,7 @@
                 {/if}
                 {#if o.text !== undefined}
                 <div class="absolute" style=" 
-                {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':''}        
+                {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':'color: #000000; '}        
                 {(o.text_x !== undefined)?'left: ' + o.text_x + '; ':''}
                 {(o.text_y !== undefined)?'top: ' + o.text_y + '; ':''}
                 {(o.text_size !== undefined)?'font-size: ' + o.text_size + '; ':''}">
@@ -98,7 +98,7 @@
             {/if}
             {#if o.text !== undefined}
             <div class="absolute" style=" 
-            {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':''}        
+            {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':'color: #000000; '}        
             {(o.text_x !== undefined)?'left: ' + o.text_x + '; ':''}
             {(o.text_y !== undefined)?'top: ' + o.text_y + '; ':''} 
             {(o.text_width !== undefined)?'width: ' + o.text_width + '; ':''}
