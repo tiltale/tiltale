@@ -590,14 +590,21 @@
             }
         }
         else if (ev.type == 'goto_scene') {
-            scene_visible = false;
-            // Make a copy so that we can always return to the start of the scene later.
-            curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == ev.target })[0]));
-            handle_events(curr_scene);
+            if (ev.transition !== undefined && !ev.transition) {
+                curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == ev.target })[0]));
+                handle_events(curr_scene);
+            }
 
-            setTimeout(function() {
-                scene_visible = true;
-            }, 500);
+            else {
+                scene_visible = false;
+                // Make a copy so that we can always return to the start of the scene later.
+                curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == ev.target })[0]));
+                handle_events(curr_scene);
+
+                setTimeout(function() {
+                    scene_visible = true;
+                }, 500);
+            }
         }
         else if (ev.type == 'hide_dialogue') {
             let tar = curr_scene;
