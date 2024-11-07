@@ -50,7 +50,7 @@
                 {/if}
                 {#if o.text !== undefined}
                 <div class="absolute" style=" 
-                {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':''}        
+                {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':'color: #000000; '}        
                 {(o.text_x !== undefined)?'left: ' + o.text_x + '; ':''}
                 {(o.text_y !== undefined)?'top: ' + o.text_y + '; ':''}
                 {(o.text_size !== undefined)?'font-size: ' + o.text_size + '; ':''}">
@@ -108,7 +108,7 @@
             {/if}
             {#if o.text !== undefined}
             <div class="absolute" style=" 
-            {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':''}        
+            {(o.text_color !== undefined)?'color: ' + o.text_color + '; ':'color: #000000; '}        
             {(o.text_x !== undefined)?'left: ' + o.text_x + '; ':''}
             {(o.text_y !== undefined)?'top: ' + o.text_y + '; ':''} 
             {(o.text_width !== undefined)?'width: ' + o.text_width + '; ':''}
@@ -312,7 +312,8 @@
             {(d.z !== undefined)?'z-index: ' + d.z + '; ':''}
             {(d.align !== undefined)?'text-align: ' + d.align + '; ':''} 
             {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
-            {(d.text_font !== undefined)?'font-family: ' + d.text_font + '; ':''} 
+            {(d.text_font !== undefined)?'font-family: ' + d.text_font + '; ':''}
+            {(d.text_color !== undefined)?'color: ' + d.text_color + '; ':'color: #000000; '}  
             {(d.text_bold !== undefined)?'font-weight: bold; ':''}
         ">
             <p>{@html variables_in_text(d.content)}</p>
@@ -684,14 +685,21 @@
             }
         }
         else if (ev.type == 'goto_scene') {
-            scene_visible = false;
-            // Make a copy so that we can always return to the start of the scene later.
-            curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == ev.target })[0]));
-            handle_events(curr_scene);
+            if (ev.transition !== undefined && !ev.transition) {
+                curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == ev.target })[0]));
+                handle_events(curr_scene);
+            }
 
-            setTimeout(function() {
-                scene_visible = true;
-            }, 500);
+            else {
+                scene_visible = false;
+                // Make a copy so that we can always return to the start of the scene later.
+                curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == ev.target })[0]));
+                handle_events(curr_scene);
+
+                setTimeout(function() {
+                    scene_visible = true;
+                }, 500);
+            }
         }
         else if (ev.type == 'hide_dialogue') {
             let tar = curr_scene;
