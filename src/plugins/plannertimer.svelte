@@ -21,14 +21,26 @@
                     timers[i].interval = setInterval(() => {
                         timers[i].value += 10;
 
+                        // If exceeding reserved time
+
+                        if (timers[i].value >= (timers[i].duration - timers[i].reserved_value) && timers[i].exceed_reserved_value_actions) {
+                            const events = timers[i].exceed_reserved_value_actions.events;
+
+                            if (events && events.filter(e => e.type == "goto_scene").length > 0) {
+                                clearInterval(timers[i].interval);
+                            }
+                            
+                            event_callback(timers[i].exceed_reserved_value_actions);
+                        }
+
+                        // If finished
+
                         if (timers[i].value >= timers[i].duration) {
                             timers[i].has_finished = true;
                             clearInterval(timers[i].interval);
                             console.log(`${timers[i].id} is stopped`);
 
                             if (timers[i].finished_actions) {
-                                console.log(timers[i].finished_actions)
-
                                 event_callback(timers[i].finished_actions);
                             }
                         }
@@ -77,7 +89,8 @@
                     "has_finished": false,
                     "interval": undefined,
                     "reserved_value": period.reserved_value ? period.reserved_value : undefined,
-                    "finished_actions": period.finished_actions
+                    "finished_actions": period.finished_actions,
+                    "exceed_reserved_value_actions": period.exceed_reserved_value_actions
                 });
             });
         }

@@ -69,7 +69,15 @@
                                     "id": "week3",
                                     "display_caption": "Week 3",
                                     "duration": 10000,
-                                    "reserved_value": 4000
+                                    "reserved_value": 4000,
+                                    "exceed_reserved_value_actions": {
+                                        "events": [
+                                            {
+                                                "type": "goto_scene",
+                                                "target": "execution1"
+                                            }
+                                        ]
+                                    }
                                 },
                                 {
                                     "id": "week4",
@@ -93,11 +101,11 @@
                     "width": "50%",
                     "answer_options": [
                         {
-                            "content": "Start Week 2",
+                            "content": "Start Week 3",
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "is_running_week2",
+                                    "variable": "is_running_week3",
                                     "value": true
                                 }
                             ]
