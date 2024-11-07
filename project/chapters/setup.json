@@ -8,7 +8,7 @@
                     "id": "name_input",
                     "type": "textinput",
                     "limit": 18,
-                    "instruction": "<span style=\"font-size: 3vw; font-weight: bold\">Paper Panic</span><br /><br />What's you first name?",
+                    "instruction": "<span style=\"font-size: 3vw; font-weight: bold\">Academic Abyss</span><br /><br />What's you first name?",
                     "x": "25%",
                     "y": "20%",
                     "width": "50%",

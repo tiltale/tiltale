@@ -1,0 +1,135 @@
+{
+    "scenes": [
+        {
+            "id": "execution1",
+            "background": "bg/campus.png",
+            "objects": [],
+            "dialogue": [
+                {
+                    "type": "box",
+                    "visible": true,
+                    "x": "0%",
+                    "y": "0%",
+                    "z": "1",
+                    "width": "100%",
+                    "content": "<strong>Week 3</strong> | Blackwell Academy, Library",
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "goto_scene",
+                                    "target": "execution2",
+                                    "animate": true        
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "events": []
+        },
+        {
+            "id": "execution2",
+            "background": "bg/campus.png",
+            "objects": [
+                {
+                    "id": "plannertimer_1_1",
+                    "type": "plannertimer",
+                    "x": "0%",
+                    "y": "0%",
+                    "z": "1",
+                    "width": "100%",
+                    "visible": true,
+                    "objects": [
+                        {
+                            "id": "periods",
+                            "type": "periods",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "week1",
+                                    "display_caption": "Week 1",
+                                    "duration": 10000,
+                                    "has_started": true
+                                },
+                                {
+                                    "id": "week2",
+                                    "display_caption": "Week 2",
+                                    "duration": 10000,
+                                    "has_started": false
+                                },
+                                {
+                                    "id": "week3",
+                                    "display_caption": "Week 3",
+                                    "duration": 10000,
+                                    "has_started": false,
+                                    "reserved_value": 4000
+                                },
+                                {
+                                    "id": "week4",
+                                    "display_caption": "Week 4",
+                                    "duration": 10000,
+                                    "has_started": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "dialogue": [
+                {
+                    "id": "uitleg_kaarten",
+                    "visible": true,
+                    "type": "box",
+                    "content": "",
+                    "x": "25%",
+                    "y": "50%",
+                    "z": "1",
+                    "width": "50%",
+                    "answer_options": [
+                        {
+                            "content": "Start Week 2",
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "is_running_week2",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "events": [
+                {
+                    "type": "set_variable",
+                    "variable": "is_running_week1",
+                    "value": true,
+                    "delay": 500 
+                },
+                {
+                    "type": "set_variable",
+                    "variable": "is_running_week1",
+                    "value": false,
+                    "delay": 3000 
+                },
+                {
+                    "type": "set_variable",
+                    "variable": "is_running_week2",
+                    "value": false
+                },
+                {
+                    "type": "set_variable",
+                    "variable": "is_running_week3",
+                    "value": false
+                },
+                {
+                    "type": "set_variable",
+                    "variable": "value_week4",
+                    "value": 4000
+                }
+            ]
+        }
+    ]
+}

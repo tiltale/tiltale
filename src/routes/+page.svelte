@@ -70,6 +70,9 @@
         {#if o.type == 'scrollingdialogue'}
         <ScrollingDialogue obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
         {/if}
+        {#if o.type == 'plannertimer'}
+        <PlannerTimer obj={o} event_callback={handle_events} variables={variables} />
+        {/if}
         {/if}
         {#if o.type == 'note'}
         <Note obj={o} event_callback={handle_events} />
@@ -130,6 +133,9 @@
             {/if}
             {#if o.type == 'scrollingdialogue'}
             <ScrollingDialogue obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
+            {/if}
+            {#if o.type == 'plannertimer'}
+            <PlannerTimer obj={o} event_callback={handle_events} variables={variables}/>
             {/if}
             {#if o.type == 'note'}
             <Note obj={o} event_callback={handle_events} />
@@ -341,15 +347,16 @@
     import Notebook from '../plugins/notebook.svelte';
     import CharacterCard from '../plugins/charactercard.svelte';
     import ScrollingDialogue from '../plugins/scrollingdialogue.svelte';
+    import PlannerTimer from '../plugins/plannertimer.svelte';
     import story from '/project/story.json';
     
     import Setup from '/project/chapters/setup.json';
     import Prologue from '/project/chapters/prologue.json';
     import Meeting from '/project/chapters/meeting.json';
-    import Task1_1 from '/project/chapters/task_1_1.json';
+    import Execution from '/project/chapters/execution.json';
     import Epilogue from '/project/chapters/epilogue.json';
     
-    story.scenes = [...Setup.scenes, ...Prologue.scenes, ...Meeting.scenes, ...Task1_1.scenes, ...Epilogue.scenes];
+    story.scenes = [...Setup.scenes, ...Prologue.scenes, ...Meeting.scenes, ...Execution.scenes, ...Epilogue.scenes];
 
     let curr_scene: any = null;
     let scene_visible = true;
@@ -738,6 +745,8 @@
             }
         }
         else if (ev.type == 'set_variable') {
+            console.log(ev);
+
             if (ev.add !== undefined) {
                 if (variables[ev.variable] === undefined) {
                     variables[ev.variable] = [];

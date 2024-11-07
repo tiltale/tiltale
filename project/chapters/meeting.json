@@ -849,7 +849,7 @@
                                             "events": [
                                                 {
                                                     "type": "goto_scene",
-                                                    "target": "task_1_1"
+                                                    "target": "execution1"
                                                 }
                                             ]
                                         }
