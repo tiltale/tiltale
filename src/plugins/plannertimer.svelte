@@ -41,12 +41,6 @@
                 timers[i].value = variables[`value_${t.id}`];
             }
 
-            // Set blocked time
-
-            if (variables[`blocked_value_${t.id}`]) {
-                timers[i].blocked_value = variables[`blocked_value_${t.id}`];
-            }
-
             // Set timer reserved value
 
             if (variables[`reserved_value_${t.id}`] != undefined) {
