@@ -247,7 +247,8 @@
             {(d.z !== undefined)?'z-index: ' + d.z + '; ':''}
             {(d.align !== undefined)?'text-align: ' + d.align + '; ':''} 
             {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw'} 
-            {(d.text_font !== undefined)?'font-family: ' + d.text_font + '; ':''} 
+            {(d.text_font !== undefined)?'font-family: ' + d.text_font + '; ':''}
+            {(d.text_color !== undefined)?'color: ' + d.text_color + '; ':'color: #000000; '}  
             {(d.text_bold !== undefined)?'font-weight: bold; ':''}
         ">
             <p>{@html variables_in_text(d.content)}</p>
