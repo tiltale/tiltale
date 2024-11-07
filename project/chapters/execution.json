@@ -34,7 +34,7 @@
             "background": "bg/campus.png",
             "objects": [
                 {
-                    "id": "plannertimer_1_1",
+                    "id": "plannertimer",
                     "type": "plannertimer",
                     "x": "0%",
                     "y": "0%",
@@ -50,27 +50,31 @@
                                 {
                                     "id": "week1",
                                     "display_caption": "Week 1",
-                                    "duration": 10000,
-                                    "has_started": true
+                                    "duration": 10000
                                 },
                                 {
                                     "id": "week2",
                                     "display_caption": "Week 2",
                                     "duration": 10000,
-                                    "has_started": false
+                                    "finished_actions": {
+                                        "events": [
+                                            {
+                                                "type": "goto_scene",
+                                                "target": "execution1"
+                                            }
+                                        ]
+                                    }
                                 },
                                 {
                                     "id": "week3",
                                     "display_caption": "Week 3",
                                     "duration": 10000,
-                                    "has_started": false,
                                     "reserved_value": 4000
                                 },
                                 {
                                     "id": "week4",
                                     "display_caption": "Week 4",
-                                    "duration": 10000,
-                                    "has_started": false
+                                    "duration": 10000
                                 }
                             ]
                         }

@@ -8,7 +8,6 @@
     export let event_callback = undefined;
     export let variables = [];
 
-    let prev_timers = undefined;
     let timers = [];
 
     $: {
@@ -26,6 +25,12 @@
                             timers[i].has_finished = true;
                             clearInterval(timers[i].interval);
                             console.log(`${timers[i].id} is stopped`);
+
+                            if (timers[i].finished_actions) {
+                                console.log(timers[i].finished_actions)
+
+                                event_callback(timers[i].finished_actions);
+                            }
                         }
                     }, 10);
                 } else {
@@ -71,7 +76,8 @@
                     "is_running": false,
                     "has_finished": false,
                     "interval": undefined,
-                    "reserved_value": period.reserved_value ? period.reserved_value : undefined
+                    "reserved_value": period.reserved_value ? period.reserved_value : undefined,
+                    "finished_actions": period.finished_actions
                 });
             });
         }
