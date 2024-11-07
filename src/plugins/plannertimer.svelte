@@ -187,6 +187,7 @@
         {obj.x !== undefined ? 'left: ' + obj.x + '; ' : ''}
         {obj.y !== undefined ? 'top: ' + obj.y + '; ' : ''} 
         {obj.backgroundColor !== undefined ? `background-color: ${obj.backgroundColor};` : ''}
+        {obj.y == "0%" ? "border-top-right-radius: 0; border-top-left-radius: 0;" : ""} 
 ">
     <div class="card-body">
         {#if obj.objects !== undefined}
