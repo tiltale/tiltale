@@ -712,13 +712,17 @@
             }
 
             if (ev.fade !== undefined) {
+                let tarVol = 100;
+                if (ev.volume !== undefined) {
+                    tarVol = parseInt(ev.volume);
+                }
                 audio.volume = 0.0;
 
                 let fadeInt = parseInt(ev.fade);
                 let fadeAudio = setInterval(function() {
-                    audio.volume += 100 / fadeInt - 0.0001;
+                    audio.volume += tarVol / fadeInt - 0.0001;
 
-                    if (audio.volume >= 0.99 || audio.paused) {
+                    if (audio.volume >= (tarVol/100-0.01) || audio.paused) {
                         clearInterval(fadeAudio);
                     }
                 }, 100);
@@ -728,13 +732,23 @@
         }
         else if (ev.type == 'stop_audio') {
             let audio = document.getElementById('a_' + ev.target);
+            
+            // Don't stop things that are not playing
+            if (audio.paused) {
+                return;
+            }
 
             if (ev.fade !== undefined) {
                 let fadeInt = parseInt(ev.fade);
+                let origVol = audio.volume;
                 let curVol = audio.volume;
                 let numTries = 0;
                 let fadeAudio = setInterval(function() {
-                    audio.volume -= 100 / fadeInt - 0.0001;
+                    let newvol = audio.volume - (origVol * 100) / fadeInt - 0.0001;
+                    if (newvol < 0) {
+                        newvol = 0;
+                    }
+                    audio.volume = newvol;
 
                     if (audio.volume == curVol) {
                         numTries += 1;
