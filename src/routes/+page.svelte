@@ -67,6 +67,7 @@
         {/if}
         {#if o.type == 'phone'}
         <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
+        {/if}
         {#if o.type == 'scrollingdialogue'}
         <ScrollingDialogue obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
         {/if}
@@ -83,6 +84,8 @@
         {#if o.type == 'charactercard'}
         <CharacterCard obj={o} close_callback={handle_events} />
         {/if}        
+        {#if o.type == 'tasklist'}
+        <TaskList obj={o} event_callback={handle_events} variables_in_text={variables_in_text} evaluate_condition={evaluate_condition} />
         {/if}
         {/each}
         {/if}
@@ -145,6 +148,9 @@
             {/if}
             {#if o.type == 'charactercard'}
             <CharacterCard obj={o} close_callback={handle_events} />
+            {/if}
+            {#if o.type == 'tasklist'}
+            <TaskList obj={o} event_callback={handle_events} variables_in_text={variables_in_text} evaluate_condition={evaluate_condition} />
             {/if}            
         {/if}
         {/each}
@@ -293,57 +299,6 @@
             {/if}
             {/if}
         </div>
-        </div>
-        {:else if d.type !== undefined && d.type == 'tasks'}
-        <div class="absolute card bg-base-100 shadow-xl min-w-[15vw]" style="
-            {(d.width !== undefined)?'width: ' + d.width + '; ':''}
-            {(d.height !== undefined)?'height: ' + d.height + '; ':''}
-            {(d.x !== undefined)?'left: ' + d.x + '; ':''}
-            {(d.y !== undefined)?'top: ' + d.y + '; ':''}
-            {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
-            {(d.y == "0%") ? "border-top-right-radius: 0; border-top-left-radius: 0;" : ""}  
-            {(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'cursor: pointer;':''}  
-        " on:click={(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?handle_events(d.answer_options[0], d):undefined}>
-        <div class="card-body leading-relaxed p-[3%]" 
-            style="{(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'padding-right: 15%;':''}  
-            {(d.text_size !== undefined)?'font-size: ' + d.text_size + '; ':'font-size: 1.25vw;'} 
-            {(d.text_font !== undefined)?'font-family: ' + d.text_font + '; ':''} 
-            {(d.height !== undefined)?'max-height: 100%;':''}
-            {(d.height !== undefined)?'overflow-y: auto;' :''}
-        ">
-            <h1 class="text-center mt-5">{@html variables_in_text(d.content)}</h1>
-            {#if d.answer_options !== undefined && d.answer_options.length > 0}
-            <div class="card-actions justify-end p-5">
-            {#each d.answer_options as a}
-            {#if a.condition === undefined || evaluate_condition(a.condition)}
-                {#if a.done_condition !== undefined && evaluate_condition(a.done_condition)}
-                    <div class="todo-item h-auto mt-4">
-                        <div>
-                            <svg width="100%" height="100%" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
-                        </div>
-                        <a class="w-full text-[1.25vw] cursor-not-allowed line-through" disabled>{@html a.content}</a>
-                        <p>{a.next_instruction}</p>
-                    </div>
-                {:else if a.disabled === undefined || (a.disabled && evaluate_condition(a.disabled.condition))}
-                    <div class="todo-item h-auto mt-4 cursor-pointer active" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>
-                        <div>
-                        </div>
-                        <a class="w-full text-[1.25vw] underline">{@html a.content}</a>
-                        <p>{a.next_instruction}</p>
-                    </div>
-                {:else}
-                    <div class="todo-item h-auto mt-4">
-                        <div>
-                        </div>
-                        <a class="w-full text-[1.25vw] cursor-not-allowed" disabled>{@html a.content}</a>
-                        <p>{a.disabled.explanation}</p>
-                    </div>
-                {/if}
-            {/if}
-            {/each}
-            </div>
-            {/if}
-        </div>
         </div>  
         {:else}
         <div class="absolute {d.animateIn?'animate-fadeIn':''} {d.animateOut?'animate-fadeOut':''}" style="
@@ -391,6 +346,8 @@
     import CharacterCard from '../plugins/charactercard.svelte';
     import ScrollingDialogue from '../plugins/scrollingdialogue.svelte';
     import PlannerTimer from '../plugins/plannertimer.svelte';
+    import TaskList from '../plugins/tasklist.svelte';
+
     import story from '/project/story.json';
     
     import Setup from '/project/chapters/setup.json';

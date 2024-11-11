@@ -40,7 +40,7 @@
                     "y": "0%",
                     "z": "1",
                     "width": "100%",
-                    "visible": true,
+                    "visible": false,
                     "objects": [
                         {
                             "id": "periods",
@@ -82,16 +82,22 @@
                     "id": "contact_menu",
                     "type": "sprite",
                     "image": "/tools/contact.svg",
-                    "visible": true,
+                    "visible": false,
                     "x": "2%",
                     "y": "30%",
-                    "z": "100",
+                    "z": "1",
                     "width": "5%",
                     "events": [
                         {
                             "type": "show_object",
-                            "target": "contact_tasks"
-                        }                
+                            "target": "contact_tasks",
+                            "animate": true
+                        },
+                        {
+                            "type": "hide_object",
+                            "target": "project_tasks",
+                            "animate": true
+                        }                  
                     ]
                 },
                 {
@@ -101,23 +107,27 @@
                     "visible": true,
                     "x": "2%",
                     "y": "18%",
-                    "z": "100",
+                    "z": "1",
                     "width": "5%",
                     "events": [
                         {
                             "type": "show_object",
-                            "target": "project_tasks"
-                        }                
+                            "target": "project_tasks",
+                            "animate": true
+                        },
+                        {
+                            "type": "hide_object",
+                            "target": "contact_tasks",
+                            "animate": true
+                        }              
                     ]
-                }
-            ],
-            "dialogue": [
+                },
                 {
                     "id": "contact_tasks",
-                    "visible": true,
-                    "type": "tasks",
-                    "content": "Contact Tasks",
-                    "x": "7%",
+                    "visible": false,
+                    "type": "tasklist",
+                    "content": "Contact",
+                    "x": "30%",
                     "y": "25%",
                     "z": "1",
                     "width": "40%",
@@ -175,10 +185,10 @@
                 },
                 {
                     "id": "project_tasks",
-                    "visible": true,
-                    "type": "tasks",
+                    "visible": false,
+                    "type": "tasklist",
                     "content": "To-Do",
-                    "x": "53%",
+                    "x": "30%",
                     "y": "25%",
                     "z": "1",
                     "width": "40%",
@@ -252,13 +262,86 @@
                     ]
                 }
             ],
-            "events": [
+            "dialogue": [
                 {
-                    "type": "set_variable",
-                    "variable": "is_running_week1",
-                    "value": true,
-                    "delay": 500 
+                    "id": "task_explanation",
+                    "type": "speech",
+                    "content": "The tasks for the project can be executed via this menu.",
+                    "visible": true,
+                    "x": "5%",
+                    "y": "4%",
+                    "z": "2",
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "goto_dialogue",
+                                    "keep_others": false,
+                                    "target": "contact_explanation"
+                                },
+                                {
+                                    "type": "show_object",
+                                    "target": "contact_menu"
+                                }
+                            ]
+                        }
+                    ]
                 },
+                {
+                    "id": "contact_explanation",
+                    "type": "speech",
+                    "content": "If people need to be contacted, this can be done via this phone.",
+                    "visible": false,
+                    "x": "5%",
+                    "y": "15%",
+                    "z": "2",
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "goto_dialogue",
+                                    "keep_others": false,
+                                    "target": "progression_explanation"
+                                },
+                                {
+                                    "type": "show_object",
+                                    "target": "plannertimer"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "progression_explanation",
+                    "type": "speech",
+                    "content": "This is the progression of time. Be carefull. Executing tasks causes extra progression.",
+                    "visible": false,
+                    "speech_position": "topleft",
+                    "x": "50%",
+                    "y": "17%",
+                    "z": "1",
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "hide_dialogue",
+                                    "target": "progression_explanation",
+                                    "keep_others": false
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "is_running_week1",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "events": [
                 {
                     "type": "set_variable",
                     "variable": "is_running_week2",
