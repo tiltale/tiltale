@@ -2,7 +2,7 @@
     "scenes": [
         {
             "id": "execution1",
-            "background": "bg/campus.png",
+            "background": "bg/library.png",
             "objects": [],
             "dialogue": [
                 {
