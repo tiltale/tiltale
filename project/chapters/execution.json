@@ -31,7 +31,7 @@
         },
         {
             "id": "execution2",
-            "background": "bg/campus.png",
+            "background": "bg/library.png",
             "objects": [
                 {
                     "id": "plannertimer",
@@ -50,19 +50,14 @@
                                 {
                                     "id": "week1",
                                     "display_caption": "Week 1",
-                                    "duration": 10000
+                                    "duration": 100000
                                 },
                                 {
                                     "id": "week2",
                                     "display_caption": "Week 2",
                                     "duration": 10000,
                                     "finished_actions": {
-                                        "events": [
-                                            {
-                                                "type": "goto_scene",
-                                                "target": "execution1"
-                                            }
-                                        ]
+                                        "events": []
                                     }
                                 },
                                 {
@@ -71,12 +66,7 @@
                                     "duration": 10000,
                                     "reserved_value": 4000,
                                     "exceed_reserved_value_actions": {
-                                        "events": [
-                                            {
-                                                "type": "goto_scene",
-                                                "target": "execution1"
-                                            }
-                                        ]
+                                        "events": []
                                     }
                                 },
                                 {
@@ -87,25 +77,174 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "id": "contact_menu",
+                    "type": "sprite",
+                    "image": "/tools/contact.svg",
+                    "visible": true,
+                    "x": "2%",
+                    "y": "30%",
+                    "z": "100",
+                    "width": "5%",
+                    "events": [
+                        {
+                            "type": "show_object",
+                            "target": "contact_tasks"
+                        }                
+                    ]
+                },
+                {
+                    "id": "project_menu",
+                    "type": "sprite",
+                    "image": "/tools/write.svg",
+                    "visible": true,
+                    "x": "2%",
+                    "y": "18%",
+                    "z": "100",
+                    "width": "5%",
+                    "events": [
+                        {
+                            "type": "show_object",
+                            "target": "project_tasks"
+                        }                
+                    ]
                 }
             ],
             "dialogue": [
                 {
-                    "id": "uitleg_kaarten",
+                    "id": "contact_tasks",
                     "visible": true,
-                    "type": "box",
-                    "content": "",
-                    "x": "25%",
-                    "y": "50%",
+                    "type": "tasks",
+                    "content": "Contact Tasks",
+                    "x": "7%",
+                    "y": "25%",
                     "z": "1",
-                    "width": "50%",
+                    "width": "40%",
+                    "height": "60%",
                     "answer_options": [
                         {
-                            "content": "Start Week 3",
+                            "content": "Fetch characters from Cesare",
+                            "done_condition": "variables.characters_received == true",
+                            "next_instruction": "[ Integrate into outline when received ]",
+                            "disabled": {
+                                "condition": "variables.characters_done == true",
+                                "explanation": "[First, finish your own characters.]"
+                            },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "is_running_week3",
+                                    "variable": "characters_received",
+                                    "value": true
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Fetch events from Julian",
+                            "done_condition": "variables.events_received == true",
+                            "next_instruction": "[ Integrate into outline when received ]",
+                            "disabled": {
+                                "condition": "variables.outline_done == true",
+                                "explanation": "[First, write the outline.]"
+                            },
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "events_received",
+                                    "value": true
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Send outline to Lisa",
+                            "done_condition": "variables.outline_send == true",
+                            "next_instruction": "[ Meet with teacher ]",
+                            "disabled": {
+                                "condition": "variables.outline_done == true && variables.characters_integrated == true && variables.events_integrated == true",
+                                "explanation": "[First, write the outline and integrate characters and events.]"
+                            },
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "outline_send",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "project_tasks",
+                    "visible": true,
+                    "type": "tasks",
+                    "content": "To-Do",
+                    "x": "53%",
+                    "y": "25%",
+                    "z": "1",
+                    "width": "40%",
+                    "height": "60%",
+                    "answer_options": [
+                        {
+                            "content": "Write outline (20)",
+                            "done_condition": "variables.outline_done == true",
+                            "next_instruction": "[ Send outline to Lisa, when done ]",
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "outline_done",
+                                    "value": true
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "change_week1",
+                                    "value": 20000
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Write characters",
+                            "done_condition": "variables.characters_done == true",
+                            "next_instruction": "[ Integrate in outline when done ]",
+                            "disabled": {
+                                "condition": "variables.outline_done == true",
+                                "explanation": "[First, write the outline of the play.]"
+                            },
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "characters_done",
+                                    "value": true
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Integrate events",
+                            "done_condition": "variables.events_integrated == true",
+                            "next_instruction": "[ Send outline to Lisa when done ]",
+                            "disabled": {
+                                "condition": "variables.events_received == true",
+                                "explanation": "[First, fetch events from Julian.]"
+                            },
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "events_integrated",
+                                    "value": true
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Integrate characters",
+                            "done_condition": "variables.characters_integrated == true",
+                            "next_instruction": "[ Send outline to Lisa when done ]",
+                            "disabled": {
+                                "condition": "variables.characters_received == true",
+                                "explanation": "[First, fetch characters from Cesare.]"
+                            },
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "characters_integrated",
                                     "value": true
                                 }
                             ]
@@ -119,12 +258,6 @@
                     "variable": "is_running_week1",
                     "value": true,
                     "delay": 500 
-                },
-                {
-                    "type": "set_variable",
-                    "variable": "is_running_week1",
-                    "value": false,
-                    "delay": 3000 
                 },
                 {
                     "type": "set_variable",

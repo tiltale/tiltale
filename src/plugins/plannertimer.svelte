@@ -55,13 +55,25 @@
             // Set timer value
 
             if (variables[`value_${t.id}`] != undefined) {
-                timers[i].value = variables[`value_${t.id}`];
+                const value = variables[`value_${t.id}`];
+                variables[`value_${t.id}`] = undefined;
+                timers[i].value = value < timers[i].duration ? value : timers[i].duration;
+            }
+
+            // Change timer value
+
+            if (variables[`change_${t.id}`] != undefined) {
+                const value = variables[`change_${t.id}`];
+                variables[`change_${t.id}`] = undefined;
+                timers[i].value = timers[i].value + value < timers[i].duration ? timers[i].value + value : timers[i].duration;
             }
 
             // Set timer reserved value
 
             if (variables[`reserved_value_${t.id}`] != undefined) {
-                timers[i].reserved_value = variables[`reserved_value_${t.id}`];
+                const value = variables[`reserved_value_${t.id}`];
+                variables[`reserved_value_${t.id}`] = undefined;
+                timers[i].reserved_value = value < timers[i].duration ? value : timers[i].duration;
             }
         });
     }
