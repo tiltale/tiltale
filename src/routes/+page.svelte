@@ -292,6 +292,7 @@
     let audio: string[] = [];
     let img_load_count = 0;
     let audio_load_count = 0;
+    let audio_stopping = [];
 
     let loaded_fonts: string[] = [];
 
@@ -705,32 +706,52 @@
         }
         else if (ev.type == 'play_audio') {
             let audio = document.getElementById('a_' + ev.target);
-            audio.loop = false;
+
+            if (audio_stopping.indexOf(ev.target) !== -1) {
+                audio.pause();
+                audio.volume = 0.0;
+
+                while (audio_stopping.indexOf(ev.target) !== -1) {
+                    audio_stopping.splice(audio_stopping.indexOf(ev.target), 1);
+                }
+            }
+
+            audio.loop = false;            
 
             if (ev.loop !== undefined && ev.loop == true) {
                 audio.loop = true;
             }
 
+            let tarVol = 100;
+            if (ev.volume !== undefined) {
+                tarVol = parseInt(ev.volume);
+            }
+
             if (ev.fade !== undefined) {
-                let tarVol = 100;
-                if (ev.volume !== undefined) {
-                    tarVol = parseInt(ev.volume);
-                }
                 audio.volume = 0.0;
 
                 let fadeInt = parseInt(ev.fade);
                 let fadeAudio = setInterval(function() {
                     audio.volume += tarVol / fadeInt - 0.0001;
 
-                    if (audio.volume >= (tarVol/100-0.01) || audio.paused) {
+                    if (audio_stopping.indexOf(ev.target) !== -1 || audio.volume >= (tarVol/100-0.01) || audio.paused) {
                         clearInterval(fadeAudio);
+
+                        while (audio_stopping.indexOf(ev.target) !== -1) {
+                            audio_stopping.splice(audio_stopping.indexOf(ev.target), 1);
+                        }
                     }
                 }, 100);
+            }
+
+            else {
+                audio.volume = tarVol / 100;
             }
 
             audio.play();
         }
         else if (ev.type == 'stop_audio') {
+            audio_stopping.push(ev.target);
             let audio = document.getElementById('a_' + ev.target);
             
             // Don't stop things that are not playing
@@ -748,6 +769,7 @@
                     if (newvol < 0) {
                         newvol = 0;
                     }
+
                     audio.volume = newvol;
 
                     if (audio.volume == curVol) {
@@ -758,12 +780,25 @@
                         numTries = 0;
                     }
 
-                    if (audio.volume <= 0.01 || numTries == 5) {
+                    if (audio.volume <= 0.01 || numTries == 5 || audio.paused) {
                         clearInterval(fadeAudio);
                         audio.pause();
                         audio.currentTime = 0;
+
+                        while (audio_stopping.indexOf(ev.target) !== -1) {
+                            audio_stopping.splice(audio_stopping.indexOf(ev.target), 1);
+                        }
+
                     }
                 }, 100);
+            }
+
+            else {
+                audio.pause();
+                audio.currentTime = 0;
+                while (audio_stopping.indexOf(ev.target) !== -1) {
+                    audio_stopping.splice(audio_stopping.indexOf(ev.target), 1);
+                }
             }
         }
 
