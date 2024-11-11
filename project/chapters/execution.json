@@ -41,6 +41,7 @@
                     "z": "1",
                     "width": "100%",
                     "visible": false,
+                    "step": 14,
                     "objects": [
                         {
                             "id": "periods",
@@ -50,12 +51,21 @@
                                 {
                                     "id": "week1",
                                     "display_caption": "Week 1",
-                                    "duration": 100000
+                                    "duration": 100000,
+                                    "finished_actions": {
+                                        "events": [
+                                            {
+                                                "type": "set_variable",
+                                                "variable": "is_running_week2",
+                                                "value": true
+                                            }
+                                        ]
+                                    }
                                 },
                                 {
                                     "id": "week2",
                                     "display_caption": "Week 2",
-                                    "duration": 10000,
+                                    "duration": 100000,
                                     "finished_actions": {
                                         "events": []
                                     }
@@ -135,17 +145,42 @@
                     "answer_options": [
                         {
                             "content": "Fetch characters from Cesare",
-                            "done_condition": "variables.characters_received == true",
-                            "next_instruction": "[ Integrate into outline when received ]",
+                            "done_condition": "variables.characters_asked_first_time == true",
+                            "next_instruction": "[ Ask about characters again ]",
                             "disabled": {
-                                "condition": "variables.characters_done == true",
-                                "explanation": "[First, finish your own characters.]"
+                                "condition": "variables.characters_asked_first_time == true || (!variables.characters_done && !variables.character_task)",
+                                "explanation": "[ First, finish your own characters ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "characters_received",
-                                    "value": true
+                                    "variable": "step_plannertimer",
+                                    "value": 7
+                                },
+                                {
+                                    "type": "show_object",
+                                    "target": "fetch_characters1" 
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Ask Cesare again about the characters",
+                            "condition": "variables.characters_asked_first_time == true",
+                            "done_condition": "variables.characters_asked_seccond_time == true",
+                            "next_instruction": "[ Integrate into outline when received ]",
+                            "disabled": {
+                                "condition": "variables.characters_second_fetch == true",
+                                "explanation": "[ Wait for Cesare to complete the characters ]"
+                            },
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "step_plannertimer",
+                                    "value": 7
+                                },
+                                {
+                                    "type": "show_object",
+                                    "target": "fetch_characters2" 
                                 }
                             ]
                         },
@@ -155,7 +190,7 @@
                             "next_instruction": "[ Integrate into outline when received ]",
                             "disabled": {
                                 "condition": "variables.outline_done == true",
-                                "explanation": "[First, write the outline.]"
+                                "explanation": "[ First, write the outline ]"
                             },
                             "events": [
                                 {
@@ -171,7 +206,7 @@
                             "next_instruction": "[ Meet with teacher ]",
                             "disabled": {
                                 "condition": "variables.outline_done == true && variables.characters_integrated == true && variables.events_integrated == true",
-                                "explanation": "[First, write the outline and integrate characters and events.]"
+                                "explanation": "[ First, write the outline and integrate characters and events ]"
                             },
                             "events": [
                                 {
@@ -195,7 +230,7 @@
                     "height": "60%",
                     "answer_options": [
                         {
-                            "content": "Write outline (20)",
+                            "content": "Write outline (60t)",
                             "done_condition": "variables.outline_done == true",
                             "next_instruction": "[ Send outline to Lisa, when done ]",
                             "events": [
@@ -207,57 +242,511 @@
                                 {
                                     "type": "set_variable",
                                     "variable": "change_week1",
-                                    "value": 20000
+                                    "value": 60000
                                 }
                             ]
                         },
                         {
-                            "content": "Write characters",
+                            "content": "Write characters (30t)",
                             "done_condition": "variables.characters_done == true",
                             "next_instruction": "[ Integrate in outline when done ]",
-                            "disabled": {
-                                "condition": "variables.outline_done == true",
-                                "explanation": "[First, write the outline of the play.]"
-                            },
+                            "condition": "variables.character_task == true",
                             "events": [
                                 {
                                     "type": "set_variable",
                                     "variable": "characters_done",
                                     "value": true
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "change_week1",
+                                    "value": 30000
                                 }
                             ]
                         },
                         {
-                            "content": "Integrate events",
+                            "content": "Write Cesare's characters (30t)",
+                            "done_condition": "variables.characters_extra_done == true",
+                            "next_instruction": "[ Integrate in outline when done ]",
+                            "condition": "variables.characters_asked_seccond_time == true",
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "characters_done",
+                                    "value": true
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "change_week1",
+                                    "value": 30000
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Integrate events (20t)",
                             "done_condition": "variables.events_integrated == true",
                             "next_instruction": "[ Send outline to Lisa when done ]",
                             "disabled": {
                                 "condition": "variables.events_received == true",
-                                "explanation": "[First, fetch events from Julian.]"
+                                "explanation": "[ First, fetch events from Julian. ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
                                     "variable": "events_integrated",
                                     "value": true
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "change_week1",
+                                    "value": 20000
                                 }
                             ]
                         },
                         {
-                            "content": "Integrate characters",
+                            "content": "Integrate characters (20t)",
                             "done_condition": "variables.characters_integrated == true",
                             "next_instruction": "[ Send outline to Lisa when done ]",
                             "disabled": {
                                 "condition": "variables.characters_received == true",
-                                "explanation": "[First, fetch characters from Cesare.]"
+                                "explanation": "[ First, fetch characters from Cesare. ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
                                     "variable": "characters_integrated",
                                     "value": true
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "change_week1",
+                                    "value": 20000
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    "id": "fetch_characters1",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "23%",
+                    "z": "10",                    
+                    "width": "60%",
+                    "height": "70%",
+                    "visible": false,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>While waiting for Cesare to answer your call, you remember that he was struggeling with his mental health.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                },
+                                {
+                                    "id": "cesare",
+                                    "name": "cesare",
+                                    "img": "/project/img/avatars/cesare.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_cesare1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Hi! What's up!",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_student1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Hi!",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_student2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Do you have finished the characters already by any chance?",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_cesare2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Well, honestly I am struggling a little bit with them, but I think I can have them done by tomorrow!",
+                                    "name": "Cesare",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_student3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Okay, I will contact you back then around that time!",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_cesare3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Bye!",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare",
+                                    "answer_options": [
+                                        {
+                                            "type": "next",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "fetch_characters1"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "step_plannertimer",
+                                                    "value": 14
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "characters_asked_first_time",
+                                                    "value": true
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "characters_second_fetch",
+                                                    "value": true,
+                                                    "delay": 10000
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }                                                                                                                                                                                                                                                                                                                                                                              
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare1",
+                            "delay": 2000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1",
+                            "delay": 5000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student2",
+                            "delay": 6000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare2",
+                            "delay": 9000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student3",
+                            "delay": 12000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare3",
+                            "delay": 15000,
+                            "keep_others": true
+                        }
+                    ]
+                },
+                {
+                    "id": "fetch_characters2",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "23%",
+                    "z": "10",                    
+                    "width": "60%",
+                    "height": "70%",
+                    "visible": false,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>Cesare was fague about what he was struggling with. He promised to provide new material this day.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                },
+                                {
+                                    "id": "cesare",
+                                    "name": "cesare",
+                                    "img": "/project/img/avatars/cesare.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_cesare1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "&#91; Groans a little &#93; He.. Hello [Name]!",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_student1",
+                                    "type": "thought",
+                                    "visible": false,
+                                    "content": "That does not sound good...",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_student2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Hi, how's everything going?",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_cesare2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Well to be honest...",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_cesare3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Remember that I told about the psychologist?",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_student3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Eheh...",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_cesare4",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Okay good... So I am afraid I have some relapse happening right now.",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_cesare5",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "And... I am afraid that I won't be able to finish the characters.",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_student4",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Oof, okay. I am sorry to hear that. No worries. I will take over that task!",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_cesare6",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Okay, thanks!.",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare"
+                                },
+                                {
+                                    "id": "sp_student5",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Hopefully your better soon! But take your time!",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_cesare7",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Thanks! Bye.",
+                                    "name": "Cesare",
+                                    "name_color": "#116592",
+                                    "avatar_id": "cesare",
+                                    "answer_options": [
+                                        {
+                                            "type": "next",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "fetch_characters2"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "step_plannertimer",
+                                                    "value": 14
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "characters_asked_seccond_time",
+                                                    "value": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }                                                                                                                                                                                                                                                                                                                                                                             
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare1",
+                            "delay": 2000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1",
+                            "delay": 5000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student2",
+                            "delay": 6000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare2",
+                            "delay": 9000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare3",
+                            "delay": 11000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student3",
+                            "delay": 14000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare4",
+                            "delay": 17000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare5",
+                            "delay": 18000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student4",
+                            "delay": 21000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare6",
+                            "delay": 24000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student5",
+                            "delay": 27000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_cesare7",
+                            "delay": 30000,
+                            "keep_others": true
                         }
                     ]
                 }
@@ -341,23 +830,7 @@
                     ]
                 }
             ],
-            "events": [
-                {
-                    "type": "set_variable",
-                    "variable": "is_running_week2",
-                    "value": false
-                },
-                {
-                    "type": "set_variable",
-                    "variable": "is_running_week3",
-                    "value": false
-                },
-                {
-                    "type": "set_variable",
-                    "variable": "value_week4",
-                    "value": 4000
-                }
-            ]
+            "events": []
         }
     ]
 }

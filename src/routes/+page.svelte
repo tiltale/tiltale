@@ -589,7 +589,7 @@
         if (obj.events === undefined) {
             return;
         }
-        
+
         obj.events.forEach(function(ev) {
             if (ev.condition !== undefined && !eval(ev.condition)) {
                 return;
@@ -601,7 +601,6 @@
             else {
                 handle_event(ev, context);
             }
-
         });
     }
 

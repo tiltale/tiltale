@@ -241,7 +241,8 @@
         {obj.width !== undefined ? 'width: ' + obj.width + '; ' : ''}
         {obj.height !== undefined ? 'height: ' + obj.height + '; ' : ''}
         {obj.x !== undefined ? 'left: ' + obj.x + '; ' : ''}
-        {obj.y !== undefined ? 'top: ' + obj.y + '; ' : ''} 
+        {obj.y !== undefined ? 'top: ' + obj.y + '; ' : ''}
+        {obj.z !== undefined ? 'z-index: ' + obj.z + '; ' : ''}  
         {obj.backgroundColor !== undefined ? `background-color: ${obj.backgroundColor};` : ''}
         "
 >

@@ -67,3 +67,42 @@
     export let variables_in_text = undefined;
     export let evaluate_condition = undefined
 </script>
+
+<style>
+    .todo-item {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-column-gap: 20px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .todo-item a {
+        color: rgb(112,112,112);
+    }
+
+    .todo-item.active a {
+        color: black;
+    }
+
+    .todo-item.active:hover a {
+        color: #4a00ff;
+    }
+
+    .todo-item div {
+        border-radius: 100%;
+        border: 2px solid rgb(220,220,220);
+        height: 30px;
+        width: 30px;
+        margin-top: 3px;
+    }
+
+    .todo-item svg path {
+        fill: rgb(147, 215, 69);
+    }
+
+    .todo-item p {
+        grid-column: 2 / 3;
+        color: rgb(112,112,112);
+    }
+</style>

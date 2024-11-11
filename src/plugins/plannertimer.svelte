@@ -19,7 +19,7 @@
 
                 if (timers[i].is_running) {
                     timers[i].interval = setInterval(() => {
-                        timers[i].value += 10;
+                        timers[i].value += obj.step;
 
                         // If exceeding reserved time
 
@@ -76,6 +76,14 @@
                 timers[i].reserved_value = value < timers[i].duration ? value : timers[i].duration;
             }
         });
+
+        // Set step
+
+        if (variables[`step_${obj.id}`]) {
+            const value = variables[`step_${obj.id}`];
+            variables[`step_${obj.id}`] = undefined;
+            obj.step = value;
+        }
     }
 
     onMount(() => {
