@@ -148,7 +148,7 @@
                             "done_condition": "variables.characters_asked_first_time == true",
                             "next_instruction": "[ Ask about characters again ]",
                             "disabled": {
-                                "condition": "variables.characters_asked_first_time == true || (!variables.characters_done && !variables.character_task)",
+                                "condition": "variables.characters_done == true || (!variables.characters_done && !variables.character_task)",
                                 "explanation": "[ First, finish your own characters ]"
                             },
                             "events": [
