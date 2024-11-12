@@ -228,8 +228,8 @@
                         {
                             "content": "Contact Lisa about the behaviour of Julian and problems of Cesare.",
                             "condition": "variables.characters_asked_seccond_time == true && variables.events_asked_second_time == true",
-                            "done_condition": "variables.lisa_problems == true",
-                            "next_instruction": "[ Execute the plan as you decided with Lisa ]",
+                            "done_condition": "variables.task_redevision == true",
+                            "next_instruction": "[ Afterswards, execute the plan as you decided with Lisa ]",
                             "disabled": {
                                 "condition": "variables.characters_asked_seccond_time == true",
                                 "explanation": "[ First, ask Cesare again about the characters. ]"
@@ -242,7 +242,7 @@
                                 },
                                 {
                                     "type": "show_object",
-                                    "target": "fetch_events2" 
+                                    "target": "lisa_problems" 
                                 }
                             ]
                         },
@@ -325,6 +325,24 @@
                                     "type": "set_variable",
                                     "variable": "change_plannertimer",
                                     "value": 30000
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Write some events(20t)",
+                            "done_condition": "variables.some_events_done == true",
+                            "next_instruction": "[ Integrate in outline when done ]",
+                            "condition": "variables.task_redevision == true",
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "some_events_done",
+                                    "value": true
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "change_plannertimer",
+                                    "value": 2000
                                 }
                             ]
                         },
@@ -1307,6 +1325,374 @@
                             "delay": 8000,
                             "keep_others": true,
                             "condition": "!variables.characters_asked_seccond_time"
+                        }
+                    ]
+                },
+                {
+                    "id": "lisa_problems",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "23%",
+                    "z": "10",                    
+                    "width": "60%",
+                    "height": "70%",
+                    "visible": false,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>Videocall with Lisa</h1><p style='font-size: 1.2vw'>You've updated Lisa about your progression and the problems you encountered.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                },
+                                {
+                                    "id": "lisa",
+                                    "name": "lisa",
+                                    "img": "/project/img/avatars/lisa.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_lisa1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "So effectively we're missing two group members now...",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_student1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "And two quite big tasks left to be done.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Ow man this sucks so hard. I mean Cesare can't do anything about it, but Julian!",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "So what are we going to do about this?",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa",
+                                    "answer_timer": {
+                                        "duration": 5000,
+                                        "default_option_index": 2
+                                    },
+                                    "answer_options": [
+                                        {
+                                            "content": "[ Contact teacher and redevide tasks ]",
+                                            "events": [
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "task_redevision"
+                                                },
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "lisa_problems"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "contact_teacher_now",
+                                                    "value": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "content": "[ Only redevide tasks ]",
+                                            "events": [
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "task_redevision"
+                                                },
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "lisa_problems"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "contact_teacher_later",
+                                                    "value": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }                                                                                                                                                                                                                                                                                                                                                                      
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa1",
+                            "delay": 2000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1",
+                            "delay": 5000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa2",
+                            "delay": 8000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa3",
+                            "delay": 9000,
+                            "keep_others": true
+                        }
+                    ]
+                },
+                {
+                    "id": "task_redevision",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "23%",
+                    "z": "10",                    
+                    "width": "60%",
+                    "height": "70%",
+                    "visible": false,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>Videocall with Lisa</h1><p style='font-size: 1.2vw'>You've updated Lisa about your progression and the problems you encountered.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                },
+                                {
+                                    "id": "lisa",
+                                    "name": "lisa",
+                                    "img": "/project/img/avatars/lisa.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_lisa1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Yeah that's probably the best...",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I will write most of the events and also write a report about it.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_student1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "That would be great!",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Maybe you can write one or two events too, and the left over characters?",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_student2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I will see what I can do...",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa4_contact_teacher",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I will try to setup a videocall with our teacher later today. I will call your as soon as we are ready.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa4_contact_teacher_later",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "If anything goes wrong, we should probably notify our teacher about the problems.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_student3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Yeah sure!",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa5",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I think we're set for now! See ya later.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa",
+                                    "answer_options": [
+                                        {
+                                            "type": "next",
+                                            "events": [
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "task_redevision",
+                                                    "value": true
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "contact_teacher_button",
+                                                    "condition": "variables.contact_teacher_later == true"
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "teacher_video_call",
+                                                    "delay": "5000",
+                                                    "condition": "variables.contact_teacher_now == true"
+                                                },
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "task_redevision"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }                                                                                                                                                                                                                                                                                                                                                                        
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa1",
+                            "delay": 2000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa2",
+                            "delay": 3000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1",
+                            "delay": 6000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa3",
+                            "delay": 9000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student2",
+                            "delay": 12000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa4_contact_teacher",
+                            "delay": 15000,
+                            "keep_others": true,
+                            "condition": "variables.contact_teacher_now == true"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa4_contact_teacher_later",
+                            "delay": 15000,
+                            "keep_others": true,
+                            "condition": "variables.contact_teacher_later == true"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student3",
+                            "delay": 18000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa5",
+                            "delay": 21000,
+                            "keep_others": true
                         }
                     ]
                 }
