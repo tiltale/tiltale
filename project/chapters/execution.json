@@ -70,8 +70,18 @@
                                         "events": [
                                             {
                                                 "type": "set_variable",
-                                                "variable": "is_running_week3",
-                                                "value": true
+                                                "variable": "reserved_value_week3",
+                                                "value": 40000
+                                            },
+                                            {
+                                                "type": "set_variable",
+                                                "variable": "reserved_value_week4",
+                                                "value": 60000
+                                            },
+                                            {
+                                                "type": "goto_dialogue",
+                                                "target": "other_courses_explanation",
+                                                "keep_others": false
                                             }
                                         ]
                                     }
@@ -81,6 +91,20 @@
                                     "display_caption": "Week 3",
                                     "duration": 100000,
                                     "exceed_reserved_value_actions": {
+                                        "events": [
+                                            {
+                                                "type": "goto_dialogue",
+                                                "target": "exceeded_time_week3",
+                                                "keep_others": false
+                                            },
+                                            {
+                                                "type": "set_variable",
+                                                "variable": "is_running_week3",
+                                                "value": false
+                                            }
+                                        ]
+                                    },
+                                    "finished_actions": {
                                         "events": [
                                             {
                                                 "type": "set_variable",
@@ -93,7 +117,24 @@
                                 {
                                     "id": "week4",
                                     "display_caption": "Week 4",
-                                    "duration": 100000
+                                    "duration": 100000,
+                                    "exceed_reserved_value_actions": {
+                                        "events": [
+                                            {
+                                                "type": "goto_dialogue",
+                                                "target": "exceeded_time_week4",
+                                                "keep_others": false
+                                            },
+                                            {
+                                                "type": "set_variable",
+                                                "variable": "is_running_week4",
+                                                "value": false
+                                            }
+                                        ]
+                                    },
+                                    "finished_actions": {
+                                        "events": []
+                                    }
                                 }
                             ]
                         }
@@ -1322,7 +1363,7 @@
                                     "id": "sp_student3_already_asked_cesare",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "I better contact Lisa about both the Characters and Julian's behaviour.",
+                                    "content": "I better contact Lisa about both the characters and Julian's behaviour.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
@@ -1717,7 +1758,8 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "target": "step_plannertimer",
+                                                    "variable": "step_plannertimer",
+                                                    "condition": "variables.contact_teacher_now == true",
                                                     "value": 5,
                                                     "delay": 5000
                                                 },
@@ -2100,7 +2142,7 @@
                     "visible": true,
                     "x": "5%",
                     "y": "4%",
-                    "z": "2",
+                    "z": 18,
                     "answer_options": [
                         {
                             "type": "next",
@@ -2125,7 +2167,7 @@
                     "visible": false,
                     "x": "5%",
                     "y": "15%",
-                    "z": "2",
+                    "z": 18,
                     "answer_options": [
                         {
                             "type": "next",
@@ -2151,7 +2193,7 @@
                     "speech_position": "topleft",
                     "x": "50%",
                     "y": "17%",
-                    "z": "1",
+                    "z": 18,
                     "answer_options": [
                         {
                             "type": "next",
@@ -2177,7 +2219,7 @@
                     "visible": false,
                     "x": "5%",
                     "y": "28%",
-                    "z": "2",
+                    "z": 18,
                     "answer_options": [
                         {
                             "type": "next",
@@ -2195,9 +2237,140 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "id": "other_courses_explanation",
+                    "type": "speech",
+                    "content": "Other courses start to take up time as well (orange). Be carefull in how you devide your time.",
+                    "visible": false,
+                    "speech_position": "topright",
+                    "x": "20%",
+                    "y": "17%",
+                    "z": 19,
+                    "overlay": {
+                        "visible": true,
+                        "y": "100px"
+                    },
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "hide_dialogue",
+                                    "target": "other_courses_explanation",
+                                    "keep_others": false
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "is_running_week3",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "exceeded_time_week3",
+                    "type": "box",
+                    "visible": false,
+                    "x": "30%",
+                    "y": "38%",
+                    "z": 20,
+                    "overlay": {
+                        "visible": true
+                    },
+                    "width": "40%",
+                    "content": "<div style='margin: 20px 0 -20px 0; color: #FF8A43; text-align: center; font-weight: bold; font-size: 20px'>You have used all free time for week 3.</div>",
+                    "answer_options": [
+                        {
+                            "content": "[ Skip to next week ]",
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "exceeded_week3_course_time",
+                                    "value": false
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "is_running_week4",
+                                    "value": true
+                                },
+                                {
+                                    "type": "hide_dialogue",
+                                    "target": "exceeded_time_week3"
+                                }
+                            ]
+                        },
+                        {
+                            "content": "[ Use time of other courses this week ]",
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "exceeded_week3_course_time",
+                                    "value": true
+                                },
+                                {
+                                    "type": "hide_dialogue",
+                                    "target": "exceeded_time_week3"
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "is_running_week3",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "exceeded_time_week4",
+                    "type": "box",
+                    "visible": false,
+                    "x": "30%",
+                    "y": "38%",
+                    "z": 20,
+                    "overlay": {
+                        "visible": true
+                    },
+                    "width": "40%",
+                    "content": "<div style='margin: 20px 0 -20px 0; color: #FF8A43; text-align: center; font-weight: bold; font-size: 20px'>You have used all free time for week 4.</div>",
+                    "answer_options": [
+                        {
+                            "content": "[ End this academic period ]",
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "exceeded_week4_course_time",
+                                    "value": false
+                                },
+                                {
+                                    "type": "hide_dialogue",
+                                    "target": "exceeded_time_week4"
+                                }
+                            ]
+                        },
+                        {
+                            "content": "[ Use time of other courses this week ]",
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "exceeded_week4_course_time",
+                                    "value": true
+                                },
+                                {
+                                    "type": "hide_dialogue",
+                                    "target": "exceeded_time_week4"
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "is_running_week4",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
                 }
-            ],
-            "events": []
+            ]
         }
     ]
 }

@@ -24,7 +24,8 @@
 
                         // If exceeding reserved time
 
-                        if (timers[i].value >= (timers[i].duration - timers[i].reserved_value) && timers[i].exceed_reserved_value_actions) {
+                        if (timers[i].value >= (timers[i].duration - timers[i].reserved_value) && timers[i].exceed_reserved_value_actions && !timers[i].has_exceeded) {
+                            timers[i].has_exceeded = true;
                             const events = timers[i].exceed_reserved_value_actions.events;
 
                             if (events && events.filter(e => e.type == "goto_scene").length > 0) {
@@ -72,9 +73,9 @@
             // Set timer reserved value
 
             if (variables[`reserved_value_${t.id}`] != undefined) {
-                const value = variables[`reserved_value_${t.id}`];
+                const reserved_value = variables[`reserved_value_${t.id}`];
                 variables[`reserved_value_${t.id}`] = undefined;
-                timers[i].reserved_value = value < timers[i].duration ? value : timers[i].duration;
+                timers[i].reserved_value = reserved_value < timers[i].duration ? reserved_value : timers[i].duration;
             }
         });
 
@@ -134,6 +135,7 @@
                     "duration": period.duration,
                     "is_running": false,
                     "has_finished": false,
+                    "has_exceeded": false,
                     "interval": undefined,
                     "reserved_value": period.reserved_value ? period.reserved_value : undefined,
                     "finished_actions": period.finished_actions,
@@ -202,6 +204,10 @@
         border-bottom-left-radius: 0;
     }
 
+    .planner-timer-container .period:last-child .timer-toolbar-fill.reserved {
+        right: 3px;
+    }
+
     .timer-toolbar-container {
         position: relative;
         height: 14px;
@@ -213,16 +219,19 @@
     }
 
     .timer-toolbar-fill {
+        position: relative;
         height: 6px;
         background-color: #4a00ff;
         border-radius: 7px;
+        z-index: 2;
     }
 
     .timer-toolbar-fill.reserved {
         position: absolute;
-        background-color: #a480ff;
+        background-color: #FF8A43;
         right: 0px;
         top: 2px;
+        z-index: 1;
     }
 </style>
 

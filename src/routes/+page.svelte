@@ -160,12 +160,16 @@
         {#each curr_scene.dialogue as d}
         {#if d.visible}
         {#if d.type !== undefined && d.type == 'thought'}
+        {#if d.overlay && d.overlay.visible}
+            <div class="overlay" style="{d.z ? `z-index: ${d.z - 1};` : ''} {d.overlay.y != undefined ? `top: ${d.overlay.y};` : ''}"></div>
+        {/if}  
         <div class="absolute" style="z-index: 1;  
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
             {(d.x !== undefined)?'left: ' + d.x + '; ':''}
             {(d.y !== undefined)?'top: ' + d.y + '; ':''}
-            {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
+            {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''}
+            {(d.overlay && d.overlay.visible) ? 'box-shadow: 0 0px 10px rgba(0, 0, 0, 0.30);' : ''}
             {(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'cursor: pointer;':''}  
         " on:click={(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?handle_events(d.answer_options[0], d):undefined}>
         <img src="img/thought_bubble.svg" class="absolute" />
@@ -205,13 +209,17 @@
             {/if}
         </div>
         </div>  
-        {:else if d.type !== undefined && d.type == 'speech'}      
+        {:else if d.type !== undefined && d.type == 'speech'}
+        {#if d.overlay && d.overlay.visible}
+            <div class="overlay" style="{d.z ? `z-index: ${d.z - 1};` : ''} {d.overlay.y != undefined ? `top: ${d.overlay.y};` : ''}"></div>
+        {/if}    
         <div class="absolute card bg-base-100 shadow-xl min-w-[15vw]" style="
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
             {(d.x !== undefined)?'left: ' + d.x + '; ':''}
             {(d.y !== undefined)?'top: ' + d.y + '; ':''}
             {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
+            {(d.overlay && d.overlay.visible) ? 'box-shadow: 0 0px 10px rgba(0, 0, 0, 0.30);' : ''}
             {(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'cursor: pointer;':''}  
         " on:click={(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?handle_events(d.answer_options[0], d):undefined}>
         {#if d.speech_position == undefined || d.speech_position == 'bottomleft'}
@@ -259,12 +267,16 @@
         </div>
         </div>
         {:else if d.type !== undefined && d.type == 'box'}
+        {#if d.overlay && d.overlay.visible}
+            <div class="overlay" style="{d.z ? `z-index: ${d.z - 1};` : ''} {d.overlay.y != undefined ? `top: ${d.overlay.y};` : ''}"></div>
+        {/if}  
         <div class="absolute card bg-base-100 shadow-xl min-w-[15vw]" style="
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
             {(d.x !== undefined)?'left: ' + d.x + '; ':''}
             {(d.y !== undefined)?'top: ' + d.y + '; ':''}
             {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
+            {(d.overlay && d.overlay.visible) ? 'border: 1px solid rgb(112,112,112)' : ''}
             {(d.y == "0%") ? "border-top-right-radius: 0; border-top-left-radius: 0;" : ""}  
             {(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'cursor: pointer;':''}  
         " on:click={(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?handle_events(d.answer_options[0], d):undefined}>
