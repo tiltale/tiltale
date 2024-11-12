@@ -14,8 +14,9 @@
         timers.forEach((t, i) => {
             // Start and pause timers
 
-            if (variables[`is_running_${t.id}`] != undefined && variables[`is_running_${t.id}`] != t.is_running) {
+            if (variables[`is_running_${t.id}`] != undefined && timers[i].has_finished == false) {
                 timers[i].is_running = variables[`is_running_${t.id}`];
+                variables[`is_running_${t.id}`] = undefined;
 
                 if (timers[i].is_running) {
                     timers[i].interval = setInterval(() => {
@@ -37,8 +38,8 @@
 
                         if (timers[i].value >= timers[i].duration) {
                             timers[i].has_finished = true;
+                            timers[i].is_running = false;
                             clearInterval(timers[i].interval);
-                            console.log(`${timers[i].id} is stopped`);
 
                             if (timers[i].finished_actions) {
                                 event_callback(timers[i].finished_actions);
@@ -62,11 +63,11 @@
 
             // Change timer value
 
-            if (variables[`change_${t.id}`] != undefined) {
-                const value = variables[`change_${t.id}`];
-                variables[`change_${t.id}`] = undefined;
-                timers[i].value = timers[i].value + value < timers[i].duration ? timers[i].value + value : timers[i].duration;
-            }
+            // if (variables[`change_${t.id}`] != undefined) {
+            //     const value = variables[`change_${t.id}`];
+            //     variables[`change_${t.id}`] = undefined;
+            //     timers[i].value = timers[i].value + value < timers[i].duration ? timers[i].value + value : timers[i].duration;
+            // }
 
             // Set timer reserved value
 
@@ -76,6 +77,32 @@
                 timers[i].reserved_value = value < timers[i].duration ? value : timers[i].duration;
             }
         });
+
+        // Change value
+
+        if (variables[`change_${obj.id}`]) {
+            const value = variables[`change_${obj.id}`];
+            variables[`change_${obj.id}`] = undefined;
+
+            const runningTimers = timers.filter(t => {return t.is_running == true && t.has_finished == false});
+            let total_time_residual = 0;
+
+            runningTimers.forEach(t => {
+                const index = timers.findIndex(ti => {return ti.id == t.id});
+
+                if (t.value + value < t.duration) {
+                    timers[index].value += value;
+                } else {
+                    const time_residual = t.value + value - t.duration;
+                    timers[index].value = t.duration;
+                    total_time_residual += time_residual;
+                }
+            });
+
+            if (total_time_residual > 0) {
+                variables[`change_${obj.id}`] = total_time_residual;
+            }
+        }
 
         // Set step
 

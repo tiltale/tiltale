@@ -606,38 +606,41 @@
 
     function handle_event(ev, context) {
         if (ev.type == 'show_object') {
-                // Check for general / UI objects
-                let objs = story.objects.filter(o => { return o.id == ev.target });
-                if (objs.length == 0) {
-                    // And for scene objects
-                    objs = curr_scene.objects.filter(o => { return o.id == ev.target });     
-                    
-                    // And for avatars of scrolling dialogue
-                    const dialogues = curr_scene.objects.filter(o => { return o.type == "scrollingdialogue" });
+            // Check for general / UI objects
+            let objs = story.objects.filter(o => { return o.id == ev.target });
+            if (objs.length == 0) {
+                // And for scene objects
+                objs = curr_scene.objects.filter(o => { return o.id == ev.target });     
+                
+                // And for avatars of scrolling dialogue
+                const dialogues = curr_scene.objects.filter(o => { return o.type == "scrollingdialogue" });
 
-                    dialogues.forEach(dg => {
-                        const avatars = dg.objects.filter(o => { return o.type == "avatars"});
+                dialogues.forEach(dg => {
+                    const avatars = dg.objects.filter(o => { return o.type == "avatars"});
 
-                        if (avatars) {
-                            objs.push(avatars[0].objects.find(o => o.id == ev.target));
+                    if (avatars) {
+                        const avatar = avatars[0].objects.find(o => o.id == ev.target);
+
+                        if (avatar) {
+                            objs.push(avatar);
                         }
-                    })
-                }
-
-                if (objs.length > 0) {
-                    if (ev.animate !== undefined && ev.animate) {
-                        objs[0].animateIn = true;
-                        objs[0].visible = true;
-
-                        setTimeout(function() {
-                            objs[0].animateIn = false;
-                        }, 600);
                     }
-                    else {
-                        objs[0].visible = true;
-                    }
-                }
+                })
+            }
 
+            if (objs.length > 0) {
+                if (ev.animate !== undefined && ev.animate) {
+                    objs[0].animateIn = true;
+                    objs[0].visible = true;
+
+                    setTimeout(function() {
+                        objs[0].animateIn = false;
+                    }, 600);
+                }
+                else {
+                    objs[0].visible = true;
+                }
+            }
         }
         else if (ev.type == 'hide_object') {
             // Check for general / UI objects

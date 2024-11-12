@@ -186,8 +186,8 @@
                         },
                         {
                             "content": "Fetch events from Julian",
-                            "done_condition": "variables.events_received == true",
-                            "next_instruction": "[ Integrate into outline when received ]",
+                            "done_condition": "variables.events_asked_first_time == true",
+                            "next_instruction": "[ Ask Julian again about the events. ]",
                             "disabled": {
                                 "condition": "variables.outline_done == true",
                                 "explanation": "[ First, write the outline ]"
@@ -195,8 +195,54 @@
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "events_received",
-                                    "value": true
+                                    "variable": "step_plannertimer",
+                                    "value": 7
+                                },
+                                {
+                                    "type": "show_object",
+                                    "target": "fetch_events1" 
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Ask Julian again about the events.",
+                            "condition": "variables.events_asked_first_time == true",
+                            "done_condition": "variables.events_asked_second_time == true",
+                            "next_instruction": "[ Integrate into outline when received ]",
+                            "disabled": {
+                                "condition": "variables.events_second_fetch == true",
+                                "explanation": "[ Give Julian some time to finish the events ]"
+                            },
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "step_plannertimer",
+                                    "value": 7
+                                },
+                                {
+                                    "type": "show_object",
+                                    "target": "fetch_events2" 
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Contact Lisa about the behaviour of Julian and problems of Cesare.",
+                            "condition": "variables.characters_asked_seccond_time == true && variables.events_asked_second_time == true",
+                            "done_condition": "variables.lisa_problems == true",
+                            "next_instruction": "[ Execute the plan as you decided with Lisa ]",
+                            "disabled": {
+                                "condition": "variables.characters_asked_seccond_time == true",
+                                "explanation": "[ First, ask Cesare again about the characters. ]"
+                            },
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "step_plannertimer",
+                                    "value": 7
+                                },
+                                {
+                                    "type": "show_object",
+                                    "target": "fetch_events2" 
                                 }
                             ]
                         },
@@ -241,7 +287,7 @@
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_week1",
+                                    "variable": "change_plannertimer",
                                     "value": 60000
                                 }
                             ]
@@ -259,7 +305,7 @@
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_week1",
+                                    "variable": "change_plannertimer",
                                     "value": 30000
                                 }
                             ]
@@ -272,12 +318,12 @@
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "characters_done",
+                                    "variable": "characters_extra_done",
                                     "value": true
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_week1",
+                                    "variable": "change_plannertimer",
                                     "value": 30000
                                 }
                             ]
@@ -298,7 +344,7 @@
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_week1",
+                                    "variable": "change_plannertimer",
                                     "value": 20000
                                 }
                             ]
@@ -319,7 +365,7 @@
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_week1",
+                                    "variable": "change_plannertimer",
                                     "value": 20000
                                 }
                             ]
@@ -356,7 +402,8 @@
                                 {
                                     "id": "cesare",
                                     "name": "cesare",
-                                    "img": "/project/img/avatars/cesare.png"
+                                    "img": "/project/img/avatars/cesare.png",
+                                    "visible": false
                                 }
                             ]
                         },
@@ -464,6 +511,11 @@
                             "keep_others": true
                         },
                         {
+                            "type": "show_object",
+                            "target": "cesare",
+                            "delay": 2000
+                        },
+                        {
                             "type": "goto_dialogue",
                             "target": "sp_student1",
                             "delay": 5000,
@@ -523,9 +575,10 @@
                                     "img": "/project/img/avatars/student.png"
                                 },
                                 {
-                                    "id": "cesare",
+                                    "id": "cesare1",
                                     "name": "cesare",
-                                    "img": "/project/img/avatars/cesare.png"
+                                    "img": "/project/img/avatars/cesare.png",
+                                    "visible": false
                                 }
                             ]
                         },
@@ -545,7 +598,7 @@
                                     "content": "&#91; Groans a little &#93; He.. Hello [Name]!",
                                     "name": "Cesare",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare"
+                                    "avatar_id": "cesare1"
                                 },
                                 {
                                     "id": "sp_student1",
@@ -574,7 +627,7 @@
                                     "content": "Well to be honest...",
                                     "name": "Cesare",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare"
+                                    "avatar_id": "cesare1"
                                 },
                                 {
                                     "id": "sp_cesare3",
@@ -583,7 +636,7 @@
                                     "content": "Remember that I told about the psychologist?",
                                     "name": "Cesare",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare"
+                                    "avatar_id": "cesare1"
                                 },
                                 {
                                     "id": "sp_student3",
@@ -602,7 +655,7 @@
                                     "content": "Okay good... So I am afraid I have some relapse happening right now.",
                                     "name": "Cesare",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare"
+                                    "avatar_id": "cesare1"
                                 },
                                 {
                                     "id": "sp_cesare5",
@@ -611,7 +664,7 @@
                                     "content": "And... I am afraid that I won't be able to finish the characters.",
                                     "name": "Cesare",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare"
+                                    "avatar_id": "cesare1"
                                 },
                                 {
                                     "id": "sp_student4",
@@ -630,7 +683,7 @@
                                     "content": "Okay, thanks!.",
                                     "name": "Cesare",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare"
+                                    "avatar_id": "cesare1"
                                 },
                                 {
                                     "id": "sp_student5",
@@ -649,7 +702,7 @@
                                     "content": "Thanks! Bye.",
                                     "name": "Cesare",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare",
+                                    "avatar_id": "cesare1",
                                     "answer_options": [
                                         {
                                             "type": "next",
@@ -681,6 +734,11 @@
                             "target": "sp_cesare1",
                             "delay": 2000,
                             "keep_others": true
+                        },
+                        {
+                            "type": "show_object",
+                            "target": "cesare1",
+                            "delay": 2000
                         },
                         {
                             "type": "goto_dialogue",
@@ -747,6 +805,508 @@
                             "target": "sp_cesare7",
                             "delay": 30000,
                             "keep_others": true
+                        }
+                    ]
+                },
+                {
+                    "id": "fetch_events1",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "23%",
+                    "z": "10",                    
+                    "width": "60%",
+                    "height": "70%",
+                    "visible": false,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>Julian takes his time to answer the call. You hope he has the ideas for the events ready.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                },
+                                {
+                                    "id": "julian",
+                                    "name": "julian",
+                                    "img": "/project/img/avatars/julian.png",
+                                    "visible": false
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_student1",
+                                    "type": "thought",
+                                    "visible": false,
+                                    "content": "Hopefully his drunkass mind has seens some sense since last time.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julian1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Yoo man! How are you doing!",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_student2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Hi! Busy as always!",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_student3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Do you by any chance have already had a look at the events?",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julian2_relaxed",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Well you know, I first started by doing some reading. Listened to Lisa for once.",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_student4_relaxed",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "So...",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julian3_relaxed",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I have some rough sketches, but I will finilize them this afternoon. I understand that they're important for the group project.",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_student5_relaxed",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Okay, I will call you back tomorrow if I don't have them by then, if that's okay.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julian4_relaxed",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Yeah sure! See ya.",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian",
+                                    "answer_options": [
+                                        {
+                                            "type": "next",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "fetch_events1"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "step_plannertimer",
+                                                    "value": 14
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "events_asked_first_time",
+                                                    "value": true
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "events_second_fetch",
+                                                    "value": true,
+                                                    "delay": 10000
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sp_julian2_angry",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Really [Name]?! First you paternalize me in the group, and now you can't wait for me to send some stuff.",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_student4_angry",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Which means that you haven't done anything yet?",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julian3_angry",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "As YOU said, I first started by doing some reading. But I think I will have them done by tomorrow.",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian"
+                                },
+                                {
+                                    "id": "sp_student5_angry",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Okay, I will call you back tomorrow if I don't have them by then, if that's okay.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julian4_angry",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Still not that patient, is it?! But sure. See ya.",
+                                    "name": "Julian",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "julian",
+                                    "answer_options": [
+                                        {
+                                            "type": "next",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "fetch_events1"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "step_plannertimer",
+                                                    "value": 14
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "events_asked_first_time",
+                                                    "value": true
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "events_second_fetch",
+                                                    "value": true,
+                                                    "delay": 10000
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }                                                                                                                                                                                                                                                                                                                                                                           
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1",
+                            "delay": 2000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "show_object",
+                            "target": "julian",
+                            "delay": 5000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian1",
+                            "delay": 5000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student2",
+                            "delay": 8000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student3",
+                            "delay": 9000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian2_relaxed",
+                            "delay": 12000,
+                            "keep_others": true,
+                            "condition": "!variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student4_relaxed",
+                            "delay": 15000,
+                            "keep_others": true,
+                            "condition": "!variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student4_relaxed",
+                            "delay": 16000,
+                            "keep_others": true,
+                            "condition": "!variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian3_relaxed",
+                            "delay": 19000,
+                            "keep_others": true,
+                            "condition": "!variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student5_relaxed",
+                            "delay": 22000,
+                            "keep_others": true,
+                            "condition": "!variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian4_relaxed",
+                            "delay": 25000,
+                            "keep_others": true,
+                            "condition": "!variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian2_angry",
+                            "delay": 12000,
+                            "keep_others": true,
+                            "condition": "variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student4_angry",
+                            "delay": 15000,
+                            "keep_others": true,
+                            "condition": "variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student4_angry",
+                            "delay": 16000,
+                            "keep_others": true,
+                            "condition": "variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian3_angry",
+                            "delay": 19000,
+                            "keep_others": true,
+                            "condition": "variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student5_angry",
+                            "delay": 22000,
+                            "keep_others": true,
+                            "condition": "variables.reprimand"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julian4_angry",
+                            "delay": 25000,
+                            "keep_others": true,
+                            "condition": "variables.reprimand"
+                        }
+                    ]
+                },
+                {
+                    "id": "fetch_events2",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "23%",
+                    "z": "10",                    
+                    "width": "60%",
+                    "height": "70%",
+                    "visible": false,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>Julian again takes his time to answer the call.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_student1",
+                                    "type": "thought",
+                                    "visible": false,
+                                    "content": "I hope that he has something done. Time is going way to quickly.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_student2",
+                                    "type": "thought",
+                                    "visible": false,
+                                    "content": "He does not answer his phone.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_student3_already_asked_cesare",
+                                    "type": "thought",
+                                    "visible": false,
+                                    "content": "I better contact Lisa about both the Characters and Julian's behaviour.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true,
+                                    "answer_options": [
+                                        {
+                                            "type": "next",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "fetch_events2"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "step_plannertimer",
+                                                    "value": 14
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "events_asked_second_time",
+                                                    "value": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sp_student3_ask_cesare",
+                                    "type": "thought",
+                                    "visible": false,
+                                    "content": "I better contact Cesare first about the characters. Afterwards I should contact Lisa.",
+                                    "name": "You",
+                                    "name_color": "#632B30",
+                                    "avatar_id": "student",
+                                    "is_player": true,
+                                    "answer_options": [
+                                        {
+                                            "type": "next",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "fetch_events2"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "step_plannertimer",
+                                                    "value": 14
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "events_asked_second_time",
+                                                    "value": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }                                                                                                                                                                                                                                                                                                                                                                         
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1",
+                            "delay": 2000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student2",
+                            "delay": 6000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student3_already_asked_cesare",
+                            "delay": 8000,
+                            "keep_others": true,
+                            "condition": "variables.characters_asked_seccond_time == true"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student3_ask_cesare",
+                            "delay": 8000,
+                            "keep_others": true,
+                            "condition": "!variables.characters_asked_seccond_time"
                         }
                     ]
                 }
