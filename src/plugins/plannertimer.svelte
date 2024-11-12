@@ -61,13 +61,13 @@
                 timers[i].value = value < timers[i].duration ? value : timers[i].duration;
             }
 
-            // Change timer value
+            // Set timer duration
 
-            // if (variables[`change_${t.id}`] != undefined) {
-            //     const value = variables[`change_${t.id}`];
-            //     variables[`change_${t.id}`] = undefined;
-            //     timers[i].value = timers[i].value + value < timers[i].duration ? timers[i].value + value : timers[i].duration;
-            // }
+            if (variables[`duration_${t.id}`] != undefined) {
+                const duration = variables[`duration_${t.id}`];
+                variables[`duration_${t.id}`] = undefined;
+                timers[i].duration = duration;
+            }
 
             // Set timer reserved value
 

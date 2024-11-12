@@ -67,22 +67,33 @@
                                     "display_caption": "Week 2",
                                     "duration": 100000,
                                     "finished_actions": {
-                                        "events": []
+                                        "events": [
+                                            {
+                                                "type": "set_variable",
+                                                "variable": "is_running_week3",
+                                                "value": true
+                                            }
+                                        ]
                                     }
                                 },
                                 {
                                     "id": "week3",
                                     "display_caption": "Week 3",
-                                    "duration": 10000,
-                                    "reserved_value": 4000,
+                                    "duration": 100000,
                                     "exceed_reserved_value_actions": {
-                                        "events": []
+                                        "events": [
+                                            {
+                                                "type": "set_variable",
+                                                "variable": "is_running_week4",
+                                                "value": true
+                                            }
+                                        ]
                                     }
                                 },
                                 {
                                     "id": "week4",
                                     "display_caption": "Week 4",
-                                    "duration": 10000
+                                    "duration": 100000
                                 }
                             ]
                         }
@@ -133,6 +144,37 @@
                     ]
                 },
                 {
+                    "id": "contact_teacher_button",
+                    "type": "sprite",
+                    "image": "/tools/teacher.svg",
+                    "visible": false,
+                    "x": "2%",
+                    "y": "42%",
+                    "z": "1",
+                    "width": "5%",
+                    "events": [
+                        {
+                            "type": "show_object",
+                            "target": "contact_teacher"
+                        },
+                        {
+                            "type": "hide_object",
+                            "target": "contact_tasks",
+                            "animate": true
+                        },
+                        {
+                            "type": "hide_object",
+                            "target": "project_tasks",
+                            "animate": true
+                        },
+                        {
+                            "type": "set_variable",
+                            "variable": "step_plannertimer",
+                            "value": 5
+                        }               
+                    ]
+                },
+                {
                     "id": "contact_tasks",
                     "visible": false,
                     "type": "tasklist",
@@ -146,7 +188,7 @@
                         {
                             "content": "Fetch characters from Cesare",
                             "done_condition": "variables.characters_asked_first_time == true",
-                            "next_instruction": "[ Ask about characters again ]",
+                            "next_instruction": "[ Integrate into outline when received ]",
                             "disabled": {
                                 "condition": "variables.characters_done == true || (!variables.characters_done && !variables.character_task)",
                                 "explanation": "[ First, finish your own characters ]"
@@ -155,12 +197,12 @@
                                 {
                                     "type": "set_variable",
                                     "variable": "step_plannertimer",
-                                    "value": 7
+                                    "value": 5
                                 },
                                 {
                                     "type": "show_object",
                                     "target": "fetch_characters1" 
-                                }
+                                }                               
                             ]
                         },
                         {
@@ -176,7 +218,7 @@
                                 {
                                     "type": "set_variable",
                                     "variable": "step_plannertimer",
-                                    "value": 7
+                                    "value": 5
                                 },
                                 {
                                     "type": "show_object",
@@ -187,7 +229,7 @@
                         {
                             "content": "Fetch events from Julian",
                             "done_condition": "variables.events_asked_first_time == true",
-                            "next_instruction": "[ Ask Julian again about the events. ]",
+                            "next_instruction": "[ Integrate into outline when received ]",
                             "disabled": {
                                 "condition": "variables.outline_done == true",
                                 "explanation": "[ First, write the outline ]"
@@ -196,7 +238,7 @@
                                 {
                                     "type": "set_variable",
                                     "variable": "step_plannertimer",
-                                    "value": 7
+                                    "value": 5
                                 },
                                 {
                                     "type": "show_object",
@@ -217,7 +259,7 @@
                                 {
                                     "type": "set_variable",
                                     "variable": "step_plannertimer",
-                                    "value": 7
+                                    "value": 5
                                 },
                                 {
                                     "type": "show_object",
@@ -238,11 +280,33 @@
                                 {
                                     "type": "set_variable",
                                     "variable": "step_plannertimer",
-                                    "value": 7
+                                    "value": 5
                                 },
                                 {
                                     "type": "show_object",
                                     "target": "lisa_problems" 
+                                }
+                            ]
+                        },
+                        {
+                            "content": "Contact Lisa about events (10t)",
+                            "done_condition": "variables.events_received == true",
+                            "next_instruction": "[ Next, integrate the events into the outline ]",
+                            "condition": "variables.task_redevision == true",
+                            "disabled": {
+                                "condition": "variables.some_events_done == true",
+                                "explanation": "[ First, write some events by yourself ]"
+                            },
+                            "events": [
+                                {
+                                    "type": "set_variable",
+                                    "variable": "events_received",
+                                    "value": true
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "change_plannertimer",
+                                    "value": 10000
                                 }
                             ]
                         },
@@ -342,17 +406,27 @@
                                 {
                                     "type": "set_variable",
                                     "variable": "change_plannertimer",
-                                    "value": 2000
+                                    "value": 20000
                                 }
                             ]
                         },
                         {
                             "content": "Integrate events (20t)",
                             "done_condition": "variables.events_integrated == true",
-                            "next_instruction": "[ Send outline to Lisa when done ]",
+                            "condition": "!variables.task_redevision",
                             "disabled": {
                                 "condition": "variables.events_received == true",
                                 "explanation": "[ First, fetch events from Julian. ]"
+                            }
+                        },
+                        {
+                            "content": "Integrate events (20t)",
+                            "done_condition": "variables.events_integrated == true",
+                            "next_instruction": "[ Send outline to Lisa when done ]",
+                            "condition": "variables.task_redevision == true",
+                            "disabled": {
+                                "condition": "variables.events_received == true",
+                                "explanation": "[ First, fetch events from Lisa. ]"
                             },
                             "events": [
                                 {
@@ -370,10 +444,20 @@
                         {
                             "content": "Integrate characters (20t)",
                             "done_condition": "variables.characters_integrated == true",
-                            "next_instruction": "[ Send outline to Lisa when done ]",
+                            "condition": "!variables.characters_asked_seccond_time",
                             "disabled": {
                                 "condition": "variables.characters_received == true",
                                 "explanation": "[ First, fetch characters from Cesare. ]"
+                            }
+                        },
+                        {
+                            "content": "Integrate characters (20t)",
+                            "done_condition": "variables.characters_integrated == true",
+                            "next_instruction": "[ Send outline to Lisa when done ]",
+                            "condition": "variables.characters_asked_seccond_time == true",
+                            "disabled": {
+                                "condition": "variables.characters_extra_done == true",
+                                "explanation": "[ First, write the characters from Cesare. ]"
                             },
                             "events": [
                                 {
@@ -1621,14 +1705,30 @@
                                                     "condition": "variables.contact_teacher_later == true"
                                                 },
                                                 {
+                                                    "type": "goto_dialogue",
+                                                    "target": "contact_teacher_explanation",
+                                                    "condition": "variables.contact_teacher_later == true"
+                                                },
+                                                {
                                                     "type": "show_object",
-                                                    "target": "teacher_video_call",
-                                                    "delay": "5000",
+                                                    "target": "contact_teacher",
+                                                    "delay": 5000,
                                                     "condition": "variables.contact_teacher_now == true"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "target": "step_plannertimer",
+                                                    "value": 5,
+                                                    "delay": 5000
                                                 },
                                                 {
                                                     "type": "hide_object",
                                                     "target": "task_redevision"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "step_plannertimer",
+                                                    "value": 14
                                                 }
                                             ]
                                         }
@@ -1692,6 +1792,301 @@
                             "type": "goto_dialogue",
                             "target": "sp_lisa5",
                             "delay": 21000,
+                            "keep_others": true
+                        }
+                    ]
+                },
+                {
+                    "id": "contact_teacher",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "23%",
+                    "z": "10",                    
+                    "width": "60%",
+                    "height": "70%",
+                    "visible": false,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>Videocall with Lisa and your Teacher</h1><p style='font-size: 1.2vw'>Your teacher has been updated about the situation. Hopefully he will be able to help.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student1",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png",
+                                    "visible": false
+                                },
+                                {
+                                    "id": "lisa1",
+                                    "name": "lisa",
+                                    "img": "/project/img/avatars/lisa.png",
+                                    "visible": false
+                                },
+                                {
+                                    "id": "teacher",
+                                    "name": "teacher",
+                                    "img": "/project/img/avatars/teacher.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_student1_contact_imediately",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Sorry, that I am later. I had still some other stuff to do.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student1",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa1_contact_imediately",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Haha, that's okay. I've already outlined the situation. So...",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa1"
+                                },
+                                {
+                                    "id": "sp_lisa1_contact_later",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Sorry, that I am later. I had still some other stuff to do.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa1"
+                                },
+                                {
+                                    "id": "sp_student1_contact_later",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Haha, that's okay. I've already outlined the situation. So...",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student1",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_teacher1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "It's a nasty situation to encounter. I feel sorry for that.",
+                                    "name": "Teacher",
+                                    "name_color": "#DC6060",
+                                    "avatar_id": "teacher"
+                                },
+                                {
+                                    "id": "sp_teacher2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "We can do multiple things.",
+                                    "name": "Teacher",
+                                    "name_color": "#DC6060",
+                                    "avatar_id": "teacher"
+                                },
+                                {
+                                    "id": "sp_teacher3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "I can give you both some extra time, and drop the one-try rule for this course.",
+                                    "name": "Teacher",
+                                    "name_color": "#DC6060",
+                                    "avatar_id": "teacher"
+                                },
+                                {
+                                    "id": "sp_teacher4",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "The later means that in a worst case scenario, you at least can redo this course.",
+                                    "name": "Teacher",
+                                    "name_color": "#DC6060",
+                                    "avatar_id": "teacher"
+                                },
+                                {
+                                    "id": "sp_student2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Okay, yeah that would eliviate at least some pressure in the long term.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student1",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_lisa2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "That would help indeed!",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa1"
+                                },
+                                {
+                                    "id": "sp_teacher5",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Okay, best of luck with everything! Bye.",
+                                    "name": "Teacher",
+                                    "name_color": "#DC6060",
+                                    "avatar_id": "teacher"
+                                },
+                                {
+                                    "id": "sp_lisa3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Thank you! Bye.",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "lisa1",
+                                    "answer_options": [
+                                        {
+                                            "type": "next",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "contact_teacher"
+                                                },
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "contact_teacher_button"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "duration_week3",
+                                                    "value": 110000
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "duration_week4",
+                                                    "value": 110000
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "step_plannertimer",
+                                                    "value": 14
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }                                                                                                                                                                                                                                                                                                                                                                       
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1_contact_imediately",
+                            "delay": 2000,
+                            "keep_others": true,
+                            "condition": "variables.contact_teacher_now == true"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa1_contact_imediately",
+                            "delay": 5000,
+                            "keep_others": true,
+                            "condition": "variables.contact_teacher_now == true"
+                        },
+                        {
+                            "type": "show_object",
+                            "target": "lisa1",
+                            "condition": "variables.contact_teacher_now == true"
+                        },
+                        {
+                            "type": "show_object",
+                            "target": "student1",
+                            "delay": 2000,
+                            "condition": "variables.contact_teacher_now == true"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa1_contact_later",
+                            "delay": 2000,
+                            "keep_others": true,
+                            "condition": "variables.contact_teacher_later == true"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1_contact_later",
+                            "delay": 5000,
+                            "keep_others": true,
+                            "condition": "variables.contact_teacher_later == true"
+                        },
+                        {
+                            "type": "show_object",
+                            "target": "lisa1",
+                            "delay": 2000,
+                            "condition": "variables.contact_teacher_later == true"
+                        },
+                        {
+                            "type": "show_object",
+                            "target": "student1",
+                            "condition": "variables.contact_teacher_later == true"
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_teacher1",
+                            "delay": 8000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_teacher2",
+                            "delay": 11000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_teacher3",
+                            "delay": 14000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_teacher4",
+                            "delay": 17000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student2",
+                            "delay": 20000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa2",
+                            "delay": 23000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_teacher5",
+                            "delay": 26000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa3",
+                            "delay": 29000,
                             "keep_others": true
                         }
                     ]
@@ -1764,6 +2159,32 @@
                                 {
                                     "type": "hide_dialogue",
                                     "target": "progression_explanation",
+                                    "keep_others": false
+                                },
+                                {
+                                    "type": "set_variable",
+                                    "variable": "is_running_week1",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "contact_teacher_explanation",
+                    "type": "speech",
+                    "content": "The teacher can be contacted at any time via this button.",
+                    "visible": false,
+                    "x": "5%",
+                    "y": "28%",
+                    "z": "2",
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "hide_dialogue",
+                                    "target": "contact_teacher_explanation",
                                     "keep_others": false
                                 },
                                 {
