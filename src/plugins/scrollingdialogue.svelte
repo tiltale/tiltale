@@ -235,6 +235,10 @@
     }
 </style>
 
+{#if obj.overlay && obj.overlay.visible}
+    <div class="overlay" style="{obj.z ? `z-index: ${obj.z - 1};` : ''} {obj.overlay.y != undefined ? `top: ${obj.overlay.y};` : ''}"></div>
+{/if}  
+
 <div
     class="absolute scrolling-dialogue-outer"
     style="
@@ -242,11 +246,17 @@
         {obj.height !== undefined ? 'height: ' + obj.height + '; ' : ''}
         {obj.x !== undefined ? 'left: ' + obj.x + '; ' : ''}
         {obj.y !== undefined ? 'top: ' + obj.y + '; ' : ''}
-        {obj.z !== undefined ? 'z-index: ' + obj.z + '; ' : ''}  
+        {obj.z !== undefined ? 'z-index: ' + obj.z + '; ' : ''} 
         {obj.backgroundColor !== undefined ? `background-color: ${obj.backgroundColor};` : ''}
         "
 >
-    <div class="scrolling-diaglogue-container">
+    <div 
+        class="scrolling-diaglogue-container" 
+        style="
+            {(obj.overlay && obj.overlay.visible) ? 'border: 1px solid #4a00ff;' : ''}
+            {obj.backgroundColor ? `border-color: ${obj.backgroundColor}` : ''}
+        "
+    >
         {#if obj.objects !== undefined}
             {#each obj.objects as o}
                 {#if o.visible}

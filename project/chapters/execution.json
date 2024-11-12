@@ -27,7 +27,13 @@
                     ]
                 }
             ],
-            "events": []
+            "events": [
+                {
+                    "type": "set_variable",
+                    "variable": "future_aim_girlfriend",
+                    "value": true
+                }
+            ]
         },
         {
             "id": "execution2",
@@ -71,12 +77,12 @@
                                             {
                                                 "type": "set_variable",
                                                 "variable": "reserved_value_week3",
-                                                "value": 40000
+                                                "value": 50000
                                             },
                                             {
                                                 "type": "set_variable",
                                                 "variable": "reserved_value_week4",
-                                                "value": 60000
+                                                "value": 70000
                                             },
                                             {
                                                 "type": "goto_dialogue",
@@ -2132,6 +2138,321 @@
                             "keep_others": true
                         }
                     ]
+                },
+                {
+                    "id": "future_task",
+                    "type": "scrollingdialogue",
+                    "x": "20%",
+                    "y": "15%",
+                    "z": 20,
+                    "overlay": {
+                        "visible": true
+                    },                    
+                    "width": "60%",
+                    "height": "70%",
+                    "visible": false,
+                    "objects": [
+                        {
+                            "id": "top",
+                            "type": "sprite",
+                            "width": "88%",
+                            "visible": true,
+                            "text": "<h1>The last week.</h1><p style='font-size: 1.2vw'>You girlfriend surprisses you in the library at school.</p>"
+                        },
+                        {
+                            "id": "avatars",
+                            "type": "avatars",
+                            "visible": true,
+                            "objects": [
+                                {
+                                    "id": "student",
+                                    "name": "student",
+                                    "img": "/project/img/avatars/student.png"
+                                },
+                                {
+                                    "id": "julia",
+                                    "name": "julia",
+                                    "img": "/project/img/avatars/julia.png"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "texts",
+                            "type": "texts",
+                            "text_size": "15px",
+                            "width": "90%",
+                            "height": "80%",
+                            "background": "#DDFFE0",
+                            "visible": true,
+                            "dialogue": [
+                                {
+                                    "id": "sp_julia1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "&#91; Hugs you from behind while you sit on your chair &#93;",
+                                    "name": "Julia",
+                                    "name_color": "#ab2e79",
+                                    "avatar_id": "julia"
+                                },
+                                {
+                                    "id": "sp_julia2",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Surprise! Surprise! How's everything going?",
+                                    "name": "Julia",
+                                    "name_color": "#ab2e79",
+                                    "avatar_id": "julia"
+                                },
+                                {
+                                    
+                                    "id": "sp_student1",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Much of the same, I hope we can finish it all.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
+                                    "id": "sp_julia3",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "You surely will! I believe in you!",
+                                    "name": "Julia",
+                                    "name_color": "#ab2e79",
+                                    "avatar_id": "julia"
+                                },
+                                {
+                                    "id": "sp_julia4_house",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "So the real estate agent called today and proposed that we come to have look at the appartment this week.",
+                                    "name": "Julia",
+                                    "name_color": "#ab2e79",
+                                    "avatar_id": "julia"
+                                },
+                                {
+                                    "id": "sp_julia5_house",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Can you free some time for that?",
+                                    "name": "Julia",
+                                    "name_color": "#ab2e79",
+                                    "avatar_id": "julia",
+                                    "answer_options": [
+                                        {
+                                            "content": "[ Inspect the house with your girlfriend (20t) ]",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "future_task"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "future_goal_archieved",
+                                                    "value": true
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "change_plannertimer",
+                                                    "value": 20000
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "content": "[ Do not inspect the house ]",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "future_task"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "future_goal_archieved",
+                                                    "value": false
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sp_julia4_job",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "You had a job interview this week, isn't it?",
+                                    "name": "Julia",
+                                    "name_color": "#ab2e79",
+                                    "avatar_id": "julia"
+                                },
+                                {
+                                    "id": "sp_julia5_job",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Do you have still time for that?",
+                                    "name": "Julia",
+                                    "name_color": "#ab2e79",
+                                    "avatar_id": "julia",
+                                    "answer_options": [
+                                        {
+                                            "content": "[ Go to the job interview (20t) ]",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "future_task"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "future_goal_archieved",
+                                                    "value": true
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "change_plannertimer",
+                                                    "value": 20000
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "content": "[ Do not go to the interview ]",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "future_task"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "future_goal_archieved",
+                                                    "value": false
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sp_julia4_degree",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "You had the application for your next degree planned this week right?",
+                                    "name": "Julia",
+                                    "name_color": "#ab2e79",
+                                    "avatar_id": "julia"
+                                },
+                                {
+                                    "id": "sp_julia5_degree",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Do you have still time for that?",
+                                    "name": "Julia",
+                                    "name_color": "#ab2e79",
+                                    "avatar_id": "julia",
+                                    "answer_options": [
+                                        {
+                                            "content": "[ Apply for your next degree (20t) ]",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "future_task"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "future_goal_archieved",
+                                                    "value": true
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "change_plannertimer",
+                                                    "value": 20000
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "content": "[ Do not apply for your next degree ]",
+                                            "events": [
+                                                {
+                                                    "type": "hide_object",
+                                                    "target": "future_task"
+                                                },
+                                                {
+                                                    "type": "set_variable",
+                                                    "variable": "future_goal_archieved",
+                                                    "value": false
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }                                                                                                                                                                                                                                                                                                                                                                      
+                            ]
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julia1",
+                            "delay": 2000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julia2",
+                            "delay": 4000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student1",
+                            "delay": 7000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julia3",
+                            "delay": 10000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julia4_house",
+                            "condition": "variables.future_aim_girlfriend == true",
+                            "delay": 13000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julia5_house",
+                            "condition": "variables.future_aim_girlfriend == true",
+                            "delay": 16000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julia4_job",
+                            "condition": "variables.future_aim_job == true",
+                            "delay": 13000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julia5_job",
+                            "condition": "variables.future_aim_job == true",
+                            "delay": 16000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julia4_degree",
+                            "condition": "variables.future_aim_degree == true",
+                            "delay": 13000,
+                            "keep_others": true
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_julia5_degree",
+                            "condition": "variables.future_aim_degree == true",
+                            "delay": 16000,
+                            "keep_others": true
+                        }
+                    ]
                 }
             ],
             "dialogue": [
@@ -2298,6 +2619,10 @@
                                 {
                                     "type": "hide_dialogue",
                                     "target": "exceeded_time_week3"
+                                },
+                                {
+                                    "type": "show_object",
+                                    "target": "future_task"
                                 }
                             ]
                         },

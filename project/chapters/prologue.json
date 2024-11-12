@@ -277,8 +277,8 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_aim",
-                                                    "value": "degree"
+                                                    "variable": "future_aim_degree",
+                                                    "value": true
                                                 }
                                             ]
                                         },
@@ -291,8 +291,8 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_aim",
-                                                    "value": "girlfriend"
+                                                    "variable": "future_aim_girlfriend",
+                                                    "value": true
                                                 }
                                             ]
                                         },
@@ -305,8 +305,8 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_aim",
-                                                    "value": "job"
+                                                    "variable": "future_aim_job",
+                                                    "value": true
                                                 }
                                             ]
                                         }
