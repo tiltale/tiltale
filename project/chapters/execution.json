@@ -46,7 +46,7 @@
                     "y": "0%",
                     "z": "1",
                     "width": "100%",
-                    "visible": false,
+                    "visible": true,
                     "step": 14,
                     "objects": [
                         {
@@ -139,7 +139,12 @@
                                         ]
                                     },
                                     "finished_actions": {
-                                        "events": []
+                                        "events": [
+                                            {
+                                                "type": "goto_scene",
+                                                "target": "epilogue_julia"
+                                            }
+                                        ]
                                     }
                                 }
                             ]
@@ -2671,6 +2676,16 @@
                                 {
                                     "type": "hide_dialogue",
                                     "target": "exceeded_time_week4"
+                                },
+                                {
+                                    "type": "goto_scene",
+                                    "target": "epilogue_graduation",
+                                    "condition": "!variables.exceeded_week3_course_time"
+                                },
+                                {
+                                    "type": "goto_scene",
+                                    "target": "epilogue_julia",
+                                    "condition": "variables.exceeded_week3_course_time"
                                 }
                             ]
                         },
@@ -2690,6 +2705,10 @@
                                     "type": "set_variable",
                                     "variable": "is_running_week4",
                                     "value": true
+                                },
+                                {
+                                    "type": "goto_scene",
+                                    "target": "epilogue_julia"
                                 }
                             ]
                         }
