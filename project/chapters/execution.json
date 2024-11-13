@@ -2157,7 +2157,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>The last week.</h1><p style='font-size: 1.2vw'>You girlfriend surprisses you in the library at school.</p>"
+                            "text": "<h1>The last week.</h1><p style='font-size: 1.2vw'>You girlfriend surprises you in the library at school.</p>"
                         },
                         {
                             "id": "avatars",

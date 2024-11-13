@@ -551,7 +551,7 @@
                                     "avatar_id": "lisa",
                                     "answer_timer": {
                                         "duration": 7000,
-                                        "default_option_index": 1
+                                        "default_option_index": 2
                                     },
                                     "answer_options": [
                                         {
