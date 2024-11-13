@@ -1,7 +1,7 @@
 {
     "id": "pressure-cooker",
     "title": "Academic Stress",
-    "start_scene": "epilogue_julia",
+    "start_scene": "name",
     "objects": [
     ],
     "scenes": [

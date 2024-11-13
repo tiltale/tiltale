@@ -2,8 +2,71 @@
     "scenes": [
         {
             "id": "reflection",
-            "background": "bg/graduation.png",
-            "objects": [],
+            "background": "bg/campus.png",
+            "objects": [
+                {
+                    "id": "goals",
+                    "visible": true,
+                    "type": "tasklist",
+                    "content": "Choices & Outcomes",
+                    "x": "30%",
+                    "y": "25%",
+                    "z": "1",
+                    "width": "40%",
+                    "height": "60%",
+                    "no_line_through": true,
+                    "answer_options": [
+                        {
+                            "content": "Finished your Degree",
+                            "done_condition": "!variables.exceeded_week4_course_time && !variables.exceeded_week3_course_time",
+                            "next_instruction": "[ You did not use time of other courses ]",
+                            "disabled": {
+                                "condition": "!variables.enabled",
+                                "explanation": "[ You used time of other courses ]"
+                            }
+                        },
+                        {
+                            "content": "Finished the extra course",
+                            "done_condition": "variables.outline_send == true",
+                            "next_instruction": "[ You did finish all tasks ]",
+                            "disabled": {
+                                "condition": "!variables.enabled",
+                                "explanation": "[ You did not finish all tasks ]"
+                            }
+                        },
+                        {
+                            "content": "You got a Job",
+                            "done_condition": "variables.future_goal_archieved == true && variables.future_aim_job == true",
+                            "next_instruction": "[ You went to the job interview ]",
+                            "condition": "variables.future_aim_job == true",
+                            "disabled": {
+                                "condition": "!variables.enabled",
+                                "explanation": "[ You did not go to the job interview ]"
+                            }
+                        },
+                        {
+                            "content": "Julia and you started to live together",
+                            "done_condition": "variables.future_goal_archieved == true && variables.future_aim_girlfriend == true",
+                            "next_instruction": "[ You did inspect the house ]",
+                            "condition": "variables.future_aim_girlfriend == true",
+                            "disabled": {
+                                "condition": "!variables.enabled",
+                                "explanation": "[ You did not go and inspect the house ]"
+                            }
+                        },
+                        {
+                            "content": "Julia and you both were allowed to your masters",
+                            "done_condition": "variables.future_goal_archieved == true && variables.future_aim_degree == true",
+                            "next_instruction": "[ You went go to the degree application ]",
+                            "condition": "variables.future_aim_degree == true",
+                            "disabled": {
+                                "condition": "!variables.enabled",
+                                "explanation": "[ You did not go to the degree application ]"
+                            }
+                        }
+                    ]
+                }
+            ],
             "dialogue": [
                 {
                     "type": "box",
@@ -12,7 +75,25 @@
                     "y": "0%",
                     "z": "1",
                     "width": "100%",
-                    "content": "<strong>The end</strong>"
+                    "content": "<strong style='font-size: 2vw'>The End</strong>",
+                    "answer_options": [
+                        {
+                            "type": "next",
+                            "events": [
+                                {
+                                    "type": "goto_scene",
+                                    "target": "name"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "events": [
+                {
+                    "type": "set_variable",
+                    "variable": "enabled",
+                    "value": true
                 }
             ]
         }

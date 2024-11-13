@@ -36,7 +36,7 @@
                 <div>
                     <svg width="100%" height="100%" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
                 </div>
-                <a class="w-full text-[1.25vw] cursor-not-allowed line-through" disabled>{@html a.content}</a>
+                <a class="w-full text-[1.25vw] cursor-not-allowed {!obj.no_line_through ? 'line-through' : ''}" disabled>{@html a.content}</a>
                 <p>{a.next_instruction}</p>
             </div>
         {:else if a.disabled === undefined || (a.disabled && evaluate_condition(a.disabled.condition))}

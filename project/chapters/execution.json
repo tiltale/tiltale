@@ -365,7 +365,7 @@
                         {
                             "content": "Send outline to Lisa",
                             "done_condition": "variables.outline_send == true",
-                            "next_instruction": "[ Meet with teacher ]",
+                            "next_instruction": "[ The end of the academic period ]",
                             "disabled": {
                                 "condition": "variables.outline_done == true && variables.characters_integrated == true && variables.events_integrated == true",
                                 "explanation": "[ First, write the outline and integrate characters and events ]"
