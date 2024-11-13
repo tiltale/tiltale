@@ -501,7 +501,7 @@
                                     "id": "sp_lisa2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "You better put you effort in this course, otherwise you're not going to get there [Name]!",
+                                    "content": "Not that being asleep during lectures of an extra course, which you just do for fun, is going to make you fail for you degree.",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
                                     "avatar_id": "lisa"
@@ -510,7 +510,7 @@
                                     "id": "sp_lisa3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Otherwise that sweet dream of yours will never come true!",
+                                    "content": "Now that I think of it, maybe this extra course is the perfect place to catch up on some sleep!",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
                                     "avatar_id": "lisa"

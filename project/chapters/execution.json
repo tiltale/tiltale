@@ -1686,7 +1686,7 @@
                                     "id": "sp_lisa3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Maybe you can write one or two events too, and the left over characters?",
+                                    "content": "If you have time, can you write one or two events too? And the left over characters?",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
                                     "avatar_id": "lisa"
@@ -2157,7 +2157,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>The last week.</h1><p style='font-size: 1.2vw'>You girlfriend surprisses you in the library at school.</p>"
+                            "text": "<h1>The last week.</h1><p style='font-size: 1.2vw'>You girlfriend surprises you in the library at school.</p>"
                         },
                         {
                             "id": "avatars",
@@ -2208,7 +2208,7 @@
                                     "id": "sp_student1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Much of the same, I hope we can finish it all.",
+                                    "content": "Well, luckily this course is not nessecary to finish the degree.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
@@ -2218,7 +2218,7 @@
                                     "id": "sp_julia3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "You surely will! I believe in you!",
+                                    "content": "And that degree, is the most important think, right?!",
                                     "name": "Julia",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "julia"
