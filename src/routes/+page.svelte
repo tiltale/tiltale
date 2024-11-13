@@ -367,8 +367,9 @@
     import Meeting from '/project/chapters/meeting.json';
     import Execution from '/project/chapters/execution.json';
     import Epilogue from '/project/chapters/epilogue.json';
+    import Reflection from '/project/chapters/reflection.json';
     
-    story.scenes = [...Setup.scenes, ...Prologue.scenes, ...Meeting.scenes, ...Execution.scenes, ...Epilogue.scenes];
+    story.scenes = [...Setup.scenes, ...Prologue.scenes, ...Meeting.scenes, ...Execution.scenes, ...Epilogue.scenes, ...Reflection.scenes];
 
     let curr_scene: any = null;
     let scene_visible = true;

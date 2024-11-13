@@ -1,0 +1,20 @@
+{
+    "scenes": [
+        {
+            "id": "reflection",
+            "background": "bg/graduation.png",
+            "objects": [],
+            "dialogue": [
+                {
+                    "type": "box",
+                    "visible": true,
+                    "x": "0%",
+                    "y": "0%",
+                    "z": "1",
+                    "width": "100%",
+                    "content": "<strong>The end</strong>"
+                }
+            ]
+        }
+    ]
+}
