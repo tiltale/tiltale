@@ -85,7 +85,7 @@
         <CharacterCard obj={o} close_callback={handle_events} />
         {/if}        
         {#if o.type == 'tasklist'}
-        <TaskList obj={o} event_callback={handle_events} variables_in_text={variables_in_text} evaluate_condition={evaluate_condition} />
+        <TaskList obj={o} event_callback={handle_events} variables_in_text={variables_in_text} evaluate_condition={evaluate_condition} load_Google_font={load_Google_font} />
         {/if}
         {/each}
         {/if}
@@ -150,7 +150,7 @@
             <CharacterCard obj={o} close_callback={handle_events} />
             {/if}
             {#if o.type == 'tasklist'}
-            <TaskList obj={o} event_callback={handle_events} variables_in_text={variables_in_text} evaluate_condition={evaluate_condition} />
+            <TaskList obj={o} event_callback={handle_events} variables_in_text={variables_in_text} evaluate_condition={evaluate_condition} load_Google_font={load_Google_font} />
             {/if}            
         {/if}
         {/each}

@@ -46,7 +46,7 @@
                     "y": "0%",
                     "z": "1",
                     "width": "100%",
-                    "visible": true,
+                    "visible": false,
                     "step": 14,
                     "objects": [
                         {
@@ -82,7 +82,7 @@
                                             {
                                                 "type": "set_variable",
                                                 "variable": "reserved_value_week4",
-                                                "value": 70000
+                                                "value": 60000
                                             },
                                             {
                                                 "type": "goto_dialogue",
@@ -116,6 +116,10 @@
                                                 "type": "set_variable",
                                                 "variable": "is_running_week4",
                                                 "value": true
+                                            },
+                                            {
+                                                "type": "show_object",
+                                                "target": "future_task"
                                             }
                                         ]
                                     }
@@ -230,12 +234,11 @@
                     "id": "contact_tasks",
                     "visible": false,
                     "type": "tasklist",
-                    "content": "Contact",
-                    "x": "30%",
-                    "y": "25%",
+                    "content": "To-Contact",
+                    "x": "34%",
+                    "y": "27%",
                     "z": "1",
                     "width": "40%",
-                    "height": "60%",
                     "answer_options": [
                         {
                             "content": "Fetch characters from Cesare",
@@ -385,11 +388,10 @@
                     "visible": false,
                     "type": "tasklist",
                     "content": "To-Do",
-                    "x": "30%",
-                    "y": "25%",
+                    "x": "34%",
+                    "y": "27%",
                     "z": "1",
                     "width": "40%",
-                    "height": "60%",
                     "answer_options": [
                         {
                             "content": "Write outline (60t)",
@@ -2245,6 +2247,10 @@
                                     "name": "Julia",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "julia",
+                                    "answer_timer": {
+                                        "duration": 6000,
+                                        "default_option_index": 2
+                                    },
                                     "answer_options": [
                                         {
                                             "content": "[ Inspect the house with your girlfriend (20t) ]",
@@ -2298,6 +2304,10 @@
                                     "name": "Julia",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "julia",
+                                    "answer_timer": {
+                                        "duration": 6000,
+                                        "default_option_index": 2
+                                    },
                                     "answer_options": [
                                         {
                                             "content": "[ Go to the job interview (20t) ]",
@@ -2351,6 +2361,10 @@
                                     "name": "Julia",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "julia",
+                                    "answer_timer": {
+                                        "duration": 6000,
+                                        "default_option_index": 2
+                                    },
                                     "answer_options": [
                                         {
                                             "content": "[ Apply for your next degree (20t) ]",

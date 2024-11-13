@@ -77,6 +77,16 @@
                             "visible": true,
                             "dialogue": [
                                 {
+                                    "id": "sp_student1",
+                                    "type": "thought",
+                                    "visible": false,
+                                    "content": "&#91; Yawns &#93 This <span class='italic'>extra</span> course is really not what I thought it to be.",
+                                    "name": "You",
+                                    "name_color": "#6143CF",
+                                    "avatar_id": "student",
+                                    "is_player": true
+                                },
+                                {
                                     "id": "sp_teacher1",
                                     "type": "speech",
                                     "visible": false,
@@ -86,7 +96,7 @@
                                     "avatar_id": "teacher"
                                 },
                                 {
-                                    "id": "sp_student1",
+                                    "id": "sp_student2",
                                     "type": "thought",
                                     "visible": false,
                                     "content": "Oof, we better characterize him with these &#91;...&#93;",
@@ -113,15 +123,21 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_teacher1",
+                            "target": "sp_student1",
                             "keep_others": true,
                             "delay": 4000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1",
+                            "target": "sp_teacher1",
                             "keep_others": true,
                             "delay": 8000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_student2",
+                            "keep_others": true,
+                            "delay": 12000
                         }
                     ]
                 }

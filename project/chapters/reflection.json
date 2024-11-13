@@ -9,11 +9,9 @@
                     "visible": true,
                     "type": "tasklist",
                     "content": "Choices & Outcomes",
-                    "x": "30%",
-                    "y": "25%",
+                    "x": "34%",
+                    "y": "27%",
                     "z": "1",
-                    "width": "40%",
-                    "height": "60%",
                     "no_line_through": true,
                     "answer_options": [
                         {
@@ -71,11 +69,11 @@
                 {
                     "type": "box",
                     "visible": true,
-                    "x": "0%",
-                    "y": "0%",
+                    "x": "2%",
+                    "y": "2%",
                     "z": "1",
-                    "width": "100%",
-                    "content": "<strong style='font-size: 2vw'>The End</strong>",
+                    "width": "96%",
+                    "content": "<span style='font-size: 30px'><strong>The End</strong> | Overview</span>",
                     "answer_options": [
                         {
                             "type": "next",
