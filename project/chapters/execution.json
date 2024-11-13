@@ -26,13 +26,6 @@
                         }
                     ]
                 }
-            ],
-            "events": [
-                {
-                    "type": "set_variable",
-                    "variable": "future_aim_girlfriend",
-                    "value": true
-                }
             ]
         },
         {
