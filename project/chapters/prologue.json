@@ -491,7 +491,7 @@
                                     "id": "sp_flicktail1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "&#91;Nudges you firmly&#93; Hey! Wake up dreamer! Story time's over.",
+                                    "content": "&#91;Nudges you firmly&#93; Hey! Wake up dreamer! Story time is over.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
