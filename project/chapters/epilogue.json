@@ -485,7 +485,7 @@
             "events": []
         },
         {
-            "id": "epilogue_julia",
+            "id": "epilogue_willafernna",
             "background": "bg/park.png",
             "objects": [],
             "dialogue": [
@@ -503,7 +503,7 @@
                             "events": [
                                 {
                                     "type": "goto_scene",
-                                    "target": "epilogue_julia1",
+                                    "target": "epilogue_willafernna1",
                                     "animate": true        
                                 }
                             ]
@@ -513,7 +513,7 @@
             ]
         },
         {
-            "id": "epilogue_julia1",
+            "id": "epilogue_willafernna1",
             "background": "bg/park.png",
             "objects": [
                 {

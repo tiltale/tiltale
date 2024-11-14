@@ -2,7 +2,7 @@
     "scenes": [
         {
             "id": "harvest1",
-            "background": "bg/library.png",
+            "background": "bg/quercus.png",
             "objects": [],
             "dialogue": [
                 {
@@ -12,14 +12,14 @@
                     "y": "0%",
                     "z": "1",
                     "width": "100%",
-                    "content": "<strong>Week 3</strong> | Blackwell Academy, Library",
+                    "content": "<strong>Quercus Hills</strong> | Cedar Groove Woods",
                     "answer_options": [
                         {
                             "type": "next",
                             "events": [
                                 {
                                     "type": "goto_scene",
-                                    "target": "execution2",
+                                    "target": "harvest2",
                                     "animate": true        
                                 }
                             ]
@@ -29,12 +29,12 @@
             ]
         },
         {
-            "id": "execution2",
-            "background": "bg/library.png",
+            "id": "harvest2",
+            "background": "bg/quercus.png",
             "objects": [
                 {
-                    "id": "plannertimer",
-                    "type": "plannertimer",
+                    "id": "harvesttimer",
+                    "type": "harvesttimer",
                     "x": "0%",
                     "y": "0%",
                     "z": "1",
@@ -48,57 +48,57 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "week1",
-                                    "display_caption": "Week 1",
+                                    "id": "cycle1",
+                                    "display_caption": "Cycle 1",
                                     "duration": 100000,
                                     "finished_actions": {
                                         "events": [
                                             {
                                                 "type": "set_variable",
-                                                "variable": "is_running_week2",
+                                                "variable": "is_running_cycle2",
                                                 "value": true
                                             }
                                         ]
                                     }
                                 },
                                 {
-                                    "id": "week2",
-                                    "display_caption": "Week 2",
+                                    "id": "cycle2",
+                                    "display_caption": "Cycle 2",
                                     "duration": 100000,
                                     "finished_actions": {
                                         "events": [
                                             {
                                                 "type": "set_variable",
-                                                "variable": "reserved_value_week3",
+                                                "variable": "reserved_value_cycle3",
                                                 "value": 50000
                                             },
                                             {
                                                 "type": "set_variable",
-                                                "variable": "reserved_value_week4",
+                                                "variable": "reserved_value_cycle4",
                                                 "value": 60000
                                             },
                                             {
                                                 "type": "goto_dialogue",
-                                                "target": "other_courses_explanation",
+                                                "target": "winter_time_explanation",
                                                 "keep_others": false
                                             }
                                         ]
                                     }
                                 },
                                 {
-                                    "id": "week3",
-                                    "display_caption": "Week 3",
+                                    "id": "cycle3",
+                                    "display_caption": "Cycle 3",
                                     "duration": 100000,
                                     "exceed_reserved_value_actions": {
                                         "events": [
                                             {
                                                 "type": "goto_dialogue",
-                                                "target": "exceeded_time_week3",
+                                                "target": "exceeded_time_cycle3",
                                                 "keep_others": false
                                             },
                                             {
                                                 "type": "set_variable",
-                                                "variable": "is_running_week3",
+                                                "variable": "is_running_cycle3",
                                                 "value": false
                                             }
                                         ]
@@ -107,7 +107,7 @@
                                         "events": [
                                             {
                                                 "type": "set_variable",
-                                                "variable": "is_running_week4",
+                                                "variable": "is_running_cycle4",
                                                 "value": true
                                             },
                                             {
@@ -118,19 +118,19 @@
                                     }
                                 },
                                 {
-                                    "id": "week4",
-                                    "display_caption": "Week 4",
+                                    "id": "cycle4",
+                                    "display_caption": "Cycle 4",
                                     "duration": 100000,
                                     "exceed_reserved_value_actions": {
                                         "events": [
                                             {
                                                 "type": "goto_dialogue",
-                                                "target": "exceeded_time_week4",
+                                                "target": "exceeded_time_cycle4",
                                                 "keep_others": false
                                             },
                                             {
                                                 "type": "set_variable",
-                                                "variable": "is_running_week4",
+                                                "variable": "is_running_cycle4",
                                                 "value": false
                                             }
                                         ]
@@ -139,7 +139,7 @@
                                         "events": [
                                             {
                                                 "type": "goto_scene",
-                                                "target": "epilogue_julia"
+                                                "target": "epilogue_willafernna"
                                             }
                                         ]
                                     }
@@ -151,12 +151,12 @@
                 {
                     "id": "contact_menu",
                     "type": "sprite",
-                    "image": "/tools/contact.svg",
+                    "image": "/tools/contact.png",
                     "visible": false,
-                    "x": "2%",
+                    "x": "1%",
                     "y": "30%",
                     "z": "1",
-                    "width": "5%",
+                    "width": "6.15%",
                     "events": [
                         {
                             "type": "show_object",
@@ -218,7 +218,7 @@
                         },
                         {
                             "type": "set_variable",
-                            "variable": "step_plannertimer",
+                            "variable": "step_harvesttimer",
                             "value": 5
                         }               
                     ]
@@ -234,142 +234,142 @@
                     "width": "40%",
                     "answer_options": [
                         {
-                            "content": "Fetch characters from Cesare",
-                            "done_condition": "variables.characters_asked_first_time == true",
-                            "next_instruction": "[ Integrate into outline when received ]",
+                            "content": "Fetch Aculi analyses from Thristle",
+                            "done_condition": "variables.aculi_asked_first_time == true",
+                            "next_instruction": "[ Integrate into harvest plan when received ]",
                             "disabled": {
-                                "condition": "variables.characters_done == true || (!variables.characters_done && !variables.character_task)",
-                                "explanation": "[ First, finish your own characters ]"
+                                "condition": "variables.aculi_done == true || (!variables.aculi_done && !variables.aculi_task)",
+                                "explanation": "[ First, finish your own Aculi analyses ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "step_plannertimer",
+                                    "variable": "step_harvesttimer",
                                     "value": 5
                                 },
                                 {
                                     "type": "show_object",
-                                    "target": "fetch_characters1" 
+                                    "target": "fetch_aculi1" 
                                 }                               
                             ]
                         },
                         {
-                            "content": "Ask Cesare again about the characters",
-                            "condition": "variables.characters_asked_first_time == true",
-                            "done_condition": "variables.characters_asked_seccond_time == true",
-                            "next_instruction": "[ Integrate into outline when received ]",
+                            "content": "Ask Thristle again about the Aculi analyses",
+                            "condition": "variables.aculi_asked_first_time == true",
+                            "done_condition": "variables.aculi_asked_seccond_time == true",
+                            "next_instruction": "[ Integrate into harvest plan when received ]",
                             "disabled": {
-                                "condition": "variables.characters_second_fetch == true",
-                                "explanation": "[ Wait for Cesare to complete the characters ]"
+                                "condition": "variables.aculi_second_fetch == true",
+                                "explanation": "[ Wait for Thristle to complete the Aculi analyses ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "step_plannertimer",
+                                    "variable": "step_harvesttimer",
                                     "value": 5
                                 },
                                 {
                                     "type": "show_object",
-                                    "target": "fetch_characters2" 
+                                    "target": "fetch_aculi2" 
                                 }
                             ]
                         },
                         {
-                            "content": "Fetch events from Julian",
-                            "done_condition": "variables.events_asked_first_time == true",
-                            "next_instruction": "[ Integrate into outline when received ]",
+                            "content": "Fetch list of Quercus trees from Scrat",
+                            "done_condition": "variables.quercus_asked_first_time == true",
+                            "next_instruction": "[ Integrate into harvest plan when received ]",
                             "disabled": {
-                                "condition": "variables.outline_done == true",
-                                "explanation": "[ First, write the outline ]"
+                                "condition": "variables.harvest_plan_done == true",
+                                "explanation": "[ First, write the harvest plan ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "step_plannertimer",
+                                    "variable": "step_harvesttimer",
                                     "value": 5
                                 },
                                 {
                                     "type": "show_object",
-                                    "target": "fetch_events1" 
+                                    "target": "fetch_quercus1" 
                                 }
                             ]
                         },
                         {
-                            "content": "Ask Julian again about the events.",
-                            "condition": "variables.events_asked_first_time == true",
-                            "done_condition": "variables.events_asked_second_time == true",
-                            "next_instruction": "[ Integrate into outline when received ]",
+                            "content": "Ask Scrat again about the list of Quercus trees.",
+                            "condition": "variables.quercus_asked_first_time == true",
+                            "done_condition": "variables.quercus_asked_second_time == true",
+                            "next_instruction": "[ Integrate into harvest plan when received ]",
                             "disabled": {
-                                "condition": "variables.events_second_fetch == true",
-                                "explanation": "[ Give Julian some time to finish the events ]"
+                                "condition": "variables.quercus_second_fetch == true",
+                                "explanation": "[ Give Scrat some time to finish the list ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "step_plannertimer",
+                                    "variable": "step_harvesttimer",
                                     "value": 5
                                 },
                                 {
                                     "type": "show_object",
-                                    "target": "fetch_events2" 
+                                    "target": "fetch_quercus2" 
                                 }
                             ]
                         },
                         {
-                            "content": "Contact Lisa about the behaviour of Julian and problems of Cesare.",
-                            "condition": "variables.characters_asked_seccond_time == true && variables.events_asked_second_time == true",
-                            "done_condition": "variables.task_redevision == true",
-                            "next_instruction": "[ Afterswards, execute the plan as you decided with Lisa ]",
+                            "content": "Contact Flicktail about the behaviour of Scrat and problems of Thristle.",
+                            "condition": "variables.aculi_asked_seccond_time == true && variables.quercus_asked_second_time == true",
+                            "done_condition": "variables.directive_redevision == true",
+                            "next_instruction": "[ Afterwards, execute the plan as you decided with Flicktail ]",
                             "disabled": {
-                                "condition": "variables.characters_asked_seccond_time == true",
-                                "explanation": "[ First, ask Cesare again about the characters. ]"
+                                "condition": "variables.aculi_asked_seccond_time == true",
+                                "explanation": "[ First, ask Thristle again about the Aculi analyses. ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "step_plannertimer",
+                                    "variable": "step_harvesttimer",
                                     "value": 5
                                 },
                                 {
                                     "type": "show_object",
-                                    "target": "lisa_problems" 
+                                    "target": "flicktail_problems" 
                                 }
                             ]
                         },
                         {
-                            "content": "Contact Lisa about events (10t)",
-                            "done_condition": "variables.events_received == true",
-                            "next_instruction": "[ Next, integrate the events into the outline ]",
-                            "condition": "variables.task_redevision == true",
+                            "content": "Contact Flicktail about list of Quercus trees (10t)",
+                            "done_condition": "variables.quercus_received == true",
+                            "next_instruction": "[ Next, integrate the list into the harvest plan ]",
+                            "condition": "variables.directive_redevision == true",
                             "disabled": {
-                                "condition": "variables.some_events_done == true",
-                                "explanation": "[ First, write some events by yourself ]"
+                                "condition": "variables.some_quercus_trees_done == true",
+                                "explanation": "[ First, list some Quercus trees by yourself ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "events_received",
+                                    "variable": "quercus_received",
                                     "value": true
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_plannertimer",
+                                    "variable": "change_harvesttimer",
                                     "value": 10000
                                 }
                             ]
                         },
                         {
-                            "content": "Send outline to Lisa",
-                            "done_condition": "variables.outline_send == true",
-                            "next_instruction": "[ The end of the academic period ]",
+                            "content": "Send harvest plan to Flicktail",
+                            "done_condition": "variables.harvest_plan_send == true",
+                            "next_instruction": "[ The end of the harvest period ]",
                             "disabled": {
-                                "condition": "variables.outline_done == true && variables.characters_integrated == true && variables.events_integrated == true",
-                                "explanation": "[ First, write the outline and integrate characters and events ]"
+                                "condition": "variables.harvest_plan_send == true && variables.aculi_integrated == true && variables.quercus_integrated == true",
+                                "explanation": "[ First, write the harvest plan and integrate the list Quercus trees and the Aculi analyses ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "outline_send",
+                                    "variable": "harvest_plan_send",
                                     "value": true
                                 }
                             ]
@@ -387,134 +387,132 @@
                     "width": "40%",
                     "answer_options": [
                         {
-                            "content": "Write outline (60t)",
-                            "done_condition": "variables.outline_done == true",
-                            "next_instruction": "[ Send outline to Lisa, when done ]",
+                            "content": "Write harvest plan (60t)",
+                            "done_condition": "variables.harvest_plan_done == true",
+                            "next_instruction": "[ Send plan to Flicktail, when done ]",
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "outline_done",
+                                    "variable": "harvest_plan_done",
                                     "value": true
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_plannertimer",
+                                    "variable": "change_harvesttimer",
                                     "value": 60000
                                 }
                             ]
                         },
                         {
-                            "content": "Write characters (30t)",
-                            "done_condition": "variables.characters_done == true",
-                            "next_instruction": "[ Integrate in outline when done ]",
-                            "condition": "variables.character_task == true",
+                            "content": "Write Aculi analyses (30t)",
+                            "done_condition": "variables.aculi_done == true",
+                            "next_instruction": "[ Integrate in harvest plan when done ]",
+                            "condition": "variables.aculi_task == true",
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "characters_done",
+                                    "variable": "harvest_plan_done",
                                     "value": true
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_plannertimer",
+                                    "variable": "change_harvesttimer",
                                     "value": 30000
                                 }
                             ]
                         },
                         {
-                            "content": "Write Cesare's characters (30t)",
-                            "done_condition": "variables.characters_extra_done == true",
-                            "next_instruction": "[ Integrate in outline when done ]",
-                            "condition": "variables.characters_asked_seccond_time == true",
+                            "content": "Write Thristles' Aculi analyses (30t)",
+                            "done_condition": "variables.aculi_extra_done == true",
+                            "next_instruction": "[ Integrate in harvest plan when done ]",
+                            "condition": "variables.aculi_asked_seccond_time == true",
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "characters_extra_done",
+                                    "variable": "aculi_extra_done",
                                     "value": true
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_plannertimer",
+                                    "variable": "change_harvesttimer",
                                     "value": 30000
                                 }
                             ]
                         },
                         {
-                            "content": "Write some events(20t)",
-                            "done_condition": "variables.some_events_done == true",
-                            "next_instruction": "[ Integrate in outline when done ]",
-                            "condition": "variables.task_redevision == true",
+                            "content": "List some Quercus trees (20t)",
+                            "done_condition": "variables.some_quercus_done == true",
+                            "next_instruction": "[ Integrate in harvest plan when done ]",
+                            "condition": "variables.directive_redevision == true",
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "some_events_done",
+                                    "variable": "some_quercus_done",
                                     "value": true
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_plannertimer",
+                                    "variable": "change_harvesttimer",
                                     "value": 20000
                                 }
                             ]
                         },
                         {
-                            "content": "Integrate events (20t)",
-                            "done_condition": "variables.events_integrated == true",
-                            "condition": "!variables.task_redevision",
+                            "content": "Integrate list of Quercus trees (20t)",
+                            "condition": "!variables.directive_redevision",
                             "disabled": {
-                                "condition": "variables.events_received == true",
-                                "explanation": "[ First, fetch events from Julian. ]"
+                                "condition": "variables.quercus_received == true",
+                                "explanation": "[ First, fetch events from Scrat. ]"
                             }
                         },
                         {
-                            "content": "Integrate events (20t)",
-                            "done_condition": "variables.events_integrated == true",
-                            "next_instruction": "[ Send outline to Lisa when done ]",
-                            "condition": "variables.task_redevision == true",
+                            "content": "Integrate list of Quercus trees (20t)",
+                            "done_condition": "variables.quercus_integrated == true",
+                            "next_instruction": "[ Send harvest plan to Flicktail when done ]",
+                            "condition": "variables.directive_redevision == true",
                             "disabled": {
-                                "condition": "variables.events_received == true",
-                                "explanation": "[ First, fetch events from Lisa. ]"
+                                "condition": "variables.quercus_received == true",
+                                "explanation": "[ First, fetch list of Quercus trees from Flicktail. ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "events_integrated",
+                                    "variable": "quercus_integrated",
                                     "value": true
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_plannertimer",
+                                    "variable": "change_harvesttimer",
                                     "value": 20000
                                 }
                             ]
                         },
                         {
-                            "content": "Integrate characters (20t)",
-                            "done_condition": "variables.characters_integrated == true",
-                            "condition": "!variables.characters_asked_seccond_time",
+                            "content": "Integrate Aculi analyses in harvest plan (20t)",
+                            "condition": "!variables.aculi_asked_seccond_time",
                             "disabled": {
-                                "condition": "variables.characters_received == true",
-                                "explanation": "[ First, fetch characters from Cesare. ]"
+                                "condition": "variables.aculi_received == true",
+                                "explanation": "[ First, fetch Aculi analyses from Thristle. ]"
                             }
                         },
                         {
-                            "content": "Integrate characters (20t)",
-                            "done_condition": "variables.characters_integrated == true",
-                            "next_instruction": "[ Send outline to Lisa when done ]",
-                            "condition": "variables.characters_asked_seccond_time == true",
+                            "content": "Integrate Aculi analyses in harvest plan (20t)",
+                            "done_condition": "variables.aculi_integrated == true",
+                            "next_instruction": "[ Send harvest plan to Flicktail when done ]",
+                            "condition": "variables.aculi_asked_seccond_time == true",
                             "disabled": {
-                                "condition": "variables.characters_extra_done == true",
-                                "explanation": "[ First, write the characters from Cesare. ]"
+                                "condition": "variables.aculi_extra_done == true",
+                                "explanation": "[ First, write the Thristles' Aculi analyses ]"
                             },
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "characters_integrated",
+                                    "variable": "aculi_integrated",
                                     "value": true
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "change_plannertimer",
+                                    "variable": "change_harvesttimer",
                                     "value": 20000
                                 }
                             ]
@@ -522,7 +520,7 @@
                     ]
                 },
                 {
-                    "id": "fetch_characters1",
+                    "id": "fetch_aculi1",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "23%",
@@ -631,7 +629,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "step_plannertimer",
+                                                    "variable": "step_harvesttimer",
                                                     "value": 14
                                                 },
                                                 {
@@ -697,7 +695,7 @@
                     ]
                 },
                 {
-                    "id": "fetch_characters2",
+                    "id": "fetch_aculi2",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "23%",
@@ -862,7 +860,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "step_plannertimer",
+                                                    "variable": "step_harvesttimer",
                                                     "value": 14
                                                 },
                                                 {
@@ -958,7 +956,7 @@
                     ]
                 },
                 {
-                    "id": "fetch_events1",
+                    "id": "fetch_quercus1",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "23%",
@@ -1096,7 +1094,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "step_plannertimer",
+                                                    "variable": "step_harvesttimer",
                                                     "value": 14
                                                 },
                                                 {
@@ -1170,7 +1168,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "step_plannertimer",
+                                                    "variable": "step_harvesttimer",
                                                     "value": 14
                                                 },
                                                 {
@@ -1308,7 +1306,7 @@
                     ]
                 },
                 {
-                    "id": "fetch_events2",
+                    "id": "fetch_quercus2",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "23%",
@@ -1384,7 +1382,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "step_plannertimer",
+                                                    "variable": "step_harvesttimer",
                                                     "value": 14
                                                 },
                                                 {
@@ -1415,7 +1413,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "step_plannertimer",
+                                                    "variable": "step_harvesttimer",
                                                     "value": 14
                                                 },
                                                 {
@@ -1460,7 +1458,7 @@
                     ]
                 },
                 {
-                    "id": "lisa_problems",
+                    "id": "flicktail_problems",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "23%",
@@ -1612,7 +1610,7 @@
                     ]
                 },
                 {
-                    "id": "task_redevision",
+                    "id": "directive_redevision",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "23%",
@@ -1764,7 +1762,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "step_plannertimer",
+                                                    "variable": "step_harvesttimer",
                                                     "condition": "variables.contact_teacher_now == true",
                                                     "value": 5,
                                                     "delay": 5000
@@ -1775,7 +1773,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "step_plannertimer",
+                                                    "variable": "step_harvesttimer",
                                                     "value": 14
                                                 }
                                             ]
@@ -1845,7 +1843,7 @@
                     ]
                 },
                 {
-                    "id": "contact_teacher",
+                    "id": "contact_oakpaw",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "23%",
@@ -2028,7 +2026,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "step_plannertimer",
+                                                    "variable": "step_harvesttimer",
                                                     "value": 14
                                                 }
                                             ]
@@ -2259,7 +2257,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "change_plannertimer",
+                                                    "variable": "change_harvesttimer",
                                                     "value": 20000
                                                 }
                                             ]
@@ -2316,7 +2314,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "change_plannertimer",
+                                                    "variable": "change_harvesttimer",
                                                     "value": 20000
                                                 }
                                             ]
@@ -2373,7 +2371,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "change_plannertimer",
+                                                    "variable": "change_harvesttimer",
                                                     "value": 20000
                                                 }
                                             ]
@@ -2471,7 +2469,7 @@
                 {
                     "id": "task_explanation",
                     "type": "speech",
-                    "content": "The tasks for the project can be executed via this menu.",
+                    "content": "The tasks for the Acorn Directive can be executed via this menu.",
                     "visible": true,
                     "x": "5%",
                     "y": "4%",
@@ -2496,7 +2494,7 @@
                 {
                     "id": "contact_explanation",
                     "type": "speech",
-                    "content": "If people need to be contacted, this can be done via this phone.",
+                    "content": "If you need to contact others, this can be done via this Chatter Twig.",
                     "visible": false,
                     "x": "5%",
                     "y": "15%",
@@ -2512,7 +2510,7 @@
                                 },
                                 {
                                     "type": "show_object",
-                                    "target": "plannertimer"
+                                    "target": "harvesttimer"
                                 }
                             ]
                         }
@@ -2572,9 +2570,9 @@
                     ]
                 },
                 {
-                    "id": "other_courses_explanation",
+                    "id": "winter_time_explanation",
                     "type": "speech",
-                    "content": "Other courses start to take up time as well (orange). Be carefull in how you devide your time.",
+                    "content": "The collection of regular Acorns is taking more and more time (orange). Be carefull; winter is approaching quickly.",
                     "visible": false,
                     "speech_position": "topright",
                     "x": "20%",
