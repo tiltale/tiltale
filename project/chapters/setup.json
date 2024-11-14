@@ -2,13 +2,13 @@
     "scenes": [
         {
             "id": "name",
-            "background": "bg/campus.png",
+            "background": "bg/woods.png",
             "objects": [
                 {
                     "id": "name_input",
                     "type": "textinput",
                     "limit": 18,
-                    "instruction": "<span style=\"font-size: 3vw; font-weight: bold\">Academic Abyss</span><br /><br />What's you first name?",
+                    "instruction": "<span style=\"font-size: 3vw; font-weight: bold\">Peanut Panic</span><br /><br />What's you first name?",
                     "x": "25%",
                     "y": "20%",
                     "width": "50%",
@@ -21,7 +21,7 @@
                         },
                         {
                             "type": "goto_scene",
-                            "target": "lecture0"
+                            "target": "presentation0"
                         }
                     ]
                 }

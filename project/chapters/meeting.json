@@ -1,7 +1,7 @@
 {
     "scenes": [
         {
-            "id": "meeting0",
+            "id": "conference0",
             "background": "bg/meeting.png",
             "objects": [],
             "dialogue": [

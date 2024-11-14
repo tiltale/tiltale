@@ -1,7 +1,7 @@
 {
     "id": "pressure-cooker",
-    "title": "Academic Stress",
-    "start_scene": "name",
+    "title": "Peanut Panic",
+    "start_scene": "presentation2",
     "objects": [
     ],
     "scenes": [
