@@ -309,7 +309,7 @@
                                             "events": [
                                                 {
                                                     "type": "goto_scene",
-                                                    "target": "reflection"
+                                                    "target": "deliberation"
                                                 }
                                             ]
                                         }
@@ -486,7 +486,7 @@
         },
         {
             "id": "epilogue_willafernna",
-            "background": "bg/park.png",
+            "background": "bg/wilaferna.png",
             "objects": [],
             "dialogue": [
                 {
@@ -496,7 +496,7 @@
                     "y": "0%",
                     "z": "1",
                     "width": "100%",
-                    "content": "<strong>Cedar Grove Park</strong> | Nearby Blackwell Academy",
+                    "content": "<strong>Nearby Canopy Hill</strong> | Ceder Groove Woods",
                     "answer_options": [
                         {
                             "type": "next",
@@ -514,10 +514,10 @@
         },
         {
             "id": "epilogue_willafernna1",
-            "background": "bg/park.png",
+            "background": "bg/wilaferna.png",
             "objects": [
                 {
-                    "id": "epilogue_julia",
+                    "id": "epilogue_winnaferna",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "8%",
@@ -531,7 +531,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>4 months later...</h1><p style='font-size: 1.2vw'>After congratulating Lisa after the ceremony, you and Julia went to the park.</p>"
+                            "text": "<h1>2 months later...</h1><p style='font-size: 1.2vw'>After congratulating Flicktail after the leafing ceremony, you and Willaferna went to the park.</p>"
                         },
                         {
                             "id": "avatars",
@@ -539,15 +539,15 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png",
+                                    "id": "player",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png",
                                     "visible": true
                                 },
                                 {
-                                    "id": "julia",
-                                    "name": "julia",
-                                    "img": "/project/img/avatars/julia.png",
+                                    "id": "willaferna",
+                                    "name": "willaferna",
+                                    "img": "/project/img/avatars/willaferna.png",
                                     "visible": true
                                 }
                             ]
@@ -562,132 +562,132 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_julia1",
+                                    "id": "sp_willaferna1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "&#91; Leans against you &#93; So...",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia2",
+                                    "id": "sp_willaferna2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "What are you thinking about?",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_student1",
+                                    "id": "sp_player1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "I dunno, eh... I mean sometimes I'd have wished things differently...",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julia3",
+                                    "id": "sp_willaferna3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "You mean, that you did not get your degree in time?",
-                                    "name": "Julia",
+                                    "content": "You mean, that you did not get your promotion done in time?",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_student2",
+                                    "id": "sp_player2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Yeah, and everyting attached to that...",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julia4",
+                                    "id": "sp_willaferna4",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Maybe we both just wanted to much.",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia5",
+                                    "id": "sp_willaferna5",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "On the other hand, now we have more time together.",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia6_future_goal_failed",
+                                    "id": "sp_willaferna6_future_aim_failed",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "&#91; Hugs you tightly &#93;",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia",
+                                    "avatar_id": "willaferna",
                                     "answer_options": [
                                         {
                                             "type": "next",
                                             "events": [
                                                 {
                                                     "type": "goto_scene",
-                                                    "target": "reflection"
+                                                    "target": "deliberation"
                                                 }
                                             ]
                                         }
                                     ]
                                 },
                                 {
-                                    "id": "sp_julia6_future_goal_girlfriend_succes",
+                                    "id": "sp_willaferna6_future_aim_house_succes",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "While you finish the loose ends of your degree, we can start to renovate our house a little.",
-                                    "name": "Julia",
+                                    "content": "While you finish the loose ends of your promotion, we can start to renovate our Nestling Nook a little.",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia6_future_goal_job_succes",
+                                    "id": "sp_willaferna6_future_aim_role_succes",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "And your still getting that job after you finilize your degree.",
-                                    "name": "Julia",
+                                    "content": "And your still getting that other role in the tribe after you finilize your promotion.",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia6_future_goal_degree_succes",
+                                    "id": "sp_willaferna6_future_aim_promotion_succes",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "And your still allowed to that masters degree, only you start a year later.",
-                                    "name": "Julia",
+                                    "content": "And your still allowed to the promotion, only you start a year later.",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia7_future_goal_succes",
+                                    "id": "sp_willaferna7_future_aim_succes",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "&#91; Hugs you tightly &#93;",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia",
+                                    "avatar_id": "willaferna",
                                     "answer_options": [
                                         {
                                             "type": "next",
                                             "events": [
                                                 {
                                                     "type": "goto_scene",
-                                                    "target": "reflection"
+                                                    "target": "deliberation"
                                                 }
                                             ]
                                         }
@@ -699,80 +699,80 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia1",
+                            "target": "sp_willaferna1",
                             "keep_others": true,
                             "delay": 3000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia2",
+                            "target": "sp_willaferna2",
                             "keep_others": true,
                             "delay": 6000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1",
+                            "target": "sp_player1",
                             "keep_others": true,
                             "delay": 9000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia3",
+                            "target": "sp_willaferna3",
                             "keep_others": true,
                             "delay": 12000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student2",
+                            "target": "sp_player2",
                             "keep_others": true,
                             "delay": 15000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia4",
+                            "target": "sp_willaferna4",
                             "keep_others": true,
                             "delay": 18000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia5",
+                            "target": "sp_willaferna5",
                             "keep_others": true,
                             "delay": 22000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia6_future_goal_failed",
+                            "target": "sp_willaferna6_future_aim_failed",
                             "keep_others": true,
                             "delay": 25000,
-                            "condition": "!variables.future_goal_archieved"
+                            "condition": "!variables.future_aim_archieved"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia6_future_goal_girlfriend_succes",
+                            "target": "sp_willaferna6_future_aim_house_succes",
                             "keep_others": true,
                             "delay": 25000,
-                            "condition": "variables.future_goal_archieved == true && variables.future_aim_girlfriend == true"
+                            "condition": "variables.future_aim_archieved == true && variables.future_aim_house == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia6_future_goal_job_succes",
+                            "target": "sp_willaferna6_future_aim_role_succes",
                             "keep_others": true,
                             "delay": 25000,
-                            "condition": "variables.future_goal_archieved == true && variables.future_aim_job == true"
+                            "condition": "variables.future_aim_archieved == true && variables.future_aim_role == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia6_future_goal_degree_succes",
+                            "target": "sp_willaferna6_future_aim_promotion_succes",
                             "keep_others": true,
                             "delay": 25000,
-                            "condition": "variables.future_goal_archieved == true && variables.future_aim_degree == true"
+                            "condition": "variables.future_aim_archieved == true && variables.future_aim_promotion == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia7_future_goal_succes",
+                            "target": "sp_willaferna7_future_aim_succes",
                             "keep_others": true,
                             "delay": 28000,
-                            "condition": "variables.future_goal_archieved"
+                            "condition": "variables.future_aim_archieved"
                         }
                     ]
                 }
