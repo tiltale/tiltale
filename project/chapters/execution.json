@@ -193,9 +193,9 @@
                     ]
                 },
                 {
-                    "id": "contact_teacher_button",
+                    "id": "contact_oakpaw_button",
                     "type": "sprite",
-                    "image": "/tools/teacher.svg",
+                    "image": "/tools/oakpaw.svg",
                     "visible": false,
                     "x": "2%",
                     "y": "42%",
@@ -204,7 +204,7 @@
                     "events": [
                         {
                             "type": "show_object",
-                            "target": "contact_teacher"
+                            "target": "contact_oakpaw"
                         },
                         {
                             "type": "hide_object",
@@ -1737,7 +1737,7 @@
                                                 },
                                                 {
                                                     "type": "goto_dialogue",
-                                                    "target": "contact_teacher_explanation",
+                                                    "target": "contact_oakpaw_explanation",
                                                     "condition": "variables.contact_oakpaw_later == true"
                                                 },
                                                 {
@@ -2530,9 +2530,9 @@
                     ]
                 },
                 {
-                    "id": "contact_teacher_explanation",
+                    "id": "contact_oakpaw_explanation",
                     "type": "speech",
-                    "content": "The teacher can be contacted at any time via this button.",
+                    "content": "Elder Oakpaw can be called at any time via this button.",
                     "visible": false,
                     "x": "5%",
                     "y": "28%",
@@ -2543,13 +2543,8 @@
                             "events": [
                                 {
                                     "type": "hide_dialogue",
-                                    "target": "contact_teacher_explanation",
+                                    "target": "contact_oakpaw_explanation",
                                     "keep_others": false
-                                },
-                                {
-                                    "type": "set_variable",
-                                    "variable": "is_running_week1",
-                                    "value": true
                                 }
                             ]
                         }
@@ -2574,12 +2569,12 @@
                             "events": [
                                 {
                                     "type": "hide_dialogue",
-                                    "target": "other_courses_explanation",
+                                    "target": "winter_time_explanation",
                                     "keep_others": false
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "is_running_week3",
+                                    "variable": "is_running_cycle3",
                                     "value": true
                                 }
                             ]
@@ -2587,7 +2582,7 @@
                     ]
                 },
                 {
-                    "id": "exceeded_time_week3",
+                    "id": "exceeded_time_cylcle3",
                     "type": "box",
                     "visible": false,
                     "x": "30%",
@@ -2597,24 +2592,24 @@
                         "visible": true
                     },
                     "width": "40%",
-                    "content": "<div style='margin: 20px 0 -20px 0; color: #FF8A43; text-align: center; font-weight: bold; font-size: 20px'>You have used all free time for week 3.</div>",
+                    "content": "<div style='margin: 20px 0 -20px 0; color: #FF8A43; text-align: center; font-weight: bold; font-size: 20px'>You have used all free time for the third cycle.</div>",
                     "answer_options": [
                         {
-                            "content": "[ Skip to next week ]",
+                            "content": "[ Skip to next cycle ]",
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "exceeded_week3_course_time",
+                                    "variable": "exceeded_cycle3_time",
                                     "value": false
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "is_running_week4",
+                                    "variable": "is_running_cycle4",
                                     "value": true
                                 },
                                 {
                                     "type": "hide_dialogue",
-                                    "target": "exceeded_time_week3"
+                                    "target": "exceeded_time_cycle3"
                                 },
                                 {
                                     "type": "show_object",
@@ -2627,16 +2622,16 @@
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "exceeded_week3_course_time",
+                                    "variable": "exceeded_cycle3_time",
                                     "value": true
                                 },
                                 {
                                     "type": "hide_dialogue",
-                                    "target": "exceeded_time_week3"
+                                    "target": "exceeded_time_cycle3"
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "is_running_week3",
+                                    "variable": "is_running_cycle3",
                                     "value": true
                                 }
                             ]
@@ -2644,7 +2639,7 @@
                     ]
                 },
                 {
-                    "id": "exceeded_time_week4",
+                    "id": "exceeded_time_cycle4",
                     "type": "box",
                     "visible": false,
                     "x": "30%",
@@ -2654,29 +2649,29 @@
                         "visible": true
                     },
                     "width": "40%",
-                    "content": "<div style='margin: 20px 0 -20px 0; color: #FF8A43; text-align: center; font-weight: bold; font-size: 20px'>You have used all free time for week 4.</div>",
+                    "content": "<div style='margin: 20px 0 -20px 0; color: #FF8A43; text-align: center; font-weight: bold; font-size: 20px'>You have used all free time of the fourth cycle.</div>",
                     "answer_options": [
                         {
-                            "content": "[ End this academic period ]",
+                            "content": "[ End the harvest season ]",
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "exceeded_week4_course_time",
+                                    "variable": "exceeded_cycle4_time",
                                     "value": false
                                 },
                                 {
                                     "type": "hide_dialogue",
-                                    "target": "exceeded_time_week4"
+                                    "target": "exceeded_time_cycle4"
                                 },
                                 {
                                     "type": "goto_scene",
                                     "target": "epilogue_graduation",
-                                    "condition": "!variables.exceeded_week3_course_time"
+                                    "condition": "!variables.exceeded_cycle3_time"
                                 },
                                 {
                                     "type": "goto_scene",
-                                    "target": "epilogue_julia",
-                                    "condition": "variables.exceeded_week3_course_time"
+                                    "target": "epilogue_willaferna",
+                                    "condition": "variables.exceeded_cycle3_time == true"
                                 }
                             ]
                         },
@@ -2685,21 +2680,17 @@
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "exceeded_week4_course_time",
+                                    "variable": "exceeded_cycle4_time",
                                     "value": true
                                 },
                                 {
                                     "type": "hide_dialogue",
-                                    "target": "exceeded_time_week4"
+                                    "target": "exceeded_time_cycle4"
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "is_running_week4",
+                                    "variable": "is_running_cycle4",
                                     "value": true
-                                },
-                                {
-                                    "type": "goto_scene",
-                                    "target": "epilogue_julia"
                                 }
                             ]
                         }
