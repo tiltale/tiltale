@@ -70,7 +70,7 @@
                                             {
                                                 "type": "set_variable",
                                                 "variable": "reserved_value_cycle3",
-                                                "value": 50000
+                                                "value": 60000
                                             },
                                             {
                                                 "type": "set_variable",
@@ -458,7 +458,7 @@
                             ]
                         },
                         {
-                            "content": "Integrate list of Quercus trees (20t)",
+                            "content": "Integrate list of Quercus trees (25t)",
                             "condition": "!variables.directive_redevision",
                             "disabled": {
                                 "condition": "variables.quercus_received == true",
@@ -466,7 +466,7 @@
                             }
                         },
                         {
-                            "content": "Integrate list of Quercus trees (20t)",
+                            "content": "Integrate list of Quercus trees (25t)",
                             "done_condition": "variables.quercus_integrated == true",
                             "next_instruction": "[ Send harvest plan to Flicktail when done ]",
                             "condition": "variables.directive_redevision == true",
@@ -483,12 +483,12 @@
                                 {
                                     "type": "set_variable",
                                     "variable": "change_harvesttimer",
-                                    "value": 20000
+                                    "value": 25000
                                 }
                             ]
                         },
                         {
-                            "content": "Integrate Aculi analyses in harvest plan (20t)",
+                            "content": "Integrate Aculi analyses in harvest plan (25t)",
                             "condition": "!variables.aculi_asked_seccond_time",
                             "disabled": {
                                 "condition": "variables.aculi_received == true",
@@ -496,7 +496,7 @@
                             }
                         },
                         {
-                            "content": "Integrate Aculi analyses in harvest plan (20t)",
+                            "content": "Integrate Aculi analyses in harvest plan (25t)",
                             "done_condition": "variables.aculi_integrated == true",
                             "next_instruction": "[ Send harvest plan to Flicktail when done ]",
                             "condition": "variables.aculi_asked_seccond_time == true",
@@ -513,7 +513,7 @@
                                 {
                                     "type": "set_variable",
                                     "variable": "change_harvesttimer",
-                                    "value": 20000
+                                    "value": 25000
                                 }
                             ]
                         }
@@ -598,7 +598,7 @@
                                     "visible": false,
                                     "content": "Well, honestly I am struggling a little bit with it, but I think I can have it done by tomorrow!",
                                     "name": "Thistle",
-                                    "name_color": "#6143CF",
+                                    "name_color": "#116592",
                                     "avatar_id": "thistle"
                                 },
                                 {

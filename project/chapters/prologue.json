@@ -163,7 +163,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>2 months later...</h1><p style='font-size: 1.2vw'>The winter supplies are stocked, the special promotions are given, and everyone is enjoying the prospect of a cozy wintertime.</p>"
+                            "text": "<h1>2 months later...</h1><p style='font-size: 1.2vw'>The winter supplies are stocked, the regular promotions are given, and everyone is enjoying the prospect of a cozy wintertime.</p>"
                         },
                         {
                             "id": "avatars",
@@ -500,7 +500,7 @@
                                     "id": "sp_flicktail2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Not that being asleep during Oakpaw's elucidations is going to make you fail for you promotion.",
+                                    "content": "Not that being asleep during Oakpaw's elucidations is going to make you fail for you <span class='italic'>regular</span> promotion.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
@@ -509,7 +509,7 @@
                                     "id": "sp_flicktail3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Now that I think of it, maybe these afternoon conferences are the perfect place to catch up on some sleep!",
+                                    "content": "But if you really want to double down on that <span class='italic'>extra</span> step you probably should spend your time differently.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"

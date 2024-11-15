@@ -47,7 +47,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>2 months later...</h1><p style='font-size: 1.2vw'>The winter supplies are stocked, the special promotions are given, and everyone is enjoying the prospect of a cozy wintertime.</p>"
+                            "text": "<h1>2 months later...</h1><p style='font-size: 1.2vw'>The winter supplies are stocked, the regular promotions are given, and everyone is enjoying the prospect of a cozy wintertime.</p>"
                         },
                         {
                             "id": "avatars",
@@ -668,7 +668,7 @@
                                     "id": "sp_willaferna6_future_aim_promotion_succes",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "And your still allowed to the promotion, only you start a year later.",
+                                    "content": "And your still allowed to the following promotion, only after the regular one is done.",
                                     "name": "Willaferna",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "willaferna"
