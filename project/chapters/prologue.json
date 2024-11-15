@@ -298,7 +298,7 @@
                                             ]
                                         },
                                         {
-                                            "content": "[ Start living together with Willafernna ]",
+                                            "content": "[ Start living together with Willaferna ]",
                                             "events": [
                                                 {
                                                     "type": "goto_scene",
@@ -306,7 +306,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_aim_girlfriend",
+                                                    "variable": "future_aim_house",
                                                     "value": true
                                                 }
                                             ]

@@ -34,7 +34,7 @@
             "objects": [
                 {
                     "id": "harvesttimer",
-                    "type": "harvesttimer",
+                    "type": "plannertimer",
                     "x": "0%",
                     "y": "0%",
                     "z": "1",
@@ -234,7 +234,7 @@
                     "width": "40%",
                     "answer_options": [
                         {
-                            "content": "Fetch Aculi analyses from Thristle",
+                            "content": "Fetch Aculi analyses from Thistle",
                             "done_condition": "variables.aculi_asked_first_time == true",
                             "next_instruction": "[ Integrate into harvest plan when received ]",
                             "disabled": {
@@ -254,13 +254,13 @@
                             ]
                         },
                         {
-                            "content": "Ask Thristle again about the Aculi analyses",
+                            "content": "Ask Thistle again about the Aculi analyses",
                             "condition": "variables.aculi_asked_first_time == true",
                             "done_condition": "variables.aculi_asked_seccond_time == true",
                             "next_instruction": "[ Integrate into harvest plan when received ]",
                             "disabled": {
                                 "condition": "variables.aculi_second_fetch == true",
-                                "explanation": "[ Wait for Thristle to complete the Aculi analyses ]"
+                                "explanation": "[ Wait for Thistle to complete the Aculi analyses ]"
                             },
                             "events": [
                                 {
@@ -316,13 +316,13 @@
                             ]
                         },
                         {
-                            "content": "Contact Flicktail about the behaviour of Scrat and problems of Thristle.",
+                            "content": "Contact Flicktail about the behaviour of Scrat and problems of Thistle.",
                             "condition": "variables.aculi_asked_seccond_time == true && variables.quercus_asked_second_time == true",
                             "done_condition": "variables.directive_redevision == true",
                             "next_instruction": "[ Afterwards, execute the plan as you decided with Flicktail ]",
                             "disabled": {
                                 "condition": "variables.aculi_asked_seccond_time == true",
-                                "explanation": "[ First, ask Thristle again about the Aculi analyses. ]"
+                                "explanation": "[ First, ask Thistle again about the Aculi analyses. ]"
                             },
                             "events": [
                                 {
@@ -422,7 +422,7 @@
                             ]
                         },
                         {
-                            "content": "Write Thristles' Aculi analyses (30t)",
+                            "content": "Write Thistles' Aculi analyses (30t)",
                             "done_condition": "variables.aculi_extra_done == true",
                             "next_instruction": "[ Integrate in harvest plan when done ]",
                             "condition": "variables.aculi_asked_seccond_time == true",
@@ -492,7 +492,7 @@
                             "condition": "!variables.aculi_asked_seccond_time",
                             "disabled": {
                                 "condition": "variables.aculi_received == true",
-                                "explanation": "[ First, fetch Aculi analyses from Thristle. ]"
+                                "explanation": "[ First, fetch Aculi analyses from Thistle. ]"
                             }
                         },
                         {
@@ -502,7 +502,7 @@
                             "condition": "variables.aculi_asked_seccond_time == true",
                             "disabled": {
                                 "condition": "variables.aculi_extra_done == true",
-                                "explanation": "[ First, write the Thristles' Aculi analyses ]"
+                                "explanation": "[ First, write the Thistles' Aculi analyses ]"
                             },
                             "events": [
                                 {
@@ -534,7 +534,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>While waiting for Cesare to answer your call, you remember that he was struggeling with his mental health.</p>"
+                            "text": "<h1>The Twig is rustling...</h1><p style='font-size: 1.2vw'>While waiting for Thistle to answer your call, you remember that he has not been feeling well.</p>"
                         },
                         {
                             "id": "avatars",
@@ -542,14 +542,14 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png"
+                                    "id": "player",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png"
                                 },
                                 {
-                                    "id": "cesare",
-                                    "name": "cesare",
-                                    "img": "/project/img/avatars/cesare.png",
+                                    "id": "thistle",
+                                    "name": "thistle",
+                                    "img": "/player/img/avatars/thistle.png",
                                     "visible": false
                                 }
                             ]
@@ -564,68 +564,68 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_cesare1",
+                                    "id": "sp_thistle1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Hi! What's up!",
-                                    "name": "Cesare",
+                                    "name": "Thistle",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare"
+                                    "avatar_id": "thistle"
                                 },
                                 {
-                                    "id": "sp_student1",
+                                    "id": "sp_player1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Hi!",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_student2",
+                                    "id": "sp_player2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Do you have finished the characters already by any chance?",
+                                    "content": "Do you have finished the Aculi analyses already by any chance?",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_cesare2",
+                                    "id": "sp_thistle2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Well, honestly I am struggling a little bit with them, but I think I can have them done by tomorrow!",
-                                    "name": "Cesare",
+                                    "content": "Well, honestly I am struggling a little bit with it, but I think I can have it done by tomorrow!",
+                                    "name": "Thistle",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "cesare"
+                                    "avatar_id": "thistle"
                                 },
                                 {
-                                    "id": "sp_student3",
+                                    "id": "sp_player3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Okay, I will contact you back then around that time!",
+                                    "content": "Okay, I will call you back then around that time!",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_cesare3",
+                                    "id": "sp_thistle3",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Bye!",
-                                    "name": "Cesare",
+                                    "name": "Thistle",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare",
+                                    "avatar_id": "thistle",
                                     "answer_options": [
                                         {
                                             "type": "next",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "fetch_characters1"
+                                                    "target": "fetch_aculi1"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -634,12 +634,12 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "characters_asked_first_time",
+                                                    "variable": "aculi_asked_first_time",
                                                     "value": true
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "characters_second_fetch",
+                                                    "variable": "aculi_second_fetch",
                                                     "value": true,
                                                     "delay": 10000
                                                 }
@@ -653,42 +653,42 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare1",
+                            "target": "sp_thistle1",
                             "delay": 2000,
                             "keep_others": true
                         },
                         {
                             "type": "show_object",
-                            "target": "cesare",
+                            "target": "thistle",
                             "delay": 2000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1",
+                            "target": "sp_player1",
                             "delay": 5000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student2",
+                            "target": "sp_player2",
                             "delay": 6000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare2",
+                            "target": "sp_thistle2",
                             "delay": 9000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student3",
+                            "target": "sp_player3",
                             "delay": 12000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare3",
+                            "target": "sp_thistle3",
                             "delay": 15000,
                             "keep_others": true
                         }
@@ -709,7 +709,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>Cesare was fague about what he was struggling with. He promised to provide new material this day.</p>"
+                            "text": "<h1>The Twig is rustling...</h1><p style='font-size: 1.2vw'>Thistle was fague about what he was struggling with. He promised to provide new analyses this day.</p>"
                         },
                         {
                             "id": "avatars",
@@ -717,14 +717,14 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png"
+                                    "id": "player",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png"
                                 },
                                 {
-                                    "id": "cesare1",
-                                    "name": "cesare",
-                                    "img": "/project/img/avatars/cesare.png",
+                                    "id": "thistle1",
+                                    "name": "thistle",
+                                    "img": "/project/img/avatars/thistle.png",
                                     "visible": false
                                 }
                             ]
@@ -739,124 +739,124 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_cesare1",
+                                    "id": "sp_thistle1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "&#91; Groans a little &#93; He.. Hello [Name]!",
-                                    "name": "Cesare",
+                                    "name": "Thistle",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare1"
+                                    "avatar_id": "thistle1"
                                 },
                                 {
-                                    "id": "sp_student1",
+                                    "id": "sp_player1",
                                     "type": "thought",
                                     "visible": false,
                                     "content": "That does not sound good...",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_student2",
+                                    "id": "sp_player2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Hi, how's everything going?",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_cesare2",
+                                    "id": "sp_thistle2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Well to be honest...",
-                                    "name": "Cesare",
+                                    "name": "Thistle",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare1"
+                                    "avatar_id": "thistle1"
                                 },
                                 {
-                                    "id": "sp_cesare3",
+                                    "id": "sp_thistle3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Remember that I told about the psychologist?",
-                                    "name": "Cesare",
+                                    "content": "Remember that I missed some of Oakpaws' classes lately?",
+                                    "name": "Thistle",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare1"
+                                    "avatar_id": "thistle1"
                                 },
                                 {
-                                    "id": "sp_student3",
+                                    "id": "sp_player3",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Eheh...",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_cesare4",
+                                    "id": "sp_thistle4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Okay good... So I am afraid I have some relapse happening right now.",
-                                    "name": "Cesare",
+                                    "content": "Okay good... So I got some flower buds, which should have cured my stomach.",
+                                    "name": "Thistle",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare1"
+                                    "avatar_id": "thistle1"
                                 },
                                 {
-                                    "id": "sp_cesare5",
+                                    "id": "sp_thistle5",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "And... I am afraid that I won't be able to finish the characters.",
-                                    "name": "Cesare",
+                                    "content": "But... Honestly they only made me feel worse...",
+                                    "name": "Thistle",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare1"
+                                    "avatar_id": "thistle1"
                                 },
                                 {
-                                    "id": "sp_student4",
+                                    "id": "sp_player4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Oof, okay. I am sorry to hear that. No worries. I will take over that task!",
+                                    "content": "Oof, okay. I am sorry to hear that. No worries. I will do the Aculi analyses instead!",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_cesare6",
+                                    "id": "sp_thistle6",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Okay, thanks!.",
-                                    "name": "Cesare",
+                                    "content": "Okay, thanks!",
+                                    "name": "Thistle",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare1"
+                                    "avatar_id": "thistle1"
                                 },
                                 {
-                                    "id": "sp_student5",
+                                    "id": "sp_player5",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Hopefully your better soon! But take your time!",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_cesare7",
+                                    "id": "sp_thistle7",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Thanks! Bye.",
-                                    "name": "Cesare",
+                                    "name": "Thistle",
                                     "name_color": "#116592",
-                                    "avatar_id": "cesare1",
+                                    "avatar_id": "thistle1",
                                     "answer_options": [
                                         {
                                             "type": "next",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "fetch_characters2"
+                                                    "target": "fetch_aculi2"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -865,7 +865,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "characters_asked_seccond_time",
+                                                    "variable": "aculi_asked_seccond_time",
                                                     "value": true
                                                 }
                                             ]
@@ -878,78 +878,78 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare1",
+                            "target": "sp_thistle1",
                             "delay": 2000,
                             "keep_others": true
                         },
                         {
                             "type": "show_object",
-                            "target": "cesare1",
+                            "target": "thistle1",
                             "delay": 2000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1",
+                            "target": "sp_player1",
                             "delay": 5000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student2",
+                            "target": "sp_player2",
                             "delay": 6000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare2",
+                            "target": "sp_thistle2",
                             "delay": 9000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare3",
+                            "target": "sp_thistle3",
                             "delay": 11000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student3",
+                            "target": "sp_player3",
                             "delay": 14000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare4",
+                            "target": "sp_thistle4",
                             "delay": 17000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare5",
+                            "target": "sp_thistle5",
                             "delay": 18000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student4",
+                            "target": "sp_player4",
                             "delay": 21000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare6",
+                            "target": "sp_thistle6",
                             "delay": 24000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student5",
+                            "target": "sp_player5",
                             "delay": 27000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_cesare7",
+                            "target": "sp_thistle7",
                             "delay": 30000,
                             "keep_others": true
                         }
@@ -970,7 +970,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>Julian takes his time to answer the call. You hope he has the ideas for the events ready.</p>"
+                            "text": "<h1>The Twig is rustling...</h1><p style='font-size: 1.2vw'>Scrat takes his time to answer the call. You hope he has the list of Quercus trees ready.</p>"
                         },
                         {
                             "id": "avatars",
@@ -978,14 +978,14 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png"
+                                    "id": "player",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png"
                                 },
                                 {
-                                    "id": "julian",
-                                    "name": "julian",
-                                    "img": "/project/img/avatars/julian.png",
+                                    "id": "scrat",
+                                    "name": "scrat",
+                                    "img": "/project/img/avatars/scrat.png",
                                     "visible": false
                                 }
                             ]
@@ -1000,97 +1000,97 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_student1",
+                                    "id": "sp_player1",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "Hopefully his drunkass mind has seens some sense since last time.",
+                                    "content": "Hopefully he left the Acorn Ale aside since last time.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julian1",
+                                    "id": "sp_scrat1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Yoo man! How are you doing!",
-                                    "name": "Julian",
+                                    "name": "Scrat",
                                     "name_color": "#632B30",
-                                    "avatar_id": "julian"
+                                    "avatar_id": "scrat"
                                 },
                                 {
-                                    "id": "sp_student2",
+                                    "id": "sp_player2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Hi! Busy as always!",
+                                    "content": "Hi! Busy with the harvest plan!",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_student3",
+                                    "id": "sp_player3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Do you by any chance have already had a look at the events?",
+                                    "content": "Do you by any chance have already had a look at the list of Quercus trees?",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julian2_relaxed",
+                                    "id": "sp_scrat2_relaxed",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Well you know, I first started by doing some reading. Listened to Lisa for once.",
-                                    "name": "Julian",
+                                    "content": "Well you know, I first started by reading the Acorn Directive. Listened to Flicktail for once.",
+                                    "name": "Scrat",
                                     "name_color": "#632B30",
-                                    "avatar_id": "julian"
+                                    "avatar_id": "scrat"
                                 },
                                 {
-                                    "id": "sp_student4_relaxed",
+                                    "id": "sp_player4_relaxed",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "So...",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julian3_relaxed",
+                                    "id": "sp_scrat3_relaxed",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "I have some rough sketches, but I will finilize them this afternoon. I understand that they're important for the group project.",
-                                    "name": "Julian",
+                                    "content": "I... have indentified the places were they grow. I will finilize the list this afternoon. I understand that they're important for the harvest plan.",
+                                    "name": "Scrat",
                                     "name_color": "#632B30",
-                                    "avatar_id": "julian"
+                                    "avatar_id": "scrat"
                                 },
                                 {
-                                    "id": "sp_student5_relaxed",
+                                    "id": "sp_player5_relaxed",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Okay, I will call you back tomorrow if I don't have them by then, if that's okay.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julian4_relaxed",
+                                    "id": "sp_scrat4_relaxed",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Yeah sure! See ya.",
-                                    "name": "Julian",
+                                    "name": "Scrat",
                                     "name_color": "#632B30",
-                                    "avatar_id": "julian",
+                                    "avatar_id": "scrat",
                                     "answer_options": [
                                         {
                                             "type": "next",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "fetch_events1"
+                                                    "target": "fetch_quercus1"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -1099,12 +1099,12 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "events_asked_first_time",
+                                                    "variable": "quercus_asked_first_time",
                                                     "value": true
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "events_second_fetch",
+                                                    "variable": "quercus_second_fetch",
                                                     "value": true,
                                                     "delay": 10000
                                                 }
@@ -1113,58 +1113,58 @@
                                     ]
                                 },
                                 {
-                                    "id": "sp_julian2_angry",
+                                    "id": "sp_scrat2_angry",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Really [Name]?! First you paternalize me in the group, and now you can't wait for me to send some stuff.",
-                                    "name": "Julian",
+                                    "content": "Really [Name]?! First you talk to me like Elder Oakpaw, and now you can't wait for me to bring some stuff.",
+                                    "name": "Scrat",
                                     "name_color": "#632B30",
-                                    "avatar_id": "julian"
+                                    "avatar_id": "scrat"
                                 },
                                 {
-                                    "id": "sp_student4_angry",
+                                    "id": "sp_player4_angry",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Which means that you haven't done anything yet?",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julian3_angry",
+                                    "id": "sp_scrat3_angry",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "As YOU said, I first started by doing some reading. But I think I will have them done by tomorrow.",
-                                    "name": "Julian",
+                                    "content": "As YOU said, I first started by reading the Acorn Directive. I think I will have the list done by tomorrow.",
+                                    "name": "Scrat",
                                     "name_color": "#632B30",
-                                    "avatar_id": "julian"
+                                    "avatar_id": "scrat"
                                 },
                                 {
-                                    "id": "sp_student5_angry",
+                                    "id": "sp_player5_angry",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Okay, I will call you back tomorrow if I don't have them by then, if that's okay.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julian4_angry",
+                                    "id": "sp_scrat4_angry",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Still not that patient, is it?! But sure. See ya.",
-                                    "name": "Julian",
+                                    "name": "Scrat",
                                     "name_color": "#632B30",
-                                    "avatar_id": "julian",
+                                    "avatar_id": "scrat",
                                     "answer_options": [
                                         {
                                             "type": "next",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "fetch_events1"
+                                                    "target": "fetch_quercus1"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -1173,12 +1173,12 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "events_asked_first_time",
+                                                    "variable": "quercus_asked_first_time",
                                                     "value": true
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "events_second_fetch",
+                                                    "variable": "quercus_second_fetch",
                                                     "value": true,
                                                     "delay": 10000
                                                 }
@@ -1192,116 +1192,102 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1",
+                            "target": "sp_player1",
                             "delay": 2000,
                             "keep_others": true
                         },
                         {
                             "type": "show_object",
-                            "target": "julian",
+                            "target": "scrat",
                             "delay": 5000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julian1",
+                            "target": "sp_scrat1",
                             "delay": 5000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student2",
+                            "target": "sp_player2",
                             "delay": 8000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student3",
+                            "target": "sp_player3",
                             "delay": 9000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julian2_relaxed",
+                            "target": "sp_scrat2_relaxed",
                             "delay": 12000,
                             "keep_others": true,
-                            "condition": "!variables.reprimand"
+                            "condition": "!variables.berate"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student4_relaxed",
+                            "target": "sp_player4_relaxed",
                             "delay": 15000,
                             "keep_others": true,
-                            "condition": "!variables.reprimand"
+                            "condition": "!variables.berate"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student4_relaxed",
-                            "delay": 16000,
-                            "keep_others": true,
-                            "condition": "!variables.reprimand"
-                        },
-                        {
-                            "type": "goto_dialogue",
-                            "target": "sp_julian3_relaxed",
+                            "target": "sp_scrat3_relaxed",
                             "delay": 19000,
                             "keep_others": true,
-                            "condition": "!variables.reprimand"
+                            "condition": "!variables.berate"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student5_relaxed",
+                            "target": "sp_player5_relaxed",
                             "delay": 22000,
                             "keep_others": true,
-                            "condition": "!variables.reprimand"
+                            "condition": "!variables.berate"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julian4_relaxed",
+                            "target": "sp_scrat4_relaxed",
                             "delay": 25000,
                             "keep_others": true,
-                            "condition": "!variables.reprimand"
+                            "condition": "!variables.berate"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julian2_angry",
+                            "target": "sp_scrat2_angry",
                             "delay": 12000,
                             "keep_others": true,
-                            "condition": "variables.reprimand"
+                            "condition": "variables.berate"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student4_angry",
+                            "target": "sp_player4_angry",
                             "delay": 15000,
                             "keep_others": true,
-                            "condition": "variables.reprimand"
+                            "condition": "variables.berate"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student4_angry",
-                            "delay": 16000,
-                            "keep_others": true,
-                            "condition": "variables.reprimand"
-                        },
-                        {
-                            "type": "goto_dialogue",
-                            "target": "sp_julian3_angry",
+                            "target": "sp_scrat3_angry",
                             "delay": 19000,
                             "keep_others": true,
-                            "condition": "variables.reprimand"
+                            "condition": "variables.berate"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student5_angry",
+                            "target": "sp_player5_angry",
                             "delay": 22000,
                             "keep_others": true,
-                            "condition": "variables.reprimand"
+                            "condition": "variables.berate"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julian4_angry",
+                            "target": "sp_scrat4_angry",
                             "delay": 25000,
                             "keep_others": true,
-                            "condition": "variables.reprimand"
+                            "condition": "variables.berate"
                         }
                     ]
                 },
@@ -1320,7 +1306,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>Julian again takes his time to answer the call.</p>"
+                            "text": "<h1>The Twig is rustling...</h1><p style='font-size: 1.2vw'>Scrat again takes his time to answer the call.</p>"
                         },
                         {
                             "id": "avatars",
@@ -1328,9 +1314,9 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png"
+                                    "id": "player",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png"
                                 }
                             ]
                         },
@@ -1344,33 +1330,33 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_student1",
+                                    "id": "sp_player1",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "I hope that he has something done. Time is going way to quickly.",
+                                    "content": "I hope that he has something done. Days pass by way to quickly.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_student2",
+                                    "id": "sp_player2",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "He does not answer his phone.",
+                                    "content": "He ignores the Chatter Twig.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_student3_already_asked_cesare",
+                                    "id": "sp_player3_already_asked_thistle",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "I better contact Lisa about both the characters and Julian's behaviour.",
+                                    "content": "I better contact Flicktail about both the Aculi analysis and Scrat's behaviour.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true,
                                     "answer_options": [
                                         {
@@ -1378,7 +1364,7 @@
                                             "events": [
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "fetch_events2"
+                                                    "target": "fetch_quercus2"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -1387,7 +1373,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "events_asked_second_time",
+                                                    "variable": "quercus_asked_second_time",
                                                     "value": true
                                                 }
                                             ]
@@ -1395,13 +1381,13 @@
                                     ]
                                 },
                                 {
-                                    "id": "sp_student3_ask_cesare",
+                                    "id": "sp_player3_ask_thistle",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "I better contact Cesare first about the characters. Afterwards I should contact Lisa.",
+                                    "content": "I better contact Thistle first about the characters. Afterwards I should contact Flicktail.",
                                     "name": "You",
                                     "name_color": "#632B30",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true,
                                     "answer_options": [
                                         {
@@ -1409,7 +1395,7 @@
                                             "events": [
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "fetch_events2"
+                                                    "target": "fetch_quercus2"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -1418,7 +1404,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "events_asked_second_time",
+                                                    "variable": "quercus_asked_second_time",
                                                     "value": true
                                                 }
                                             ]
@@ -1431,29 +1417,29 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1",
+                            "target": "sp_player1",
                             "delay": 2000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student2",
+                            "target": "sp_player2",
                             "delay": 6000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student3_already_asked_cesare",
+                            "target": "sp_player3_already_asked_thistle",
                             "delay": 8000,
                             "keep_others": true,
-                            "condition": "variables.characters_asked_seccond_time == true"
+                            "condition": "variables.aculi_asked_seccond_time == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student3_ask_cesare",
+                            "target": "sp_player3_ask_thistle",
                             "delay": 8000,
                             "keep_others": true,
-                            "condition": "!variables.characters_asked_seccond_time"
+                            "condition": "!variables.aculi_asked_seccond_time"
                         }
                     ]
                 },
@@ -1472,7 +1458,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Videocall with Lisa</h1><p style='font-size: 1.2vw'>You've updated Lisa about your progression and the problems you encountered.</p>"
+                            "text": "<h1>Meeting with Flicktail</h1><p style='font-size: 1.2vw'>You've updated Flicktail about the harvest plan and the problems you encountered.</p>"
                         },
                         {
                             "id": "avatars",
@@ -1480,14 +1466,14 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png"
+                                    "id": "player",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png"
                                 },
                                 {
-                                    "id": "lisa",
-                                    "name": "lisa",
-                                    "img": "/project/img/avatars/lisa.png"
+                                    "id": "flicktail",
+                                    "name": "flicktail",
+                                    "img": "/project/img/avatars/flicktail.png"
                                 }
                             ]
                         },
@@ -1501,60 +1487,60 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_lisa1",
+                                    "id": "sp_flicktail1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "So effectively we're missing two group members now...",
-                                    "name": "Lisa",
+                                    "content": "So we're missing two team members now...",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_student1",
+                                    "id": "sp_player1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "And two quite big tasks left to be done.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_lisa2",
+                                    "id": "sp_flicktail2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Ow man this sucks so hard. I mean Cesare can't do anything about it, but Julian!",
-                                    "name": "Lisa",
+                                    "content": "Rotten Acorns! I mean Thistle can't do anything about it, but Scrat!",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_lisa3",
+                                    "id": "sp_flicktail3",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "So what are we going to do about this?",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa",
+                                    "avatar_id": "flicktail",
                                     "answer_timer": {
                                         "duration": 5000,
                                         "default_option_index": 2
                                     },
                                     "answer_options": [
                                         {
-                                            "content": "[ Contact teacher and redevide tasks ]",
+                                            "content": "[ Contact Elder Oakpaw and redevide tasks ]",
                                             "events": [
                                                 {
                                                     "type": "show_object",
-                                                    "target": "task_redevision"
+                                                    "target": "directive_redevision"
                                                 },
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "lisa_problems"
+                                                    "target": "flicktail_problems"
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "contact_teacher_now",
+                                                    "variable": "contact_oakpaw_now",
                                                     "value": true
                                                 }
                                             ]
@@ -1564,15 +1550,15 @@
                                             "events": [
                                                 {
                                                     "type": "show_object",
-                                                    "target": "task_redevision"
+                                                    "target": "directive_redevision"
                                                 },
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "lisa_problems"
+                                                    "target": "flicktail_problems"
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "contact_teacher_later",
+                                                    "variable": "contact_oakpaw_later",
                                                     "value": true
                                                 }
                                             ]
@@ -1585,25 +1571,25 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa1",
+                            "target": "sp_flicktail1",
                             "delay": 2000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1",
+                            "target": "sp_player1",
                             "delay": 5000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa2",
+                            "target": "sp_flicktail2",
                             "delay": 8000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa3",
+                            "target": "sp_flicktail3",
                             "delay": 9000,
                             "keep_others": true
                         }
@@ -1624,7 +1610,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Videocall with Lisa</h1><p style='font-size: 1.2vw'>You've updated Lisa about your progression and the problems you encountered.</p>"
+                            "text": "<h1>Meeting with Flicktail</h1><p style='font-size: 1.2vw'>You've updated Flicktail about the harvest plan and the problems you encountered.</p>"
                         },
                         {
                             "id": "avatars",
@@ -1632,14 +1618,14 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png"
+                                    "id": "player",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png"
                                 },
                                 {
-                                    "id": "lisa",
-                                    "name": "lisa",
-                                    "img": "/project/img/avatars/lisa.png"
+                                    "id": "flicktail",
+                                    "name": "flicktail",
+                                    "img": "/project/img/avatars/flicktail.png"
                                 }
                             ]
                         },
@@ -1653,123 +1639,123 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_lisa1",
+                                    "id": "sp_flicktail1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Yeah that's probably the best...",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_lisa2",
+                                    "id": "sp_flicktail2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "I will write most of the events and also write a report about it.",
-                                    "name": "Lisa",
+                                    "content": "I will try to list most of the Quercus trees and also write a report about it.",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_student1",
+                                    "id": "sp_player1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "That would be great!",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_lisa3",
+                                    "id": "sp_flicktail3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "If you have time, can you write one or two events too? And the left over characters?",
-                                    "name": "Lisa",
+                                    "content": "If you have time, can you list also a few trees? And do the left over Aculi analyses?",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_student2",
+                                    "id": "sp_player2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "I will see what I can do...",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_lisa4_contact_teacher",
+                                    "id": "sp_flicktail4_contact_oakpaw",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "I will try to setup a videocall with our teacher later today. I will call your as soon as we are ready.",
-                                    "name": "Lisa",
+                                    "content": "I will try to setup a meeting with Elder Oakpaw before dusk. I will call you as soon as we are ready.",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_lisa4_contact_teacher_later",
+                                    "id": "sp_flicktail4_contact_oakpaw_later",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "If anything goes wrong, we should probably notify our teacher about the problems.",
-                                    "name": "Lisa",
+                                    "content": "If anything goes wrong, we should probably tell Elder Oakpaw about the problems.",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_student3",
+                                    "id": "sp_player3",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Yeah sure!",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_lisa5",
+                                    "id": "sp_flicktail5",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "I think we're set for now! See ya later.",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa",
+                                    "avatar_id": "flicktail",
                                     "answer_options": [
                                         {
                                             "type": "next",
                                             "events": [
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "task_redevision",
+                                                    "variable": "directive_redevision",
                                                     "value": true
                                                 },
                                                 {
                                                     "type": "show_object",
-                                                    "target": "contact_teacher_button",
-                                                    "condition": "variables.contact_teacher_later == true"
+                                                    "target": "contact_oakpaw_button",
+                                                    "condition": "variables.contact_oakpaw_later == true"
                                                 },
                                                 {
                                                     "type": "goto_dialogue",
                                                     "target": "contact_teacher_explanation",
-                                                    "condition": "variables.contact_teacher_later == true"
+                                                    "condition": "variables.contact_oakpaw_later == true"
                                                 },
                                                 {
                                                     "type": "show_object",
-                                                    "target": "contact_teacher",
+                                                    "target": "contact_oakpaw",
                                                     "delay": 5000,
-                                                    "condition": "variables.contact_teacher_now == true"
+                                                    "condition": "variables.contact_oakpaw_now == true"
                                                 },
                                                 {
                                                     "type": "set_variable",
                                                     "variable": "step_harvesttimer",
-                                                    "condition": "variables.contact_teacher_now == true",
+                                                    "condition": "variables.contact_oakpaw_now == true",
                                                     "value": 5,
                                                     "delay": 5000
                                                 },
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "task_redevision"
+                                                    "target": "directive_redevision"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -1786,57 +1772,57 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa1",
+                            "target": "sp_flicktail1",
                             "delay": 2000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa2",
+                            "target": "sp_flicktail2",
                             "delay": 3000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1",
+                            "target": "sp_player1",
                             "delay": 6000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa3",
+                            "target": "sp_flicktail3",
                             "delay": 9000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student2",
+                            "target": "sp_player2",
                             "delay": 12000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa4_contact_teacher",
+                            "target": "sp_flicktail4_contact_oakpaw",
                             "delay": 15000,
                             "keep_others": true,
-                            "condition": "variables.contact_teacher_now == true"
+                            "condition": "variables.contact_oakpaw_now == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa4_contact_teacher_later",
+                            "target": "sp_flicktail4_contact_oakpaw_later",
                             "delay": 15000,
                             "keep_others": true,
-                            "condition": "variables.contact_teacher_later == true"
+                            "condition": "variables.contact_oakpaw_later == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student3",
+                            "target": "sp_player3",
                             "delay": 18000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa5",
+                            "target": "sp_flicktail5",
                             "delay": 21000,
                             "keep_others": true
                         }
@@ -1857,7 +1843,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Videocall with Lisa and your Teacher</h1><p style='font-size: 1.2vw'>Your teacher has been updated about the situation. Hopefully he will be able to help.</p>"
+                            "text": "<h1>Conference with Flicktail and Elder Oakpaw</h1><p style='font-size: 1.2vw'>Elder Oakpaw is made aware of the situation. Hopefully he will be able to help.</p>"
                         },
                         {
                             "id": "avatars",
@@ -1865,21 +1851,21 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student1",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png",
+                                    "id": "player1",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png",
                                     "visible": false
                                 },
                                 {
-                                    "id": "lisa1",
-                                    "name": "lisa",
-                                    "img": "/project/img/avatars/lisa.png",
+                                    "id": "flicktail1",
+                                    "name": "flicktail",
+                                    "img": "/project/img/avatars/flicktail.png",
                                     "visible": false
                                 },
                                 {
-                                    "id": "teacher",
-                                    "name": "teacher",
-                                    "img": "/project/img/avatars/teacher.png"
+                                    "id": "oakpaw",
+                                    "name": "oakpaw",
+                                    "img": "/project/img/avatars/oakpaw.png"
                                 }
                             ]
                         },
@@ -1893,135 +1879,135 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_student1_contact_imediately",
+                                    "id": "sp_player1_contact_imediately",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Sorry, that I am later. I had still some other stuff to do.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student1",
+                                    "avatar_id": "player1",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_lisa1_contact_imediately",
+                                    "id": "sp_flicktail1_contact_imediately",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Haha, that's okay. I've already outlined the situation. So...",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa1"
+                                    "avatar_id": "flicktail1"
                                 },
                                 {
-                                    "id": "sp_lisa1_contact_later",
+                                    "id": "sp_flicktail1_contact_later",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Sorry, that I am later. I had still some other stuff to do.",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa1"
+                                    "avatar_id": "flicktail1"
                                 },
                                 {
-                                    "id": "sp_student1_contact_later",
+                                    "id": "sp_player1_contact_later",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Haha, that's okay. I've already outlined the situation. So...",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student1",
+                                    "avatar_id": "player1",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_teacher1",
+                                    "id": "sp_oakpaw1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "It's a nasty situation to encounter. I feel sorry for that.",
-                                    "name": "Teacher",
+                                    "name": "Elder Oakpaw",
                                     "name_color": "#DC6060",
-                                    "avatar_id": "teacher"
+                                    "avatar_id": "oakpaw"
                                 },
                                 {
-                                    "id": "sp_teacher2",
+                                    "id": "sp_oakpaw2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We can do multiple things.",
-                                    "name": "Teacher",
+                                    "content": "We can do several things.",
+                                    "name": "Elder Oakpaw",
                                     "name_color": "#DC6060",
-                                    "avatar_id": "teacher"
+                                    "avatar_id": "oakpaw"
                                 },
                                 {
-                                    "id": "sp_teacher3",
+                                    "id": "sp_oakpaw3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "I can give you both some extra time, and drop the one-try rule for this course.",
-                                    "name": "Teacher",
+                                    "content": "I will give some extra time and I will drop the one-try rule for this extra promotion trajectory.",
+                                    "name": "Elder Oakpaw",
                                     "name_color": "#DC6060",
-                                    "avatar_id": "teacher"
+                                    "avatar_id": "oakpaw"
                                 },
                                 {
-                                    "id": "sp_teacher4",
+                                    "id": "sp_oakpaw4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "The later means that in a worst case scenario, you at least can redo this course.",
-                                    "name": "Teacher",
+                                    "content": "The later means that in a worst case scenario, you at least can retry to get this extra promotion next year.",
+                                    "name": "Elder Oakpaw",
                                     "name_color": "#DC6060",
-                                    "avatar_id": "teacher"
+                                    "avatar_id": "oakpaw"
                                 },
                                 {
-                                    "id": "sp_student2",
+                                    "id": "sp_player2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Okay, yeah that would eliviate at least some pressure in the long term.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student1",
+                                    "avatar_id": "player1",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_lisa2",
+                                    "id": "sp_flicktail2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "That would help indeed!",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa1"
+                                    "avatar_id": "flicktail1"
                                 },
                                 {
-                                    "id": "sp_teacher5",
+                                    "id": "sp_oakpaw5",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Okay, best of luck with everything! Bye.",
-                                    "name": "Teacher",
+                                    "name": "Elder Oakpaw",
                                     "name_color": "#DC6060",
-                                    "avatar_id": "teacher"
+                                    "avatar_id": "oakpaw"
                                 },
                                 {
-                                    "id": "sp_lisa3",
+                                    "id": "sp_flicktail3",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Thank you! Bye.",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa1",
+                                    "avatar_id": "flicktail1",
                                     "answer_options": [
                                         {
                                             "type": "next",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "contact_teacher"
+                                                    "target": "contact_oakpaw"
                                                 },
                                                 {
                                                     "type": "hide_object",
-                                                    "target": "contact_teacher_button"
+                                                    "target": "contact_oakpaw_button"
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "duration_week3",
+                                                    "variable": "duration_cycle3",
                                                     "value": 110000
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "duration_week4",
+                                                    "variable": "duration_cycle4",
                                                     "value": 110000
                                                 },
                                                 {
@@ -2039,99 +2025,99 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1_contact_imediately",
+                            "target": "sp_player1_contact_imediately",
                             "delay": 2000,
                             "keep_others": true,
-                            "condition": "variables.contact_teacher_now == true"
+                            "condition": "variables.contact_oakpaw_now == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa1_contact_imediately",
+                            "target": "sp_flicktail1_contact_imediately",
                             "delay": 5000,
                             "keep_others": true,
-                            "condition": "variables.contact_teacher_now == true"
+                            "condition": "variables.contact_oakpaw_now == true"
                         },
                         {
                             "type": "show_object",
-                            "target": "lisa1",
-                            "condition": "variables.contact_teacher_now == true"
+                            "target": "flicktail1",
+                            "condition": "variables.contact_oakpaw_now == true"
                         },
                         {
                             "type": "show_object",
-                            "target": "student1",
+                            "target": "player1",
                             "delay": 2000,
-                            "condition": "variables.contact_teacher_now == true"
+                            "condition": "variables.contact_oakpaw_now == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa1_contact_later",
+                            "target": "sp_flicktail1_contact_later",
                             "delay": 2000,
                             "keep_others": true,
-                            "condition": "variables.contact_teacher_later == true"
+                            "condition": "variables.contact_oakpaw_later == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1_contact_later",
+                            "target": "sp_player1_contact_later",
                             "delay": 5000,
                             "keep_others": true,
-                            "condition": "variables.contact_teacher_later == true"
+                            "condition": "variables.contact_oakpaw_later == true"
                         },
                         {
                             "type": "show_object",
-                            "target": "lisa1",
+                            "target": "flicktail1",
                             "delay": 2000,
-                            "condition": "variables.contact_teacher_later == true"
+                            "condition": "variables.contact_oakpaw_later == true"
                         },
                         {
                             "type": "show_object",
-                            "target": "student1",
-                            "condition": "variables.contact_teacher_later == true"
+                            "target": "player1",
+                            "condition": "variables.contact_oakpaw_later == true"
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_teacher1",
+                            "target": "sp_oakpaw1",
                             "delay": 8000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_teacher2",
+                            "target": "sp_oakpaw2",
                             "delay": 11000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_teacher3",
+                            "target": "sp_oakpaw3",
                             "delay": 14000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_teacher4",
+                            "target": "sp_oakpaw4",
                             "delay": 17000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student2",
+                            "target": "sp_player2",
                             "delay": 20000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa2",
+                            "target": "sp_flicktail2",
                             "delay": 23000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_teacher5",
+                            "target": "sp_oakpaw5",
                             "delay": 26000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa3",
+                            "target": "sp_flicktail3",
                             "delay": 29000,
                             "keep_others": true
                         }
@@ -2155,7 +2141,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>The last week.</h1><p style='font-size: 1.2vw'>You girlfriend surprises you in the library at school.</p>"
+                            "text": "<h1>Just before harvest time.</h1><p style='font-size: 1.2vw'>Willaferna surprises you on the Quercus tree hill.</p>"
                         },
                         {
                             "id": "avatars",
@@ -2163,14 +2149,14 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png"
+                                    "id": "player",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png"
                                 },
                                 {
-                                    "id": "julia",
-                                    "name": "julia",
-                                    "img": "/project/img/avatars/julia.png"
+                                    "id": "willaferna",
+                                    "name": "willaferna",
+                                    "img": "/project/img/avatars/willaferna.png"
                                 }
                             ]
                         },
@@ -2184,67 +2170,67 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_julia1",
+                                    "id": "sp_willaferna1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "&#91; Hugs you from behind while you sit on your chair &#93;",
-                                    "name": "Julia",
+                                    "content": "&#91; Hugs you from behind while your studying your harvest plan &#93;",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia2",
+                                    "id": "sp_willaferna2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Surprise! Surprise! How's everything going?",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
                                     
                                     "id": "sp_student1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Well, luckily this course is not nessecary to finish the degree.",
+                                    "content": "Well, luckily this extra project is not nessecary to get the regular promotion.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julia3",
+                                    "id": "sp_willaferna3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "And that degree, is the most important think, right?!",
-                                    "name": "Julia",
+                                    "content": "And that promotion, is the most important think, right?!",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia4_house",
+                                    "id": "sp_willaferna4_house",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "So the real estate agent called today and proposed that we come to have look at the appartment this week.",
-                                    "name": "Julia",
+                                    "content": "So the Nest Broker called today and proposed that we come to have look at our nestling nook just before harvest time.",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia5_house",
+                                    "id": "sp_willaferna5_house",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Can you free some time for that?",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia",
+                                    "avatar_id": "willaferna",
                                     "answer_timer": {
                                         "duration": 6000,
                                         "default_option_index": 2
                                     },
                                     "answer_options": [
                                         {
-                                            "content": "[ Inspect the house with your girlfriend (20t) ]",
+                                            "content": "[ Inspect the hollow with Willaferna (20t) ]",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
@@ -2252,7 +2238,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_goal_archieved",
+                                                    "variable": "future_aim_archieved",
                                                     "value": true
                                                 },
                                                 {
@@ -2271,7 +2257,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_goal_archieved",
+                                                    "variable": "future_aim_archieved",
                                                     "value": false
                                                 }
                                             ]
@@ -2279,29 +2265,29 @@
                                     ]
                                 },
                                 {
-                                    "id": "sp_julia4_job",
+                                    "id": "sp_willaferna4_role",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "You had a job interview this week, isn't it?",
-                                    "name": "Julia",
+                                    "content": "You had to talk to the Elders about a new role, isn't it?",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia5_job",
+                                    "id": "sp_willaferna5_role",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Do you have still time for that?",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia",
+                                    "avatar_id": "willaferna",
                                     "answer_timer": {
                                         "duration": 6000,
                                         "default_option_index": 2
                                     },
                                     "answer_options": [
                                         {
-                                            "content": "[ Go to the job interview (20t) ]",
+                                            "content": "[ Go to the role interview (20t) ]",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
@@ -2309,7 +2295,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_goal_archieved",
+                                                    "variable": "future_aim_archieved",
                                                     "value": true
                                                 },
                                                 {
@@ -2320,7 +2306,7 @@
                                             ]
                                         },
                                         {
-                                            "content": "[ Do not go to the interview ]",
+                                            "content": "[ Do not go to the role interview ]",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
@@ -2328,7 +2314,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_goal_archieved",
+                                                    "variable": "future_aim_archieved",
                                                     "value": false
                                                 }
                                             ]
@@ -2336,29 +2322,29 @@
                                     ]
                                 },
                                 {
-                                    "id": "sp_julia4_degree",
+                                    "id": "sp_willaferna4_promotion",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "You had the application for your next degree planned this week right?",
-                                    "name": "Julia",
+                                    "content": "You had the application for your next promotion planned this cycle right?",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia5_degree",
+                                    "id": "sp_willaferna5_promotion",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Do you have still time for that?",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia",
+                                    "avatar_id": "willaferna",
                                     "answer_timer": {
                                         "duration": 6000,
                                         "default_option_index": 2
                                     },
                                     "answer_options": [
                                         {
-                                            "content": "[ Apply for your next degree (20t) ]",
+                                            "content": "[ Apply for your next promotion (20t) ]",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
@@ -2366,7 +2352,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_goal_archieved",
+                                                    "variable": "future_aim_archieved",
                                                     "value": true
                                                 },
                                                 {
@@ -2377,7 +2363,7 @@
                                             ]
                                         },
                                         {
-                                            "content": "[ Do not apply for your next degree ]",
+                                            "content": "[ Do not apply for your next promotion ]",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
@@ -2385,7 +2371,7 @@
                                                 },
                                                 {
                                                     "type": "set_variable",
-                                                    "variable": "future_goal_archieved",
+                                                    "variable": "future_aim_archieved",
                                                     "value": false
                                                 }
                                             ]
@@ -2398,13 +2384,13 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia1",
+                            "target": "sp_willaferna1",
                             "delay": 2000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia2",
+                            "target": "sp_willaferna2",
                             "delay": 4000,
                             "keep_others": true
                         },
@@ -2416,49 +2402,49 @@
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia3",
+                            "target": "sp_willaferna3",
                             "delay": 10000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia4_house",
-                            "condition": "variables.future_aim_girlfriend == true",
+                            "target": "sp_willaferna4_house",
+                            "condition": "variables.future_aim_house == true",
                             "delay": 13000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia5_house",
-                            "condition": "variables.future_aim_girlfriend == true",
+                            "target": "sp_willaferna5_house",
+                            "condition": "variables.future_aim_house == true",
                             "delay": 16000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia4_job",
-                            "condition": "variables.future_aim_job == true",
+                            "target": "sp_willaferna4_job",
+                            "condition": "variables.future_aim_role == true",
                             "delay": 13000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia5_job",
-                            "condition": "variables.future_aim_job == true",
+                            "target": "sp_willaferna5_job",
+                            "condition": "variables.future_aim_role == true",
                             "delay": 16000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia4_degree",
-                            "condition": "variables.future_aim_degree == true",
+                            "target": "sp_willaferna4_degree",
+                            "condition": "variables.future_aim_promotion == true",
                             "delay": 13000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia5_degree",
-                            "condition": "variables.future_aim_degree == true",
+                            "target": "sp_willaferna5_degree",
+                            "condition": "variables.future_aim_promotion == true",
                             "delay": 16000,
                             "keep_others": true
                         }
@@ -2469,7 +2455,7 @@
                 {
                     "id": "task_explanation",
                     "type": "speech",
-                    "content": "The tasks for the Acorn Directive can be executed via this menu.",
+                    "content": "The tasks of the Acorn Directive can be executed via this menu.",
                     "visible": true,
                     "x": "5%",
                     "y": "4%",
@@ -2536,7 +2522,7 @@
                                 },
                                 {
                                     "type": "set_variable",
-                                    "variable": "is_running_week1",
+                                    "variable": "is_running_cycle1",
                                     "value": true
                                 }
                             ]
