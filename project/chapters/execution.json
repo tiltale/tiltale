@@ -195,7 +195,7 @@
                 {
                     "id": "contact_oakpaw_button",
                     "type": "sprite",
-                    "image": "/tools/oakpaw.svg",
+                    "image": "/tools/teacher.svg",
                     "visible": false,
                     "x": "2%",
                     "y": "42%",

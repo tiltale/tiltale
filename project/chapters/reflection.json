@@ -1,8 +1,8 @@
 {
     "scenes": [
         {
-            "id": "reflection",
-            "background": "bg/campus.png",
+            "id": "deliberation",
+            "background": "bg/woods.png",
             "objects": [
                 {
                     "id": "goals",

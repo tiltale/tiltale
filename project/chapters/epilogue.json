@@ -1,8 +1,8 @@
 {
     "scenes": [
         {
-            "id": "epilogue_graduation",
-            "background": "bg/graduation.png",
+            "id": "epilogue_promotion",
+            "background": "bg/finish.png",
             "objects": [],
             "dialogue": [
                 {
@@ -12,14 +12,14 @@
                     "y": "0%",
                     "z": "1",
                     "width": "100%",
-                    "content": "<strong>Central Square</strong> | Blackwell Academy",
+                    "content": "<strong>Canopy Hill</strong> | Ceder Groove Woods",
                     "answer_options": [
                         {
                             "type": "next",
                             "events": [
                                 {
                                     "type": "goto_scene",
-                                    "target": "epilogue_graduation1",
+                                    "target": "epilogue_promotion1",
                                     "animate": true        
                                 }
                             ]
@@ -29,8 +29,8 @@
             ]
         },
         {
-            "id": "epilogue_graduation1",
-            "background": "bg/graduation.png",
+            "id": "epilogue_promotion1",
+            "background": "bg/finish.png",
             "objects": [
                 {
                     "id": "graduation_ceremony",
@@ -47,7 +47,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>4 months later...</h1><p style='font-size: 1.2vw'>The graduation ceremony has just finished. Everyone is joyfully chatting and enjoying cocktails.</p>"
+                            "text": "<h1>2 months later...</h1><p style='font-size: 1.2vw'>The winter supplies are stocked, the special promotions are given, and everyone is enjoying the prospect of a cozy wintertime.</p>"
                         },
                         {
                             "id": "avatars",
@@ -55,26 +55,26 @@
                             "visible": true,
                             "objects": [
                                 {
-                                    "id": "student",
-                                    "name": "student",
-                                    "img": "/project/img/avatars/student.png",
+                                    "id": "player",
+                                    "name": "player",
+                                    "img": "/project/img/avatars/player.png",
                                     "visible": true
                                 },
                                 {
-                                    "id": "julia",
-                                    "name": "teacher",
-                                    "img": "/project/img/avatars/julia.png"
+                                    "id": "willaferna",
+                                    "name": "willaferna",
+                                    "img": "/project/img/avatars/willaferna.png"
                                 },
                                 {
-                                    "id": "teacher",
-                                    "name": "teacher",
-                                    "img": "/project/img/avatars/teacher.png",
+                                    "id": "oakpaw",
+                                    "name": "oakpaw",
+                                    "img": "/project/img/avatars/oakpaw.png",
                                     "visible": false
                                 },
                                 {
-                                    "id": "lisa",
-                                    "name": "lisa",
-                                    "img": "/project/img/avatars/lisa.png",
+                                    "id": "flicktail",
+                                    "name": "flicktail",
+                                    "img": "/project/img/avatars/flicktail.png",
                                     "visible": false
                                 }
                             ]
@@ -89,220 +89,220 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_student1",
+                                    "id": "sp_player1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Pfew, that's that. The signature is in place, speeches done, let's have a drink! &#91; Walks to the table with champagne glasses &#93;",
+                                    "content": "Pfew, that's that. The acorns are taxed, speeches done, let's have a some drinks! &#91; Walks to the table with Acorn Ale &#93;",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julia1",
+                                    "id": "sp_willaferna1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Haha, some fuss about the whole things is only well deserved right? &#91; Hugs and toasts with you &#93;",
-                                    "name": "Julia",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_teacher1",
+                                    "id": "sp_oakpaw1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "&#91; Handshake &#93; Congrats with finishing your bachelors! Are you gonna miss it?",
-                                    "name": "Teacher",
+                                    "content": "&#91;Handshake&#93; Congrats with getting your promotion! Are you gonna miss the classes?",
+                                    "name": "Oakpaw",
                                     "name_color": "#DC6060",
-                                    "avatar_id": "teacher"
+                                    "avatar_id": "oakpaw"
                                 },
                                 {
-                                    "id": "sp_student2",
+                                    "id": "sp_player2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Well honestly I ...",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_teacher2",
+                                    "id": "sp_oakpaw2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "O wait a sec, there's a colegue of mine which I need to talk to. See ya!",
-                                    "name": "Teacher",
+                                    "content": "O wait a sec, there's a Elder Greyburrow which I need to talk to. See ya! &#91; Hips away &#93;",
+                                    "name": "Oakpaw",
                                     "name_color": "#DC6060",
-                                    "avatar_id": "teacher"
+                                    "avatar_id": "oakpaw"
                                 },
                                 {
-                                    "id": "sp_lisa1",
+                                    "id": "sp_flicktail1",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "&#91; Grimace &#93; So, that ended quickly!",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_student3",
+                                    "id": "sp_player3",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Not that I was going to give an honest answer either! But let's forget about it. Congrats btw!",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_lisa2",
+                                    "id": "sp_flicktail2",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "&#91; Hugs &#93; yeah you too! I am so relieved we made it!",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_lisa3",
+                                    "id": "sp_flicktail3",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "So...",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_lisa4",
+                                    "id": "sp_flicktail4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Do you guys have already more defined plans for what's next?",
-                                    "name": "Lisa",
+                                    "content": "Do you guys have already more defined plans for after winter time?",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_student4_future_aim_failed",
+                                    "id": "sp_player4_future_aim_failed",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Well uhm...  &#91; Looks at Julia &#93;",
+                                    "content": "Well uhm...  &#91; Looks at Willaferna &#93;",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julia2_future_aim_failed",
+                                    "id": "sp_willaferna2_future_aim_failed",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We were going to work that out while [Name] had that extra course. Turns out that was not attainable at all.",
-                                    "name": "Julia",
+                                    "content": "We were going to work that out while [Name] had that extra promotion course. Turns out that was not doable at all.",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_student5_future_aim_failed_girlfriend",
+                                    "id": "sp_player5_future_aim_failed_house",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "So now we have to find another house, but you know how the market is right now.",
+                                    "content": "So now we have to find another Nestling Nook, but you know how the Hollow Exchange is right now.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_student5_future_aim_failed_degree",
+                                    "id": "sp_player5_future_aim_failed_promotion",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "So now I have to wait a year before I can apply for my next degree.",
+                                    "content": "So now I have to wait another year for further promotion.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_student5_future_aim_failed_job",
+                                    "id": "sp_player5_future_aim_failed_role",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "I couldn't go to that job application a few months back. So now I have to find something else.",
+                                    "content": "I couldn't attain the conference about the role changes in the tribe, so now I have to find something else.",
                                     "name": "You",
                                     "name_color": "#6143CF",
-                                    "avatar_id": "student",
+                                    "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_julia3_future_aim_failed",
+                                    "id": "sp_willaferna3_future_aim_failed",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Luckily he has at least his bachelors now. So that opens enough doors for the future. An we have each other. &#91; Smiles at you &#93;",
-                                    "name": "Julia",
+                                    "content": "Luckily he has at least his regular promotion now. So that gives enough possibiliies for the future. An we have each other. &#91; Smiles at you &#93;",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia",
+                                    "avatar_id": "willaferna",
                                     "answer_options": [
                                         {
                                             "type": "next",
                                             "events": [
                                                 {
                                                     "type": "goto_scene",
-                                                    "target": "reflection"
+                                                    "target": "deliberation"
                                                 }
                                             ]
                                         }
                                     ]
                                 },
                                 {
-                                    "id": "sp_julia2_future_aim_succes",
+                                    "id": "sp_willaferna2_future_aim_succes",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We worked that out while [Name] had that extra course. In the end that group project was going to fail anyways.",
-                                    "name": "Julia",
+                                    "content": "We worked that out while [Name] had that extra promotion course. In the end that project was going to fail anyways.",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_lisa5_future_aim_succes",
+                                    "id": "sp_flicktail5_future_aim_succes",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "&#91; Sighs &#93; Yeah right! What a mess was that!",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
+                                    "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_julia3_future_aim_succes_girlfriend",
+                                    "id": "sp_willaferna3_future_aim_succes_house",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We found a new place were we can start live together. &#91; Holds your arm tightly &#93;",
-                                    "name": "Julia",
+                                    "content": "We found a new Nestling Nook were we can start live together. &#91; Holds your arm tightly &#93;",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia3_future_aim_succes_degree",
+                                    "id": "sp_willaferna3_future_aim_succes_promotion",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We both were accepted for the same masters degree. So we more or the less pushed back real decisions for another two years &#91; Winks at you &#93;",
-                                    "name": "Julia",
+                                    "content": "We both were accepted for the same extra promotion program. So we more or the less pushed back real decisions for another two years &#91; Winks at you &#93;",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_julia3_future_aim_succes_job",
+                                    "id": "sp_willaferna3_future_aim_succes_role",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "[Name] got a new job, so we are currently looking for an house to start living together. &#91; Holds your arm tightly &#93;",
-                                    "name": "Julia",
+                                    "content": "[Name] got a new role in the tribe, so we are currently looking for an Nestling Nook to start living together. &#91; Holds your arm tightly &#93;",
+                                    "name": "Willaferna",
                                     "name_color": "#ab2e79",
-                                    "avatar_id": "julia"
+                                    "avatar_id": "willaferna"
                                 },
                                 {
-                                    "id": "sp_lisa6_future_aim_succes",
+                                    "id": "sp_flicktail6_future_aim_succes",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "Aww so nice for both of you! I am so happy for you both! &#91; Hugs you both &#93;",
-                                    "name": "Lisa",
+                                    "name": "Flicktail",
                                     "name_color": "#F5B841",
-                                    "avatar_id": "lisa",
+                                    "avatar_id": "flicktail",
                                     "answer_options": [
                                         {
                                             "type": "next",
@@ -321,161 +321,161 @@
                     "events": [
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student1",
+                            "target": "sp_player1",
                             "keep_others": true,
                             "delay": 3000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia1",
+                            "target": "sp_willaferna1",
                             "keep_others": true,
                             "delay": 6000
                         },
                         {
                             "type": "show_object",
-                            "target": "teacher",
+                            "target": "oakpaw",
                             "delay": 7500
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_teacher1",
+                            "target": "sp_oakpaw1",
                             "keep_others": true,
                             "delay": 9000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student2",
+                            "target": "sp_player2",
                             "keep_others": true,
                             "delay": 11000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_teacher2",
+                            "target": "sp_oakpaw2",
                             "keep_others": true,
                             "delay": 13000
                         },
                         {
                             "type": "hide_object",
-                            "target": "teacher",
+                            "target": "oakpaw",
                             "delay": 13500
                         },
                         {
                             "type": "show_object",
-                            "target": "lisa",
+                            "target": "flicktail",
                             "delay": 14500
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa1",
+                            "target": "sp_flicktail1",
                             "keep_others": true,
                             "delay": 16000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student3",
+                            "target": "sp_player3",
                             "keep_others": true,
                             "delay": 19000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa2",
+                            "target": "sp_flicktail2",
                             "keep_others": true,
                             "delay": 21000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa3",
+                            "target": "sp_flicktail3",
                             "keep_others": true,
                             "delay": 24000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa4",
+                            "target": "sp_flicktail4",
                             "keep_others": true,
                             "delay": 27000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student4_future_aim_failed",
+                            "target": "sp_player4_future_aim_failed",
                             "keep_others": true,
-                            "condition": "!variables.future_goal_archieved",
+                            "condition": "!variables.future_aim_archieved",
                             "delay": 30000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia2_future_aim_failed",
+                            "target": "sp_willaferna2_future_aim_failed",
                             "keep_others": true,
-                            "condition": "!variables.future_goal_archieved",
+                            "condition": "!variables.future_aim_archieved",
                             "delay": 33000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student5_future_aim_failed_girlfriend",
+                            "target": "sp_player5_future_aim_failed_house",
                             "keep_others": true,
-                            "condition": "!variables.future_goal_archieved && variables.future_aim_girlfriend == true",
+                            "condition": "!variables.future_aim_archieved && variables.future_aim_house == true",
                             "delay": 36000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student5_future_aim_failed_degree",
+                            "target": "sp_player5_future_aim_failed_promotion",
                             "keep_others": true,
-                            "condition": "!variables.future_goal_archieved && variables.future_aim_degree == true",
+                            "condition": "!variables.future_aim_archieved && variables.future_aim_promotion == true",
                             "delay": 36000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student5_future_aim_failed_job",
+                            "target": "sp_player5_future_aim_failed_role",
                             "keep_others": true,
-                            "condition": "!variables.future_goal_archieved && variables.future_aim_job == true",
+                            "condition": "!variables.future_aim_archieved && variables.future_aim_role == true",
                             "delay": 36000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia3_future_aim_failed",
+                            "target": "sp_willaferna3_future_aim_failed",
                             "keep_others": true,
-                            "condition": "!variables.future_goal_archieved",
+                            "condition": "!variables.future_aim_archieved",
                             "delay": 39000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia2_future_aim_succes",
+                            "target": "sp_willaferna2_future_aim_succes",
                             "keep_others": true,
-                            "condition": "variables.future_goal_archieved == true",
+                            "condition": "variables.future_aim_archieved == true",
                             "delay": 30000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa5_future_aim_succes",
+                            "target": "sp_flicktail5_future_aim_succes",
                             "keep_others": true,
-                            "condition": "variables.future_goal_archieved == true",
+                            "condition": "variables.future_aim_archieved == true",
                             "delay": 33000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia3_future_aim_succes_girlfriend",
+                            "target": "sp_willaferna3_future_aim_succes_house",
                             "keep_others": true,
-                            "condition": "variables.future_goal_archieved == true && variables.future_aim_girlfriend == true",
+                            "condition": "variables.future_aim_archieved == true && variables.future_aim_house == true",
                             "delay": 36000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia3_future_aim_succes_degree",
+                            "target": "sp_willaferna3_future_aim_succes_promotion",
                             "keep_others": true,
-                            "condition": "variables.future_goal_archieved == true && variables.future_aim_degree == true",
+                            "condition": "variables.future_aim_archieved == true && variables.future_aim_promotion == true",
                             "delay": 36000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_julia3_future_aim_succes_job",
+                            "target": "sp_willaferna3_future_aim_succes_role",
                             "keep_others": true,
-                            "condition": "variables.future_goal_archieved == true && variables.future_aim_job == true",
+                            "condition": "variables.future_aim_archieved == true && variables.future_aim_role == true",
                             "delay": 36000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_lisa6_future_aim_succes",
+                            "target": "sp_flicktail6_future_aim_succes",
                             "keep_others": true,
-                            "condition": "variables.future_goal_archieved == true",
+                            "condition": "variables.future_aim_archieved == true",
                             "delay": 39000
                         }
                     ]
