@@ -15,17 +15,17 @@
                     "no_line_through": true,
                     "answer_options": [
                         {
-                            "content": "Finished your Degree",
-                            "done_condition": "!variables.exceeded_week4_course_time && !variables.exceeded_week3_course_time",
-                            "next_instruction": "[ You did not use time of other courses ]",
+                            "content": "Finished your regular Promotion",
+                            "done_condition": "!variables.exceeded_cycle4_time && !variables.exceeded_cycle3_time",
+                            "next_instruction": "[ You did not use time of the regular harvest ]",
                             "disabled": {
                                 "condition": "!variables.enabled",
-                                "explanation": "[ You used time of other courses ]"
+                                "explanation": "[ You used time of the regular harvest ]"
                             }
                         },
                         {
-                            "content": "Finished the extra course",
-                            "done_condition": "variables.outline_send == true",
+                            "content": "Finished the extra Promotion",
+                            "done_condition": "variables.harvest_plan_send == true",
                             "next_instruction": "[ You did finish all tasks ]",
                             "disabled": {
                                 "condition": "!variables.enabled",
@@ -33,33 +33,33 @@
                             }
                         },
                         {
-                            "content": "You got a Job",
-                            "done_condition": "variables.future_goal_archieved == true && variables.future_aim_job == true",
-                            "next_instruction": "[ You went to the job interview ]",
-                            "condition": "variables.future_aim_job == true",
+                            "content": "You got another role in the tribe",
+                            "done_condition": "variables.future_aim_archieved == true && variables.future_aim_role == true",
+                            "next_instruction": "[ You went to the role conference ]",
+                            "condition": "variables.future_aim_role == true",
                             "disabled": {
                                 "condition": "!variables.enabled",
-                                "explanation": "[ You did not go to the job interview ]"
+                                "explanation": "[ You did not go to role conference ]"
                             }
                         },
                         {
-                            "content": "Julia and you started to live together",
-                            "done_condition": "variables.future_goal_archieved == true && variables.future_aim_girlfriend == true",
-                            "next_instruction": "[ You did inspect the house ]",
-                            "condition": "variables.future_aim_girlfriend == true",
+                            "content": "Willaferna and you started to live together",
+                            "done_condition": "variables.future_aim_archieved == true && variables.future_aim_house == true",
+                            "next_instruction": "[ You did inspect the Nestling Nook ]",
+                            "condition": "variables.future_aim_house == true",
                             "disabled": {
                                 "condition": "!variables.enabled",
-                                "explanation": "[ You did not go and inspect the house ]"
+                                "explanation": "[ You did not inspect the Nestling Nook ]"
                             }
                         },
                         {
-                            "content": "Julia and you both were allowed to your masters",
-                            "done_condition": "variables.future_goal_archieved == true && variables.future_aim_degree == true",
-                            "next_instruction": "[ You went go to the degree application ]",
-                            "condition": "variables.future_aim_degree == true",
+                            "content": "Julia and you both were allowed to your next promotion",
+                            "done_condition": "variables.future_aim_archieved == true && variables.future_aim_promotion == true",
+                            "next_instruction": "[ You went go to the promotion conference ]",
+                            "condition": "variables.future_aim_promotion == true",
                             "disabled": {
                                 "condition": "!variables.enabled",
-                                "explanation": "[ You did not go to the degree application ]"
+                                "explanation": "[ You did not go to the promotion conference ]"
                             }
                         }
                     ]

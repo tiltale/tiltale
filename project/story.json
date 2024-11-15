@@ -1,7 +1,7 @@
 {
     "id": "pressure-cooker",
     "title": "Peanut Panic",
-    "start_scene": "epilogue_promotion",
+    "start_scene": "name",
     "objects": [
     ],
     "scenes": [
