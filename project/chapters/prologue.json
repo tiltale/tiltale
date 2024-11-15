@@ -19,7 +19,7 @@
                             "events": [
                                 {
                                     "type": "goto_scene",
-                                    "target": "lecture1",
+                                    "target": "presentation1",
                                     "animate": true        
                                 }
                             ]
@@ -80,7 +80,7 @@
                                     "id": "sp_player1",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "&#91; Yawns &#93 Those <span class='italic'>sideprojects</span> are not going to help with becoming a full tribe member.",
+                                    "content": "&#91; Yawns &#93 Those <span class='italic'>sideprojects</span> are not going to help with getting my regular promotion.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "player",
@@ -500,7 +500,7 @@
                                     "id": "sp_flicktail2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Not that being asleep during Oakpaw's extra elucidations is going to make you fail for you promotion.",
+                                    "content": "Not that being asleep during Oakpaw's elucidations is going to make you fail for you promotion.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"

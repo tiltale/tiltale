@@ -1,7 +1,7 @@
 {
     "id": "pressure-cooker",
     "title": "Peanut Panic",
-    "start_scene": "name",
+    "start_scene": "harvest2",
     "objects": [
     ],
     "scenes": [

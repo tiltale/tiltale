@@ -139,7 +139,7 @@
                                         "events": [
                                             {
                                                 "type": "goto_scene",
-                                                "target": "epilogue_willafernna"
+                                                "target": "epilogue_willaferna"
                                             }
                                         ]
                                     }
@@ -342,7 +342,7 @@
                             "next_instruction": "[ Next, integrate the list into the harvest plan ]",
                             "condition": "variables.directive_redevision == true",
                             "disabled": {
-                                "condition": "variables.some_quercus_trees_done == true",
+                                "condition": "variables.some_quercus_done == true",
                                 "explanation": "[ First, list some Quercus trees by yourself ]"
                             },
                             "events": [
@@ -363,7 +363,7 @@
                             "done_condition": "variables.harvest_plan_send == true",
                             "next_instruction": "[ The end of the harvest period ]",
                             "disabled": {
-                                "condition": "variables.harvest_plan_send == true && variables.aculi_integrated == true && variables.quercus_integrated == true",
+                                "condition": "variables.harvest_plan_done == true && variables.aculi_integrated == true && variables.quercus_integrated == true",
                                 "explanation": "[ First, write the harvest plan and integrate the list Quercus trees and the Aculi analyses ]"
                             },
                             "events": [
@@ -411,7 +411,7 @@
                             "events": [
                                 {
                                     "type": "set_variable",
-                                    "variable": "harvest_plan_done",
+                                    "variable": "aculi_done",
                                     "value": true
                                 },
                                 {
@@ -549,7 +549,7 @@
                                 {
                                     "id": "thistle",
                                     "name": "thistle",
-                                    "img": "/player/img/avatars/thistle.png",
+                                    "img": "/project/img/avatars/thistle.png",
                                     "visible": false
                                 }
                             ]
@@ -2202,7 +2202,7 @@
                                     "id": "sp_willaferna3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "And that promotion, is the most important think, right?!",
+                                    "content": "And that promotion, is the most important thing, right?!",
                                     "name": "Willaferna",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "willaferna"
@@ -2422,28 +2422,28 @@
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_willaferna4_job",
+                            "target": "sp_willaferna4_role",
                             "condition": "variables.future_aim_role == true",
                             "delay": 13000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_willaferna5_job",
+                            "target": "sp_willaferna5_role",
                             "condition": "variables.future_aim_role == true",
                             "delay": 16000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_willaferna4_degree",
+                            "target": "sp_willaferna4_promotion",
                             "condition": "variables.future_aim_promotion == true",
                             "delay": 13000,
                             "keep_others": true
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_willaferna5_degree",
+                            "target": "sp_willaferna5_promotion",
                             "condition": "variables.future_aim_promotion == true",
                             "delay": 16000,
                             "keep_others": true
@@ -2553,7 +2553,7 @@
                 {
                     "id": "winter_time_explanation",
                     "type": "speech",
-                    "content": "The collection of regular Acorns is taking more and more time (orange). Be carefull; winter is approaching quickly.",
+                    "content": "The collection of regular harvest is taking more and more time (orange). Be carefull; winter is approaching quickly.",
                     "visible": false,
                     "speech_position": "topright",
                     "x": "20%",
@@ -2582,7 +2582,7 @@
                     ]
                 },
                 {
-                    "id": "exceeded_time_cylcle3",
+                    "id": "exceeded_time_cycle3",
                     "type": "box",
                     "visible": false,
                     "x": "30%",
@@ -2618,7 +2618,7 @@
                             ]
                         },
                         {
-                            "content": "[ Use time of other courses this week ]",
+                            "content": "[ Use time of the regular harvest ]",
                             "events": [
                                 {
                                     "type": "set_variable",
@@ -2665,7 +2665,7 @@
                                 },
                                 {
                                     "type": "goto_scene",
-                                    "target": "epilogue_graduation",
+                                    "target": "epilogue_promotion",
                                     "condition": "!variables.exceeded_cycle3_time"
                                 },
                                 {
@@ -2676,7 +2676,7 @@
                             ]
                         },
                         {
-                            "content": "[ Use time of other courses this week ]",
+                            "content": "[ Use time of the regular harvest ]",
                             "events": [
                                 {
                                     "type": "set_variable",

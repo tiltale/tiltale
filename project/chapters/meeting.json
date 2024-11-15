@@ -784,7 +784,7 @@
                                     "id": "sp_flicktail11",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "There's a posibiliy that I will go to another forest this Acorn Phase, so I propose I will do the reporting. That's easily transferable to another.",
+                                    "content": "There's a posibiliy that I will go to another forest this harvest season, so I propose I will do the reporting. That's easily transferable to another.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
@@ -793,7 +793,7 @@
                                     "id": "sp_flicktail12",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "[Name] can you make an overall plan to harvest to Aculi and also integrate the analyses and the Quercus Tree list?",
+                                    "content": "[Name] can you make an overall harvest plan and also integrate the Aculi analyses and the Quercus Tree list?",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
