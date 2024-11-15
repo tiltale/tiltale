@@ -548,14 +548,23 @@
                                     "content": "Maybe [Name] can also do some character analyses, than the workload is devided more evenly.",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
+                                    "avatar_id": "lisa"
+                                },
+                                {
+                                    "id": "sp_lisa11",
+                                    "type": "speech",
+                                    "visible": false,
+                                    "content": "Only if you have time for it, of course!",
+                                    "name": "Lisa",
+                                    "name_color": "#F5B841",
                                     "avatar_id": "lisa",
                                     "answer_timer": {
                                         "duration": 7000,
-                                        "default_option_index": 1
+                                        "default_option_index": 2
                                     },
                                     "answer_options": [
                                         {
-                                            "content": "&#91; Push back &#93;",
+                                            "content": "&#91; Deny task &#93;",
                                             "events": [
                                                 {
                                                     "type": "goto_scene",
@@ -570,7 +579,7 @@
                                             ]
                                         },
                                         {
-                                            "content": "&#91; Agree &#93;",
+                                            "content": "&#91; Accept task &#93;",
                                             "events": [
                                                 {
                                                     "type": "goto_scene",
@@ -651,6 +660,12 @@
                             "target": "sp_lisa10",
                             "keep_others": true,
                             "delay": 36000
+                        },
+                        {
+                            "type": "goto_dialogue",
+                            "target": "sp_lisa11",
+                            "keep_others": true,
+                            "delay": 40000
                         }
                     ]
                 }
