@@ -234,7 +234,7 @@
                                     "id": "sp_willaferna3_future_aim_failed",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Luckily he has at least his regular promotion now. So that gives enough possibiliies for the future. An we have each other. &#91; Smiles at you &#93;",
+                                    "content": "Luckily he has at least his regular promotion now. So that gives enough possibilities for the future. An we have each other. &#91; Smiles at you &#93;",
                                     "name": "Willaferna",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "willaferna",
@@ -486,7 +486,7 @@
         },
         {
             "id": "epilogue_willafernna",
-            "background": "bg/wilaferna.png",
+            "background": "bg/willaferna.png",
             "objects": [],
             "dialogue": [
                 {
@@ -514,7 +514,7 @@
         },
         {
             "id": "epilogue_willafernna1",
-            "background": "bg/wilaferna.png",
+            "background": "bg/willaferna.png",
             "objects": [
                 {
                     "id": "epilogue_winnaferna",
