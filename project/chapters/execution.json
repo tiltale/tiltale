@@ -1237,13 +1237,6 @@
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_student4_relaxed",
-                            "delay": 16000,
-                            "keep_others": true,
-                            "condition": "!variables.reprimand"
-                        },
-                        {
-                            "type": "goto_dialogue",
                             "target": "sp_julian3_relaxed",
                             "delay": 19000,
                             "keep_others": true,
@@ -1274,13 +1267,6 @@
                             "type": "goto_dialogue",
                             "target": "sp_student4_angry",
                             "delay": 15000,
-                            "keep_others": true,
-                            "condition": "variables.reprimand"
-                        },
-                        {
-                            "type": "goto_dialogue",
-                            "target": "sp_student4_angry",
-                            "delay": 16000,
                             "keep_others": true,
                             "condition": "variables.reprimand"
                         },
@@ -2157,7 +2143,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>The last week.</h1><p style='font-size: 1.2vw'>You girlfriend surprisses you in the library at school.</p>"
+                            "text": "<h1>The last week.</h1><p style='font-size: 1.2vw'>Julia surprises you in the library at school.</p>"
                         },
                         {
                             "id": "avatars",
@@ -2246,7 +2232,7 @@
                                     },
                                     "answer_options": [
                                         {
-                                            "content": "[ Inspect the house with your girlfriend (20t) ]",
+                                            "content": "[ Inspect the house with Julia (20t) ]",
                                             "events": [
                                                 {
                                                     "type": "hide_object",
@@ -2561,11 +2547,6 @@
                                     "type": "hide_dialogue",
                                     "target": "contact_teacher_explanation",
                                     "keep_others": false
-                                },
-                                {
-                                    "type": "set_variable",
-                                    "variable": "is_running_week1",
-                                    "value": true
                                 }
                             ]
                         }
@@ -2712,10 +2693,6 @@
                                     "type": "set_variable",
                                     "variable": "is_running_week4",
                                     "value": true
-                                },
-                                {
-                                    "type": "goto_scene",
-                                    "target": "epilogue_julia"
                                 }
                             ]
                         }
