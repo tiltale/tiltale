@@ -709,7 +709,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>The Twig is rustling...</h1><p style='font-size: 1.2vw'>Thistle was fague about what he was struggling with. He promised to provide new analyses this day.</p>"
+                            "text": "<h1>The Twig is rustling...</h1><p style='font-size: 1.2vw'>Thistle was vague about what he was struggling with. He promised to provide new analyses this day.</p>"
                         },
                         {
                             "id": "avatars",
@@ -789,7 +789,7 @@
                                     "id": "sp_player3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Eheh...",
+                                    "content": "Uh-huh...",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "player",
@@ -836,7 +836,7 @@
                                     "id": "sp_player5",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Hopefully your better soon! But take your time!",
+                                    "content": "Hopefully you're feeling better soon! But take your time!",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "player",
@@ -1154,7 +1154,7 @@
                                     "id": "sp_scrat4_angry",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Still not that patient, is it?! But sure. See ya.",
+                                    "content": "Still not that patient, are you?! But sure. See ya.",
                                     "name": "Scrat",
                                     "name_color": "#632B30",
                                     "avatar_id": "scrat",
@@ -1333,7 +1333,7 @@
                                     "id": "sp_player1",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "I hope that he has something done. Days pass by way to quickly.",
+                                    "content": "I hope that he has something done. Days pass by way too quickly.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "player",
@@ -1528,7 +1528,7 @@
                                     },
                                     "answer_options": [
                                         {
-                                            "content": "[ Contact Elder Oakpaw and redevide tasks ]",
+                                            "content": "[ Contact Elder Oakpaw and redivide tasks ]",
                                             "events": [
                                                 {
                                                     "type": "show_object",
@@ -1546,7 +1546,7 @@
                                             ]
                                         },
                                         {
-                                            "content": "[ Only redevide tasks ]",
+                                            "content": "[ Only redivide tasks ]",
                                             "events": [
                                                 {
                                                     "type": "show_object",
@@ -1947,7 +1947,7 @@
                                     "id": "sp_oakpaw4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "The later means that in a worst case scenario, you at least can retry to get this extra promotion next year.",
+                                    "content": "The latter means that in a worst case scenario, you at least can retry to get this extra promotion next year.",
                                     "name": "Elder Oakpaw",
                                     "name_color": "#DC6060",
                                     "avatar_id": "oakpaw"
@@ -1956,7 +1956,7 @@
                                     "id": "sp_player2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Okay, yeah that would eliviate at least some pressure in the long term.",
+                                    "content": "Okay, yeah that would alleviate at least some pressure in the long term.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "player1",
@@ -2173,7 +2173,7 @@
                                     "id": "sp_willaferna1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "&#91; Hugs you from behind while your studying your harvest plan &#93;",
+                                    "content": "&#91; Hugs you from behind while your studying you're harvest plan &#93;",
                                     "name": "Willaferna",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "willaferna"
@@ -2192,7 +2192,7 @@
                                     "id": "sp_student1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Well, luckily this extra project is not nessecary to get the regular promotion.",
+                                    "content": "Well, luckily this extra project is not necessary to get the regular promotion.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
@@ -2505,7 +2505,7 @@
                 {
                     "id": "progression_explanation",
                     "type": "speech",
-                    "content": "This is the progression of time. Be carefull. Executing tasks causes extra progression.",
+                    "content": "This is the progression of time. Be careful. Executing tasks causes extra progression.",
                     "visible": false,
                     "speech_position": "topleft",
                     "x": "50%",
@@ -2553,7 +2553,7 @@
                 {
                     "id": "winter_time_explanation",
                     "type": "speech",
-                    "content": "The collection of regular harvest is taking more and more time (orange). Be carefull; winter is approaching quickly.",
+                    "content": "The collection of regular harvest is taking more and more time (orange). Be careful; winter is approaching quickly.",
                     "visible": false,
                     "speech_position": "topright",
                     "x": "20%",

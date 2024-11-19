@@ -500,7 +500,7 @@
                                     "id": "sp_flicktail2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Not that being asleep during Oakpaw's elucidations is going to make you fail for you <span class='italic'>regular</span> promotion.",
+                                    "content": "Not that being asleep during Oakpaw's elucidations is going to make you fail for your <span class='italic'>regular</span> promotion.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
@@ -537,7 +537,7 @@
                                     "id": "sp_player3",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "&#91;Grimasse&#93; Eh... we? Project?",
+                                    "content": "&#91;Grimace&#93; Eh... we? Project?",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "player",

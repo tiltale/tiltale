@@ -48,7 +48,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Dawn</h1><p style='font-size: 1.2vw'>Flicktail, Scrat, Thistle, and you meet to feel the water and set-up tasks for the project.</p>"
+                            "text": "<h1>Dawn</h1><p style='font-size: 1.2vw'>Flicktail, Scrat, Thistle, and you meet to test the water and set-up tasks for the project.</p>"
                         },
                         {
                             "id": "avatars",
@@ -304,7 +304,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Dawn</h1><p style='font-size: 1.2vw'>Flicktail, Scrat, Thistle, and you meet to feel the water and set-up tasks for the project.</p>"
+                            "text": "<h1>Dawn</h1><p style='font-size: 1.2vw'>Flicktail, Scrat, Thistle, and you meet to test the water and set-up tasks for the project.</p>"
                         },
                         {
                             "id": "avatars",
@@ -439,7 +439,7 @@
                                     "id": "sp_player4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Drunk to much Acorn Ale instead of doing your readings, Scrat?",
+                                    "content": "Drunk too much Acorn Ale instead of doing your readings, Scrat?",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "player",
@@ -494,7 +494,7 @@
                                     "id": "sp_flicktail8",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We need a list of Quercus Trees, an analyses of their Aculi and an overal Plan to harvest them.",
+                                    "content": "We need a list of Quercus Trees, an analysis of their Aculi and an overal Plan to harvest them.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
@@ -503,7 +503,7 @@
                                     "id": "sp_flicktail9",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We also need to report on the overall proces.",
+                                    "content": "We also need to report on the overall process.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
@@ -521,7 +521,7 @@
                                     "id": "sp_flicktail10",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Maybe [Name] can also analyze some Aculi, than the workload is devided more evenly.",
+                                    "content": "Maybe [Name] can also analyze some Aculi, than the workload is divided more evenly.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
@@ -668,7 +668,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Dawn</h1><p style='font-size: 1.2vw'>Flicktail, Scrat, Thistle, and you meet to feel the water and set-up tasks for the project.</p>"
+                            "text": "<h1>Dawn</h1><p style='font-size: 1.2vw'>Flicktail, Scrat, Thistle, and you meet to test the water and set-up tasks for the project.</p>"
                         },
                         {
                             "id": "avatars",
@@ -709,7 +709,7 @@
                                 {
                                     "id": "sp_thistle2",
                                     "type": "speech",
-                                    "visible": false,
+                                    "visible": true,
                                     "content": "What about the other tasks?",
                                     "name": "Thistle",
                                     "name_color": "#116592",
@@ -718,7 +718,7 @@
                                 {
                                     "id": "sp_flicktail7",
                                     "type": "speech",
-                                    "visible": false,
+                                    "visible": true,
                                     "content": "Let's see...",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
@@ -727,8 +727,8 @@
                                 {
                                     "id": "sp_flicktail8",
                                     "type": "speech",
-                                    "visible": false,
-                                    "content": "We need a list of Quercus Trees, an analyses of their Aculi and an overal Plan to harvest them.",
+                                    "visible": true,
+                                    "content": "We need a list of Quercus Trees, an analysis of their Aculi and an overal plan to harvest them.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
@@ -736,7 +736,7 @@
                                 {
                                     "id": "sp_flicktail9",
                                     "type": "speech",
-                                    "visible": false,
+                                    "visible": true,
                                     "content": "We also need to report on the overall proces.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
@@ -745,7 +745,7 @@
                                 {
                                     "id": "sp_thistle3",
                                     "type": "speech",
-                                    "visible": false,
+                                    "visible": true,
                                     "content": "I will do the Aculi analyses, if that's okay.",
                                     "name": "Thistle",
                                     "name_color": "#116592",
@@ -754,8 +754,17 @@
                                 {
                                     "id": "sp_flicktail10",
                                     "type": "speech",
+                                    "visible": true,
+                                    "content": "Maybe [Name] can also analyze some Aculi, than the workload is divided more evenly.",
+                                    "name": "Flicktail",
+                                    "name_color": "#F5B841",
+                                    "avatar_id": "flicktail"
+                                },
+                                {
+                                    "id": "sp_flicktail11",
+                                    "type": "true",
                                     "visible": false,
-                                    "content": "Maybe [Name] can also analyze some Aculi, than the workload is devided more evenly.",
+                                    "content": "Only if you have time for it, of course!",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
@@ -764,7 +773,7 @@
                                     "id": "sp_player5",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Yeah sure! We'll make a list of the Aculi and devide them.",
+                                    "content": "Yeah sure! We'll make a list of the Aculi and divide them.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "player",
@@ -774,26 +783,26 @@
                                     "id": "sp_player6",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Well, just let me know if you can't finnish al of them. Then I'll do what's left over.",
+                                    "content": "Well, just let me know if you can't finish all of them. Then I'll do what's left over.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "player",
                                     "is_player": true
                                 },
                                 {
-                                    "id": "sp_flicktail11",
+                                    "id": "sp_flicktail12",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "There's a posibiliy that I will go to another forest this harvest season, so I propose I will do the reporting. That's easily transferable to another.",
+                                    "content": "There's a possibility that I will go to another forest this harvest season, so I propose I will do the reporting. That's easily transferable to another.",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
                                 },
                                 {
-                                    "id": "sp_flicktail12",
+                                    "id": "sp_flicktail13",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "[Name] can you make an overall harvest plan and also integrate the Aculi analyses and the Quercus Tree list?",
+                                    "content": "[Name] can you make an overall harvest plan and also integrate the Aculi analysis and the Quercus Tree list?",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
                                     "avatar_id": "flicktail"
@@ -821,13 +830,13 @@
                                     "id": "sp_thistle4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "I will do the same with the characters, when I've finished them.",
+                                    "content": "I will do the same with the Aculi analysis, when I've finished them.",
                                     "name": "Thistle",
                                     "name_color": "#116592",
                                     "avatar_id": "thistle"
                                 },
                                 {
-                                    "id": "sp_flicktail13",
+                                    "id": "sp_flicktail14",
                                     "type": "speech",
                                     "visible": false,
                                     "content": "[Name] if you then can report everything to me, I think we're good to go!",
@@ -866,13 +875,13 @@
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_flicktail11",
+                            "target": "sp_flicktail12",
                             "keep_others": true,
                             "delay": 7000
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_flicktail12",
+                            "target": "sp_flicktail13",
                             "keep_others": true,
                             "delay": 11000
                         },
@@ -896,7 +905,7 @@
                         },
                         {
                             "type": "goto_dialogue",
-                            "target": "sp_flicktail13",
+                            "target": "sp_flicktail14",
                             "keep_others": true,
                             "delay": 27000
                         }
