@@ -1548,7 +1548,7 @@
                                             ]
                                         },
                                         {
-                                            "content": "[ Only redevide tasks ]",
+                                            "content": "[ Only redivide tasks ]",
                                             "events": [
                                                 {
                                                     "type": "show_object",
