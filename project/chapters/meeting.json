@@ -48,7 +48,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>10:33 AM</h1><p style='font-size: 1.2vw'>Lisa, Cesare, Julian, and you meet to feel the water and set-up tasks for the project.</p>"
+                            "text": "<h1>10:33 AM</h1><p style='font-size: 1.2vw'>Lisa, Cesare, Julian, and you meet to test the water and set-up tasks for the project.</p>"
                         },
                         {
                             "id": "avatars",
@@ -319,7 +319,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>10:33 AM</h1><p style='font-size: 1.2vw'>Lisa, Cesare, Julian, and you meet to feel the water and set-up tasks for the project.</p>"
+                            "text": "<h1>10:33 AM</h1><p style='font-size: 1.2vw'>Lisa, Cesare, Julian, and you meet to test the water and set-up tasks for the project.</p>"
                         },
                         {
                             "id": "avatars",
@@ -518,7 +518,7 @@
                                     "id": "sp_lisa8",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We need a list of events, a analyses of characters and an overal story outline which intergrates them.",
+                                    "content": "We need a list of events, an analysis of characters and an overal story outline which intergrates them.",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
                                     "avatar_id": "lisa"
@@ -527,7 +527,7 @@
                                     "id": "sp_lisa9",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We also need to report on the overall proces.",
+                                    "content": "We also need to report on the overall process.",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
                                     "avatar_id": "lisa"
@@ -545,7 +545,7 @@
                                     "id": "sp_lisa10",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Maybe [Name] can also do some character analyses, than the workload is devided more evenly.",
+                                    "content": "Maybe [Name] can also do some character analyses, then the workload is divided more evenly.",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
                                     "avatar_id": "lisa",
@@ -677,7 +677,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>10:33 AM</h1><p style='font-size: 1.2vw'>Lisa, Cesare, Julian, and you meet to feel the water and set-up tasks for the project.</p>"
+                            "text": "<h1>10:33 AM</h1><p style='font-size: 1.2vw'>Lisa, Cesare, Julian, and you meet to test the water and set-up tasks for the project.</p>"
                         },
                         {
                             "id": "avatars",
@@ -783,7 +783,7 @@
                                     "id": "sp_student6",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Well, just let me know if you can't finnish al of them. Then I'll do what's left over.",
+                                    "content": "Well, just let me know if you can't finish al of them. Then I'll do what's left over.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
@@ -793,7 +793,7 @@
                                     "id": "sp_lisa11",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "There's a posibiliy that I will switch to another study this block, so I propose I will do the reporting. That's easily transferable to another person.",
+                                    "content": "There's a possibility that I will switch to another study this block, so I propose I will do the reporting. That's easily transferable to another person.",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
                                     "avatar_id": "lisa"

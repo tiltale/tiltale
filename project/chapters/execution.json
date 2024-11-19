@@ -536,7 +536,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>While waiting for Cesare to answer your call, you remember that he was struggeling with his mental health.</p>"
+                            "text": "<h1>Phone is ringing...</h1><p style='font-size: 1.2vw'>While waiting for Cesare to answer your call, you remember that he was struggeling with his mental health.</p>"
                         },
                         {
                             "id": "avatars",
@@ -711,7 +711,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>Cesare was fague about what he was struggling with. He promised to provide new material this day.</p>"
+                            "text": "<h1>Phone is ringing...</h1><p style='font-size: 1.2vw'>Cesare was vague about what he was struggling with. He promised to provide new material this day.</p>"
                         },
                         {
                             "id": "avatars",
@@ -791,7 +791,7 @@
                                     "id": "sp_student3",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Eheh...",
+                                    "content": "Uh-huh...",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
@@ -838,7 +838,7 @@
                                     "id": "sp_student5",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Hopefully your better soon! But take your time!",
+                                    "content": "Hopefully you're feeling better soon! But take your time!",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
@@ -972,7 +972,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>Julian takes his time to answer the call. You hope he has the ideas for the events ready.</p>"
+                            "text": "<h1>Phone is ringing...</h1><p style='font-size: 1.2vw'>Julian takes his time to answer the call. You hope he has the ideas for the events ready.</p>"
                         },
                         {
                             "id": "avatars",
@@ -1005,7 +1005,7 @@
                                     "id": "sp_student1",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "Hopefully his drunkass mind has seens some sense since last time.",
+                                    "content": "Hopefully his drunkass mind has seen some sense since last time.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
@@ -1118,7 +1118,7 @@
                                     "id": "sp_julian2_angry",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Really [Name]?! First you paternalize me in the group, and now you can't wait for me to send some stuff.",
+                                    "content": "Really [Name]?! First you patronise me in the group, and now you can't wait for me to send some stuff.",
                                     "name": "Julian",
                                     "name_color": "#632B30",
                                     "avatar_id": "julian"
@@ -1156,7 +1156,7 @@
                                     "id": "sp_julian4_angry",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Still not that patient, is it?! But sure. See ya.",
+                                    "content": "Still not that patient, are you?! But sure. See ya.",
                                     "name": "Julian",
                                     "name_color": "#632B30",
                                     "avatar_id": "julian",
@@ -1308,7 +1308,7 @@
                             "type": "sprite",
                             "width": "88%",
                             "visible": true,
-                            "text": "<h1>Phone is running over...</h1><p style='font-size: 1.2vw'>Julian again takes his time to answer the call.</p>"
+                            "text": "<h1>Phone is ringing...</h1><p style='font-size: 1.2vw'>Julian again takes his time to answer the call.</p>"
                         },
                         {
                             "id": "avatars",
@@ -1335,7 +1335,7 @@
                                     "id": "sp_student1",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "I hope that he has something done. Time is going way to quickly.",
+                                    "content": "I hope that he has something done. Time is going way too quickly.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
@@ -1530,7 +1530,7 @@
                                     },
                                     "answer_options": [
                                         {
-                                            "content": "[ Contact teacher and redevide tasks ]",
+                                            "content": "[ Contact teacher and redivide tasks ]",
                                             "events": [
                                                 {
                                                     "type": "show_object",
@@ -1548,7 +1548,7 @@
                                             ]
                                         },
                                         {
-                                            "content": "[ Only redevide tasks ]",
+                                            "content": "[ Only redivide tasks ]",
                                             "events": [
                                                 {
                                                     "type": "show_object",
@@ -1949,7 +1949,7 @@
                                     "id": "sp_teacher4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "The later means that in a worst case scenario, you at least can redo this course.",
+                                    "content": "The latter means that in a worst case scenario, you at least can redo this course.",
                                     "name": "Teacher",
                                     "name_color": "#DC6060",
                                     "avatar_id": "teacher"
@@ -1958,7 +1958,7 @@
                                     "id": "sp_student2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Okay, yeah that would eliviate at least some pressure in the long term.",
+                                    "content": "Okay, yeah that would alleviate at least some pressure in the long term.",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student1",
@@ -2507,7 +2507,7 @@
                 {
                     "id": "progression_explanation",
                     "type": "speech",
-                    "content": "This is the progression of time. Be carefull. Executing tasks causes extra progression.",
+                    "content": "This is the progression of time. Be careful. Executing tasks causes extra progression.",
                     "visible": false,
                     "speech_position": "topleft",
                     "x": "50%",
@@ -2555,7 +2555,7 @@
                 {
                     "id": "other_courses_explanation",
                     "type": "speech",
-                    "content": "Other courses start to take up time as well (orange). Be carefull in how you devide your time.",
+                    "content": "Other courses start to take up time as well (orange). Be careful in how you devide your time.",
                     "visible": false,
                     "speech_position": "topright",
                     "x": "20%",

@@ -90,7 +90,7 @@
                                     "id": "sp_teacher1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "&#91;...&#93; Therefore these archetypes are very helpful in characterizing workplace behaviour; albeith &#91;...&#93;",
+                                    "content": "&#91;...&#93; Therefore these archetypes are very helpful in characterizing workplace behaviour; albeit &#91;...&#93;",
                                     "name": "Teacher",
                                     "name_color": "#DC6060",
                                     "avatar_id": "teacher"
@@ -204,7 +204,7 @@
                                     "id": "sp_student1",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "Pfew, that's that. The signature is in place, speeches done, let's have a drink! &#91;Walks to the table with chaimpaign glasses&#93;",
+                                    "content": "Pfew, that's that. The signature is in place, speeches done, let's have a drink! &#91;Walks to the table with champagne glasses&#93;",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
@@ -233,7 +233,7 @@
                                     "id": "sp_teacher2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "O wait a sec, there's a colegue of mine which I need to talk to. See ya!",
+                                    "content": "O wait a sec, there's a colleague of mine which I need to talk to. See ya!",
                                     "name": "Teacher",
                                     "name_color": "#DC6060",
                                     "avatar_id": "teacher"
@@ -467,7 +467,7 @@
                                     "id": "sp_teacher1",
                                     "type": "speech",
                                     "visible": true,
-                                    "content": "&#91;...&#93; Therefore these archetypes are very helpful in characterizing workplace behaviour; albeith &#91;...&#93;",
+                                    "content": "&#91;...&#93; Therefore these archetypes are very helpful in characterizing workplace behaviour; albeit &#91;...&#93;",
                                     "name": "Teacher",
                                     "name_color": "#DC6060",
                                     "avatar_id": "teacher"
@@ -501,7 +501,7 @@
                                     "id": "sp_lisa2",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "You better put you effort in this course, otherwise you're not going to get there [Name]!",
+                                    "content": "You better put your effort in this course, otherwise you're not going to get there [Name]!",
                                     "name": "Lisa",
                                     "name_color": "#F5B841",
                                     "avatar_id": "lisa"
@@ -538,7 +538,7 @@
                                     "id": "sp_student3",
                                     "type": "thought",
                                     "visible": false,
-                                    "content": "&#91;Grimasse&#93; Eh... project?",
+                                    "content": "&#91;Grimace&#93; Eh... project?",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",

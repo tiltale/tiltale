@@ -102,7 +102,7 @@
                                     "id": "sp_julia1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Haha, some fuss about the whole things is only well deserved right? &#91; Hugs and toasts with you &#93;",
+                                    "content": "Haha, some fuss about the whole thing is only well deserved right? &#91; Hugs and toasts with you &#93;",
                                     "name": "Julia",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "julia"
@@ -272,7 +272,7 @@
                                     "id": "sp_julia3_future_aim_succes_girlfriend",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "We found a new place were we can start live together. &#91; Holds your arm tightly &#93;",
+                                    "content": "We found a new place where we can start live together. &#91; Holds your arm tightly &#93;",
                                     "name": "Julia",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "julia"
@@ -612,7 +612,7 @@
                                     "id": "sp_julia4",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Maybe we both just wanted to much.",
+                                    "content": "Maybe we both just wanted too much.",
                                     "name": "Julia",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "julia"
@@ -659,7 +659,7 @@
                                     "id": "sp_julia6_future_goal_job_succes",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "And your still getting that job after you finilize your degree.",
+                                    "content": "And you're still getting that job after you finilize your degree.",
                                     "name": "Julia",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "julia"
@@ -668,7 +668,7 @@
                                     "id": "sp_julia6_future_goal_degree_succes",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "And your still allowed to that masters degree, only you start a year later.",
+                                    "content": "And you're still allowed to that masters degree, only you start a year later.",
                                     "name": "Julia",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "julia"
