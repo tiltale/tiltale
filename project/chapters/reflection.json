@@ -80,7 +80,7 @@
                             "events": [
                                 {
                                     "type": "goto_scene",
-                                    "target": "name"
+                                    "target": "start"
                                 }
                             ]
                         }

@@ -1,18 +1,83 @@
 {
     "scenes": [
         {
+            "id": "start",
+            "background": "bg/woods.png",
+            "objects": [
+                {
+                    "visible": true,
+                    "type": "sprite",
+                    "text": "Peanut Panic",
+                    "text_size": "5vw",
+                    "height": "20%",
+                    "width": "100%",
+                    "text_color": "black",
+                    "background": "black",
+                    "text_align": "center",
+                    "x": "0",
+                    "y": "33%",
+                    "text_width": "100%",
+                    "text_border": "1px white",
+                    "text_bold": "true",
+                    "text_y": "12%",
+                    "style": "border-top: 1px solid white; border-bottom: 1px solid white"
+                }
+            ],
+            "dialogue": [
+                {
+                    "visible": true,
+                    "x": "42%",
+                    "y": "53%",
+                    "z": "1",
+                    "type": "box",
+                    "background": "none",
+                    "no_min_height": true,
+                    "content": "",
+                    "answer_options": [
+                        {
+                            "content": "New Game",
+                            "events": [
+                                {
+                                    "type": "goto_scene",
+                                    "target": "name",
+                                    "animate": true        
+                                },
+                                {
+                                    "type": "wipe_variables"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "id": "name",
             "background": "bg/woods.png",
             "objects": [
                 {
                     "id": "name_input",
-                    "type": "textinput",
+                    "type": "identitycard",
+                    "instruction": "In this game you take the role of an squirrel which, together with his girlfriend Julia, is undertaking a promotion course.<br/>Please complete his Nutiversity Pass.",
                     "limit": 18,
-                    "instruction": "<span style=\"font-size: 3vw; font-weight: bold\">Peanut Panic</span><br /><br />What's your first name?",
-                    "x": "25%",
-                    "y": "20%",
-                    "width": "50%",
+                    "content": "",
+                    "x": "18%",
+                    "y": "15%",
+                    "width": "64%",
                     "visible": true,
+                    "avatar": "/project/img/avatars/player.png",
+                    "background_image": "/project/img/id_card.png",
+                    "edit_value_name": "Name",
+                    "key_value_pairs": [
+                        {
+                            "key": "Twig Tag",
+                            "value": "9808-456-234"
+                        },
+                        {
+                            "key": "Treehood",
+                            "value": "Cedar Grove Woods"
+                        }
+                    ],
                     "events": [
                         {
                             "type": "set_variable",

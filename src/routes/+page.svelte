@@ -41,8 +41,8 @@
                 {(o.height !== undefined)?'height: ' + o.height + '; ':''}
                 {(o.x !== undefined)?'left: ' + o.x + '; ':''}
                 {(o.y !== undefined)?'top: ' + o.y + '; ':''} 
-                {(o.z !== undefined)?'z-index: ' + o.z + '; ':''} 
-                {(o.events !== undefined && o.events.length > 0)?'cursor: pointer; ':''}
+                {(o.z !== undefined)?'z-index: ' + o.z + '; ':''}
+                {(o.events !== undefined && o.events.length > 0)?'cursor: pointer;':''}
             " 
             on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
                 {#if o.image !== undefined}
@@ -64,6 +64,9 @@
         {/if}
         {#if o.type == 'textinput'}
         <TextInput obj={o} complete_callback={handle_events} />
+        {/if}
+        {#if o.type == 'identitycard'}
+        <IdentityCard obj={o} complete_callback={handle_events} load_Google_font={load_Google_font} />
         {/if}
         {#if o.type == 'phone'}
         <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
@@ -103,7 +106,9 @@
             {(o.x !== undefined)?'left: ' + o.x + '; ':''}
             {(o.y !== undefined)?'top: ' + o.y + '; ':''} 
             {(o.z !== undefined)?'z-index: ' + o.z + '; ':''} 
+            {(o.background !== undefined)?`background: ${o.background};`:''}
             {(o.events !== undefined && o.events.length > 0)?'cursor: pointer; ':''}
+            {(o.style !== undefined) ? o.style : ''}
         " 
         on:click={(o.events !== undefined && o.events.length > 0)?handle_events(o):undefined}>
             {#if o.image !== undefined}
@@ -118,7 +123,8 @@
             {(o.text_height !== undefined)?'height: ' + o.text_height + '; ':''}
             {(o.text_align !== undefined)?'text-align: ' + o.text_align + '; ':''} 
             {(o.text_size !== undefined)?'font-size: ' + o.text_size + '; ':'font-size: 1.25vw; '} 
-            {(o.text_font !== undefined)?'font-family: ' + o.text_font + '; ':''} 
+            {(o.text_font !== undefined)?'font-family: ' + o.text_font + '; ':''}
+            {(o.text_border !== undefined)?`-webkit-text-stroke: ${o.text_border};`:''} 
             {(o.text_bold !== undefined)?'font-weight: bold; ':''}">
                 {variables_in_text(o.text)}
             </div>
@@ -130,6 +136,9 @@
             {/if}
             {#if o.type == 'textinput'}
             <TextInput obj={o} complete_callback={handle_events} />
+            {/if}
+            {#if o.type == 'identitycard'}
+            <IdentityCard obj={o} complete_callback={handle_events} load_Google_font={load_Google_font} />
             {/if}
             {#if o.type == 'phone'}
             <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
@@ -270,12 +279,13 @@
         {#if d.overlay && d.overlay.visible}
             <div class="overlay" style="{d.z ? `z-index: ${d.z - 1};` : ''} {d.overlay.y != undefined ? `top: ${d.overlay.y};` : ''}"></div>
         {/if}  
-        <div class="absolute card bg-base-100 shadow-xl min-w-[15vw]" style="
+        <div class="absolute card bg-base-100 {(d.background != "none")?'shadow-xl':''} min-w-[15vw]" style="
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
             {(d.x !== undefined)?'left: ' + d.x + '; ':''}
             {(d.y !== undefined)?'top: ' + d.y + '; ':''}
-            {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
+            {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''}
+            {(d.background !== undefined)?`background: ${d.background}` : ''}
             {(d.overlay && d.overlay.visible) ? 'border: 1px solid rgb(112,112,112)' : ''}
             {(d.y == "0%") ? "border-top-right-radius: 0; border-top-left-radius: 0;" : ""}  
             {(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'cursor: pointer;':''}  
@@ -290,6 +300,7 @@
             {/if}
 
             <p>{@html variables_in_text(d.content)}</p>
+
             {#if d.answer_options !== undefined && d.answer_options.length > 0}
             {#if d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next'}            
             <button class="btn btn-circle btn-md bg-black hover:bg-[#5E5E5E] absolute right-[6%] bottom-[-20%]" on:click={(d.answer_options[0].events !== undefined && d.answer_options[0].events.length > 0)?handle_events(d.answer_options[0], d):undefined}>
@@ -304,7 +315,7 @@
             <div class="card-actions justify-end">
             {#each d.answer_options as a}
             {#if a.condition === undefined || evaluate_condition(a.condition)}
-            <button class="btn btn-primary w-full text-[1.25vw] h-auto min-h-[4vw] mt-4" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined}>{@html a.content}</button>
+            <button class="btn btn-primary w-full text-[1.25vw] h-auto {(d.no_min_height != true ? 'min-h-[4vw]' : '')} mt-4" on:click={(a.events !== undefined && a.events.length > 0)?handle_events(a, d):undefined} style="{d.background == "none" ? "border: 1px solid white" : ""}">{@html a.content}</button>
             {/if}
             {/each}
             </div>
@@ -352,6 +363,7 @@
     import { fade } from "svelte/transition";
     import Drag from '../plugins/drag.svelte';
     import TextInput from '../plugins/textinput.svelte';
+    import IdentityCard from '../plugins/identitycard.svelte';
     import Phone from '../plugins/phone.svelte';
     import Note from '../plugins/note.svelte';
     import Notebook from '../plugins/notebook.svelte';
