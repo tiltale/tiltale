@@ -254,7 +254,7 @@
             <p>{@html variables_in_text(d.content)}</p>
             {#if d.answer_options !== undefined && d.answer_options.length > 0}
             {#each d.answer_options as a, idx}            
-            {#if a.condition === undefined || evaluate_condition(a.condition)}
+            {#if (a.visible === undefined || a.visible) && (a.condition === undefined || evaluate_condition(a.condition))}
             {#if a.disabled !== undefined && a.disabled}
             <div class="font-bold line-through {idx == 0?'mt-12':'mt-4'}" style="{(a.text_color !== undefined)?'color: ' + a.text_color + '; ':'color: #666666; '} {(a.text_size !== undefined)?'font-size: ' + a.text_size + '; ':'font-size: 1.5vw; '}">{@html a.content}</div>
             {:else}
@@ -633,8 +633,27 @@
                 tar.dialogue.filter(d => { return d.id == context.id })[0].visible = false;
             }
 
+            // Disable answer options for a while if answer_option_delay set.
+            let obj = tar.dialogue.filter(d => { return d.id == ev.target })[0];
+
+            if (obj.answer_options_delay !== undefined) {
+                obj.answer_options.forEach(function(option) {
+                    option.visible = false;
+                });
+
+                setTimeout(function() {
+                    obj.answer_options.forEach(function(option) {
+                        option.visible = true;
+                    });
+
+                    // Force redraw
+                    story.objects = story.objects;
+                    curr_scene = curr_scene;     
+
+                }, obj.answer_options_delay);
+            }
+
             if (ev.animate !== undefined && ev.animate) {
-                let obj = tar.dialogue.filter(d => { return d.id == ev.target })[0];
 
                 if (obj.type == 'text') {
                     obj.animateIn = true;
@@ -655,7 +674,7 @@
                 }
             }
             else {
-                tar.dialogue.filter(d => { return d.id == ev.target })[0].visible = true;
+                obj.visible = true;
             }
         }
         else if (ev.type == 'set_variable') {
