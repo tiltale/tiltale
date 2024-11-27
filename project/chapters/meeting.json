@@ -34,7 +34,7 @@
             "background": "bg/meeting.png",
             "objects": [
                 {
-                    "id": "lecture",
+                    "id": "meeting1",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "8%",
@@ -196,9 +196,12 @@
                                             "content": "&#91; Do nothing &#93;",
                                             "events": [
                                                 {
-                                                    "type": "goto_scene",
-                                                    "target": "meeting2",
-                                                    "animate": false
+                                                    "type": "hide_object",
+                                                    "target": "meeting1"
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "meeting2"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -211,9 +214,12 @@
                                             "content": "&#91; Disapprove &#93;",
                                             "events": [
                                                 {
-                                                    "type": "goto_scene",
-                                                    "target": "meeting2",
-                                                    "animate": false
+                                                    "type": "hide_object",
+                                                    "target": "meeting1"
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "meeting2"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -295,24 +301,16 @@
                             "delay": 41000
                         }
                     ]
-                }
-            ],
-            "dialogue": [],
-            "events": []
-        },
-        {
-            "id": "meeting2",
-            "background": "bg/meeting.png",
-            "objects": [
+                },
                 {
-                    "id": "lecture",
+                    "id": "meeting2",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "8%",
                     "z": "1",
                     "width": "60%",
                     "height": "80%",
-                    "visible": true,
+                    "visible": false,
                     "objects": [
                         {
                             "id": "top",
@@ -357,81 +355,6 @@
                             "background": "#DDFFE0",
                             "visible": true,
                             "dialogue": [
-                                {
-                                    "id": "sp_lisa1",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Okay, let's start. Has everyone already read the assignment description?",
-                                    "name": "Lisa",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
-                                },
-                                {
-                                    "id": "sp_student1",
-                                    "type": "thought",
-                                    "visible": true,
-                                    "content": "Lisa for sure has.",
-                                    "name": "You",
-                                    "name_color": "#6143CF",
-                                    "avatar_id": "student",
-                                    "is_player": true
-                                },
-                                {
-                                    "id": "sp_student2",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Well yeah, I skimmed through it this morning.",
-                                    "name": "You",
-                                    "name_color": "#6143CF",
-                                    "avatar_id": "student",
-                                    "is_player": true
-                                },
-                                {
-                                    "id": "sp_julian1",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "&#91;Yawns&#93; Well no, I did want to do it, but you know how things can go...",
-                                    "name": "Julian",
-                                    "name_color": "#632B30",
-                                    "avatar_id": "julian"
-                                },
-                                {
-                                    "id": "sp_student3",
-                                    "type": "thought",
-                                    "visible": true,
-                                    "content": "Yeah right! I do smell a little alcohol, isn't it?",
-                                    "name": "You",
-                                    "name_color": "#6143CF",
-                                    "avatar_id": "student",
-                                    "is_player": true
-                                },
-                                {
-                                    "id": "sp_lisa2",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Cesare?",
-                                    "name": "Lisa",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
-                                },
-                                {
-                                    "id": "sp_cesare1",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "I wasn't at school yesterday. I had an appointment with my psychologist.",
-                                    "name": "Cesare",
-                                    "name_color": "#116592",
-                                    "avatar_id": "cesare"
-                                },
-                                {
-                                    "id": "sp_lisa3",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Ah, well that's okay of course! Let us know if we can help with anything or take over some work.",
-                                    "name": "Lisa",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
-                                },
                                 {
                                     "id": "sp_lisa4",
                                     "type": "speech",
@@ -558,9 +481,12 @@
                                             "content": "&#91; Push back &#93;",
                                             "events": [
                                                 {
-                                                    "type": "goto_scene",
-                                                    "target": "meeting3",
-                                                    "animate": false
+                                                    "type": "hide_object",
+                                                    "target": "meeting2"
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "meeting3"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -573,9 +499,12 @@
                                             "content": "&#91; Agree &#93;",
                                             "events": [
                                                 {
-                                                    "type": "goto_scene",
-                                                    "target": "meeting3",
-                                                    "animate": false
+                                                    "type": "hide_object",
+                                                    "target": "meeting2"
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "meeting3"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -653,24 +582,16 @@
                             "delay": 36000
                         }
                     ]
-                }
-            ],
-            "dialogue": [],
-            "events": []
-        },
-        {
-            "id": "meeting3",
-            "background": "bg/meeting.png",
-            "objects": [
+                },
                 {
-                    "id": "lecture",
+                    "id": "meeting3",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "8%",
                     "z": "1",
                     "width": "60%",
                     "height": "80%",
-                    "visible": true,
+                    "visible": false,
                     "objects": [
                         {
                             "id": "top",
@@ -715,42 +636,6 @@
                             "background": "#DDFFE0",
                             "visible": true,
                             "dialogue": [
-                                {
-                                    "id": "sp_cesare2",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "What about the other tasks?",
-                                    "name": "Cesare",
-                                    "name_color": "#116592",
-                                    "avatar_id": "cesare"
-                                },
-                                {
-                                    "id": "sp_lisa7",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Let's see...",
-                                    "name": "Lisa",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
-                                },
-                                {
-                                    "id": "sp_lisa8",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "We need a list of events, a analyses of characters and an overal story outline which intergrates them.",
-                                    "name": "Lisa",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
-                                },
-                                {
-                                    "id": "sp_lisa9",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "We also need to report on the overall proces.",
-                                    "name": "Lisa",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "lisa"
-                                },
                                 {
                                     "id": "sp_cesare3",
                                     "type": "speech",
