@@ -838,7 +838,7 @@
                                     "id": "sp_student5",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "Hopefully you're [feeling?] better soon! But take your time!",
+                                    "content": "Hopefully you're feeling better soon! But take your time!",
                                     "name": "You",
                                     "name_color": "#6143CF",
                                     "avatar_id": "student",
