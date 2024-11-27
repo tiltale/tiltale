@@ -459,7 +459,7 @@
                                     "avatar_id": "flicktail",
                                     "answer_timer": {
                                         "duration": 7000,
-                                        "default_option_index": 2
+                                        "default_option_index": 1
                                     },
                                     "answer_options": [
                                         {

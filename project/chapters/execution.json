@@ -1524,7 +1524,7 @@
                                     "avatar_id": "flicktail",
                                     "answer_timer": {
                                         "duration": 5000,
-                                        "default_option_index": 2
+                                        "default_option_index": 1
                                     },
                                     "answer_options": [
                                         {
@@ -2226,7 +2226,7 @@
                                     "avatar_id": "willaferna",
                                     "answer_timer": {
                                         "duration": 6000,
-                                        "default_option_index": 2
+                                        "default_option_index": 1
                                     },
                                     "answer_options": [
                                         {
@@ -2283,7 +2283,7 @@
                                     "avatar_id": "willaferna",
                                     "answer_timer": {
                                         "duration": 6000,
-                                        "default_option_index": 2
+                                        "default_option_index": 1
                                     },
                                     "answer_options": [
                                         {
@@ -2340,7 +2340,7 @@
                                     "avatar_id": "willaferna",
                                     "answer_timer": {
                                         "duration": 6000,
-                                        "default_option_index": 2
+                                        "default_option_index": 1
                                     },
                                     "answer_options": [
                                         {
