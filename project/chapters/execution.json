@@ -1526,7 +1526,7 @@
                                     "avatar_id": "lisa",
                                     "answer_timer": {
                                         "duration": 5000,
-                                        "default_option_index": 2
+                                        "default_option_index": 1
                                     },
                                     "answer_options": [
                                         {
@@ -2228,7 +2228,7 @@
                                     "avatar_id": "julia",
                                     "answer_timer": {
                                         "duration": 6000,
-                                        "default_option_index": 2
+                                        "default_option_index": 1
                                     },
                                     "answer_options": [
                                         {
@@ -2285,7 +2285,7 @@
                                     "avatar_id": "julia",
                                     "answer_timer": {
                                         "duration": 6000,
-                                        "default_option_index": 2
+                                        "default_option_index": 1
                                     },
                                     "answer_options": [
                                         {
@@ -2342,7 +2342,7 @@
                                     "avatar_id": "julia",
                                     "answer_timer": {
                                         "duration": 6000,
-                                        "default_option_index": 2
+                                        "default_option_index": 1
                                     },
                                     "answer_options": [
                                         {
