@@ -34,7 +34,7 @@
             "background": "bg/conference.png",
             "objects": [
                 {
-                    "id": "lecture",
+                    "id": "conference1",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "8%",
@@ -187,9 +187,12 @@
                                             "content": "&#91; Do nothing &#93;",
                                             "events": [
                                                 {
-                                                    "type": "goto_scene",
-                                                    "target": "conference2",
-                                                    "animate": false
+                                                    "type": "hide_object",
+                                                    "target": "conference1"
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "conference2"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -202,9 +205,12 @@
                                             "content": "&#91; Disapprove &#93;",
                                             "events": [
                                                 {
-                                                    "type": "goto_scene",
-                                                    "target": "conference2",
-                                                    "animate": false
+                                                    "type": "hide_object",
+                                                    "target": "conference1"
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "conference2"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -280,24 +286,16 @@
                             "delay": 37000
                         }
                     ]
-                }
-            ],
-            "dialogue": [],
-            "events": []
-        },
-        {
-            "id": "conference2",
-            "background": "bg/conference.png",
-            "objects": [
+                },
                 {
-                    "id": "lecture",
+                    "id": "conference2",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "8%",
                     "z": "1",
                     "width": "60%",
                     "height": "80%",
-                    "visible": true,
+                    "visible": false,
                     "objects": [
                         {
                             "id": "top",
@@ -342,81 +340,6 @@
                             "background": "#DDFFE0",
                             "visible": true,
                             "dialogue": [
-                                {
-                                    "id": "sp_flicktail1",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Okay, let's start. Has everyone already read the Acorn Directive?",
-                                    "name": "Flicktail",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "flicktail"
-                                },
-                                {
-                                    "id": "sp_player1",
-                                    "type": "thought",
-                                    "visible": true,
-                                    "content": "Flicktail for sure has.",
-                                    "name": "You",
-                                    "name_color": "#6143CF",
-                                    "avatar_id": "player",
-                                    "is_player": true
-                                },
-                                {
-                                    "id": "sp_player2",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Well yeah, I skimmed through it this morning.",
-                                    "name": "You",
-                                    "name_color": "#6143CF",
-                                    "avatar_id": "student",
-                                    "is_player": true
-                                },
-                                {
-                                    "id": "sp_scrat1",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "&#91;Yawns&#93; Well no, I did want to do it, but you know how things can go...",
-                                    "name": "Scrat",
-                                    "name_color": "#632B30",
-                                    "avatar_id": "scrat"
-                                },
-                                {
-                                    "id": "sp_player3",
-                                    "type": "thought",
-                                    "visible": true,
-                                    "content": "Yeah right! I do smell some Acorn Ale, isn't it?",
-                                    "name": "You",
-                                    "name_color": "#6143CF",
-                                    "avatar_id": "player",
-                                    "is_player": true
-                                },
-                                {
-                                    "id": "sp_flicktail2",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Thistle?",
-                                    "name": "Flicktail",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "flicktail"
-                                },
-                                {
-                                    "id": "sp_thistle1",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "I wasn't feeling well enough to listen to Elder Oakpaw's stories. So I wasn't aware...",
-                                    "name": "Thistle",
-                                    "name_color": "#116592",
-                                    "avatar_id": "thistle"
-                                },
-                                {
-                                    "id": "sp_flicktail3",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Ah, well that's okay of course! Let us know if we can help with anything or taking over some work.",
-                                    "name": "Flicktail",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "flicktail"
-                                },
                                 {
                                     "id": "sp_flicktail4",
                                     "type": "speech",
@@ -543,9 +466,12 @@
                                             "content": "&#91; Deny task &#93;",
                                             "events": [
                                                 {
-                                                    "type": "goto_scene",
-                                                    "target": "conference3",
-                                                    "animate": false
+                                                    "type": "hide_object",
+                                                    "target": "conference2"
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "conference3"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -558,9 +484,12 @@
                                             "content": "&#91; Accept task &#93;",
                                             "events": [
                                                 {
-                                                    "type": "goto_scene",
-                                                    "target": "conference3",
-                                                    "animate": false
+                                                    "type": "hide_object",
+                                                    "target": "conference2"
+                                                },
+                                                {
+                                                    "type": "show_object",
+                                                    "target": "conference3"
                                                 },
                                                 {
                                                     "type": "set_variable",
@@ -644,24 +573,16 @@
                             "delay": 40000
                         }
                     ]
-                }
-            ],
-            "dialogue": [],
-            "events": []
-        },
-        {
-            "id": "conference3",
-            "background": "bg/conference.png",
-            "objects": [
+                },
                 {
-                    "id": "lecture",
+                    "id": "conference3",
                     "type": "scrollingdialogue",
                     "x": "20%",
                     "y": "8%",
                     "z": "1",
                     "width": "60%",
                     "height": "80%",
-                    "visible": true,
+                    "visible": false,
                     "objects": [
                         {
                             "id": "top",
@@ -707,51 +628,6 @@
                             "visible": true,
                             "dialogue": [
                                 {
-                                    "id": "sp_thistle2",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "What about the other tasks?",
-                                    "name": "Thistle",
-                                    "name_color": "#116592",
-                                    "avatar_id": "thistle"
-                                },
-                                {
-                                    "id": "sp_flicktail7",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "Let's see...",
-                                    "name": "Flicktail",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "flicktail"
-                                },
-                                {
-                                    "id": "sp_flicktail8",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "We need a list of Quercus Trees, an analysis of their Aculi and an overal plan to harvest them.",
-                                    "name": "Flicktail",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "flicktail"
-                                },
-                                {
-                                    "id": "sp_flicktail9",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "We also need to report on the overall proces.",
-                                    "name": "Flicktail",
-                                    "name_color": "#F5B841",
-                                    "avatar_id": "flicktail"
-                                },
-                                {
-                                    "id": "sp_thistle3",
-                                    "type": "speech",
-                                    "visible": true,
-                                    "content": "I will do the Aculi analyses, if that's okay.",
-                                    "name": "Thistle",
-                                    "name_color": "#116592",
-                                    "avatar_id": "thistle"
-                                },
-                                {
                                     "id": "sp_flicktail10",
                                     "type": "speech",
                                     "visible": true,
@@ -763,7 +639,7 @@
                                 {
                                     "id": "sp_flicktail11",
                                     "type": "true",
-                                    "visible": false,
+                                    "visible": true,
                                     "content": "Only if you have time for it, of course!",
                                     "name": "Flicktail",
                                     "name_color": "#F5B841",
