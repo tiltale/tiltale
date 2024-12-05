@@ -9,8 +9,8 @@
                     "visible": true,
                     "type": "tasklist",
                     "content": "Choices & Outcomes",
-                    "x": "34%",
-                    "y": "27%",
+                    "x": "7%",
+                    "y": "15%",
                     "z": "1",
                     "no_line_through": true,
                     "answer_options": [
@@ -63,26 +63,42 @@
                             }
                         }
                     ]
-                }
-            ],
-            "dialogue": [
+                },
                 {
-                    "type": "box",
+                    "id": "reflection_question",
+                    "type": "textinput",
                     "visible": true,
-                    "x": "2%",
-                    "y": "2%",
-                    "z": "1",
-                    "width": "96%",
-                    "content": "<span style='font-size: 30px'><strong>The End</strong> | Overview</span>",
-                    "answer_options": [
+                    "y": "15%",
+                    "x": "43%",
+                    "width": "50%",
+                    "button_text": "Finish",
+                    "global_instruction": "Please answer the questions below and press finish.",
+                    "questions": [
                         {
-                            "type": "next",
-                            "events": [
-                                {
-                                    "type": "goto_scene",
-                                    "target": "start"
-                                }
-                            ]
+                            "id": "statisfied",
+                            "question": "Are you statisfied with the choices you made in the game? Why?",
+                            "value": ""
+                        },
+                        {
+                            "id": "relate",
+                            "question": "Could you relate the choices you made in the game to situations in daily life? If yes, please give an example.",
+                            "value": ""
+                        },
+                        {
+                            "id": "different",
+                            "question": "Based on the outcomes, would you make different choices if you replayed the game or even in daily life? Why?",
+                            "value": ""
+                        }
+                    ],
+                    "events": [
+                        {
+                            "type": "set_variable",
+                            "variable": "Answer",
+                            "value": "context"
+                        },
+                        {
+                            "type": "goto_scene",
+                            "target": "start"
                         }
                     ]
                 }
