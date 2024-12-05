@@ -2,9 +2,9 @@
 {(obj.width !== undefined)?'width: ' + obj.width + '; ':''}
 {(obj.height !== undefined)?'height: ' + obj.height + '; ':''}
 {(obj.x !== undefined)?'left: ' + obj.x + '; ':''}
-{(obj.y !== undefined)?'top: ' + obj.y + '; ':''} 
+{(obj.y !== undefined)?'top: ' + obj.y + '; ':''}
 ">
-    <div class="card bg-base-100 shadow-xl" style="height: 100%;">
+    <div class="card bg-base-100 shadow-xl" style="height: 100%; border-left: 7px solid #4a00ff">
         <div class="card-body text-[1.5vw] leading-snug p-[5%]">
             {#if obj.global_instruction != undefined}
                 <div class="pb-[3%]"><p><strong>{@html obj.global_instruction}</strong></p></div>
