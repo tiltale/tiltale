@@ -2173,7 +2173,7 @@
                                     "id": "sp_willaferna1",
                                     "type": "speech",
                                     "visible": false,
-                                    "content": "&#91; Hugs you from behind while your studying you're harvest plan &#93;",
+                                    "content": "&#91; Hugs you from behind while you're studying your harvest plan &#93;",
                                     "name": "Willaferna",
                                     "name_color": "#ab2e79",
                                     "avatar_id": "willaferna"
@@ -2553,7 +2553,7 @@
                 {
                     "id": "winter_time_explanation",
                     "type": "speech",
-                    "content": "The collection of regular harvest is taking more and more time (orange). Be careful; winter is approaching quickly.",
+                    "content": "Your regular promotion is taking more and more time (orange). Be careful; winter is approaching quickly.",
                     "visible": false,
                     "speech_position": "topright",
                     "x": "20%",
@@ -2618,7 +2618,7 @@
                             ]
                         },
                         {
-                            "content": "[ Use time of the regular harvest ]",
+                            "content": "[ Use time of the regular promotion ]",
                             "events": [
                                 {
                                     "type": "set_variable",
@@ -2676,7 +2676,7 @@
                             ]
                         },
                         {
-                            "content": "[ Use time of the regular harvest ]",
+                            "content": "[ Use time of the regular promotion ]",
                             "events": [
                                 {
                                     "type": "set_variable",
