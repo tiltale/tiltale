@@ -1,7 +1,7 @@
 {
     "id": "pressure-cooker",
     "title": "Academic Stress",
-    "start_scene": "start",
+    "start_scene": "reflection",
     "objects": [
     ],
     "scenes": [
