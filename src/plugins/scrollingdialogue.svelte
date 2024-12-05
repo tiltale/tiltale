@@ -123,17 +123,17 @@
                     });
 
                     setTimeout(() => {
-                        timers[i].interval = setInterval(() => {
-                            timers[i].value -= 10;
+                        timers[timers.findIndex(t => t.id == dialogue.id)].interval = setInterval(() => {
+                            timers[timers.findIndex(t => t.id == dialogue.id)].value -= 10;
 
                             // If option chosen
-                            if (timers[i].canceled == true) {
-                                clearInterval(timers[i].interval);
+                            if (timers[timers.findIndex(t => t.id == dialogue.id)].canceled == true) {
+                                clearInterval(timers[timers.findIndex(t => t.id == dialogue.id)].interval);
                             }
 
                             // If not, excecute default
-                            if (timers[i].value <= 0) {
-                                clearInterval(timers[i].interval);
+                            if (timers[timers.findIndex(t => t.id == dialogue.id)].value <= 0) {
+                                clearInterval(timers[timers.findIndex(t => t.id == dialogue.id)].interval);
 
                                 const defaultOption = dialogue.answer_options[dialogue.answer_timer.default_option_index];
 
