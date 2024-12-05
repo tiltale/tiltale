@@ -11,6 +11,7 @@
     style="
         width: 32%;
         height: 65%;
+        border-left: 7px solid #4a00ff;
         {(obj.x !== undefined)?'left: ' + obj.x + '; ':''}
         {(obj.y !== undefined)?'top: ' + obj.y + '; ':''}
         {(obj.z !== undefined)?'z-index: ' + obj.z + '; ': ''} 
