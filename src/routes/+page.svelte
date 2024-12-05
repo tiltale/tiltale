@@ -72,7 +72,7 @@
         <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
         {/if}
         {#if o.type == 'scrollingdialogue'}
-        <ScrollingDialogue obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
+        <ScrollingDialogue obj={o} variables_in_text={variables_in_text} event_callback={handle_events} evaluate_condition={evaluate_condition} />
         {/if}
         {#if o.type == 'plannertimer'}
         <PlannerTimer obj={o} event_callback={handle_events} variables={variables} />
@@ -144,7 +144,7 @@
             <Phone obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
             {/if}
             {#if o.type == 'scrollingdialogue'}
-            <ScrollingDialogue obj={o} variables_in_text={variables_in_text} event_callback={handle_events} />
+            <ScrollingDialogue obj={o} variables_in_text={variables_in_text} event_callback={handle_events} evaluate_condition={evaluate_condition} />
             {/if}
             {#if o.type == 'plannertimer'}
             <PlannerTimer obj={o} event_callback={handle_events} variables={variables}/>

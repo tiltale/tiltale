@@ -7,6 +7,7 @@
     export let obj = {};
     export let variables_in_text = undefined;
     export let event_callback = undefined;
+    export let evaluate_condition = undefined;
     let prev_obj = {};
     let typing_id = "";
     let last_id = "";
@@ -26,7 +27,6 @@
     }
 
     $: {
-        console.log(prev_obj);
         if (Object.keys(prev_obj).length > 0) {
             let new_texts = obj.objects.filter((o) => {
                 return o.id == "texts";
@@ -108,31 +108,32 @@
             const dialogue = texts.dialogue;
             const timedAnswerDialogues = dialogue.filter((d) => {return d.answer_timer !== undefined});
 
-            timedAnswerDialogues.forEach(dialogue => {
+            timedAnswerDialogues.forEach((dialogue, i) => {
                 const dialogueEvent = obj.events.filter((e) => e.target == dialogue.id)[0];
                 
-                if (dialogueEvent) {
+                if (dialogueEvent && (dialogueEvent.condition == undefined || evaluate_condition(dialogueEvent.condition))) {
                     let delay = dialogueEvent.delay;
 
                     timers.push({
                         "id": dialogue.id,
                         "value": dialogue.answer_timer.duration,
                         "duration": dialogue.answer_timer.duration,
+                        "interval": undefined,
                         "canceled": false
                     });
 
                     setTimeout(() => {
-                        const interval = setInterval(() => {
-                            timers[timers.findIndex(t => t.id == dialogue.id)].value -= 10;
+                        timers[i].interval = setInterval(() => {
+                            timers[i].value -= 10;
 
                             // If option chosen
-                            if (timers[timers.findIndex(t => t.id == dialogue.id)].canceled == true) {
-                                clearInterval(interval);
+                            if (timers[i].canceled == true) {
+                                clearInterval(timers[i].interval);
                             }
 
                             // If not, excecute default
-                            if (timers[timers.findIndex(t => t.id == dialogue.id)].value <= 0) {
-                                clearInterval(interval);
+                            if (timers[i].value <= 0) {
+                                clearInterval(timers[i].interval);
 
                                 const defaultOption = dialogue.answer_options[dialogue.answer_timer.default_option_index];
 
