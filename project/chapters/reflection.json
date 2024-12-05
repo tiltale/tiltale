@@ -53,7 +53,7 @@
                             }
                         },
                         {
-                            "content": "Julia and you both were allowed to your next promotion",
+                            "content": "Willaferna and you both were allowed to your next promotion",
                             "done_condition": "variables.future_aim_archieved == true && variables.future_aim_promotion == true",
                             "next_instruction": "[ You went go to the promotion conference ]",
                             "condition": "variables.future_aim_promotion == true",
