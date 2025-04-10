@@ -182,10 +182,9 @@
             </div>
             {/if}
         </div>
-        </div>  
-        {/if}      
+        </div>        
 
-        {#if d.type !== undefined && d.type == 'speech'}
+        {:else if d.type !== undefined && (d.type == 'speech' || d.type == 'box')}
         <div class="absolute card bg-base-100 shadow-xl min-w-[15vw]" style="
             {(d.width !== undefined)?'width: ' + d.width + '; ':''}
             {(d.height !== undefined)?'height: ' + d.height + '; ':''}
@@ -194,7 +193,7 @@
             {(d.z !== undefined)?'z-index: ' + d.z + '; ': ''} 
             {(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?'cursor: pointer;':''}  
         " on:click={(d.answer_options !== undefined && d.answer_options.length == 1 && d.answer_options[0].type !== undefined && d.answer_options[0].type == 'next')?handle_events(d.answer_options[0], d):undefined}>
-        {#if d.speech_position == undefined || d.speech_position == 'bottomleft'}
+        {#if d.type !== 'box' && (d.speech_position == undefined || d.speech_position == 'bottomleft')}
         <img src="img/speech_bottomleft.svg" class="absolute top-[100%] left-[5%] w-[2.5vw]" />
         {/if}
         {#if d.speech_position !== undefined && d.speech_position == 'bottomright'}
