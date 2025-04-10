@@ -281,8 +281,9 @@
     import Note from '../plugins/note.svelte';
     import Notebook from '../plugins/notebook.svelte';
     import CharacterCard from '../plugins/charactercard.svelte';
-    import story from '/project/story.json';
+    //import story from '/project/story.json';
 
+    let story: any = {};
     let curr_scene: any = null;
     let scene_visible = true;
     
@@ -358,6 +359,17 @@
                 });
             });                      
         }
+
+        // Load the story
+        fetch('./project/story.json').then((response) => {
+            response.json().then((json) => {
+                load_story(json);
+            })
+        });
+    });
+
+    function load_story(story_json: JSON) {
+        story = story_json;
 
         // Set up the preloading.
         if (story.objects !== undefined) {
@@ -453,7 +465,7 @@
         // Make a copy so that we can always return to the start of the scene later.
         curr_scene = JSON.parse(JSON.stringify(story.scenes.filter(scene => { return scene.id == story.start_scene })[0]));
         handle_events(curr_scene);
-    });
+    }
 
     function image_preloaded(img) {
         img_load_count += 1;
