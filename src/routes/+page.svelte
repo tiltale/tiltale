@@ -335,6 +335,16 @@
             }
         }
 
+        // Load the story
+        fetch('./project/story.json').then((response) => {
+            response.json().then((json) => {
+                load_story(json);
+                check_qid();
+            })
+        });
+    });
+
+    function check_qid() {
         // Load URL params
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -372,15 +382,8 @@
                     console.log(json);
                 });
             });                      
-        }
-
-        // Load the story
-        fetch('./project/story.json').then((response) => {
-            response.json().then((json) => {
-                load_story(json);
-            })
-        });
-    });
+        }        
+    }
 
     function load_story(story_json: JSON) {
         story = story_json;
