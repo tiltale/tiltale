@@ -185,7 +185,7 @@
                 .substr(start, end - start)
                 .replace("project/img/", "");
 
-              if (!images.includes(img)) {
+              if (img.indexOf("[") === -1 && !images.includes(img)) {
                 images.push(img);
               }
             }
